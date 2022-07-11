@@ -1,6 +1,8 @@
 import { Logo } from "components/Logo";
 import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
+import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { useDarkMode } from "usehooks-ts";
 
 type M = {
   onClick?: () => void;
@@ -31,6 +33,7 @@ const MenuLink = forwardRef(
 );
 
 export const Menu = () => {
+  const { isDarkMode, toggle } = useDarkMode();
   return (
     <>
       <ul className={navbar.nav.wrapper}>
@@ -38,6 +41,11 @@ export const Menu = () => {
         <MenuLink>Projects</MenuLink>
         <MenuLink>Blog</MenuLink>
         <MenuLink>Contact</MenuLink>
+        <li>
+          <button onClick={toggle} className={navbar.nav.button}>
+            {isDarkMode ? <MdLightMode size={16} /> : <MdDarkMode size={16} />}
+          </button>
+        </li>
       </ul>
     </>
   );
@@ -45,14 +53,16 @@ export const Menu = () => {
 
 export const Navbar = () => {
   return (
-    <nav className={navbar.container}>
-      <h3 className={navbar.title}>
-        <span role="icon">
-          <Logo onColor="surface" />
-        </span>
-        ALKNGLV
-      </h3>
-      <Menu />
+    <nav className={navbar.wrapper}>
+      <div className={navbar.container}>
+        <h3 className={navbar.title}>
+          <span role="icon">
+            <Logo onColor="surface" />
+          </span>
+          ALKNGLV
+        </h3>
+        <Menu />
+      </div>
     </nav>
   );
 };

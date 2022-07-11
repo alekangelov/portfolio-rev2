@@ -2,6 +2,7 @@ import { Navbar } from "components";
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
 import { useDarkMode } from "usehooks-ts";
+import { Background } from "./canvas";
 
 export const Layout = ({ children }: PropsWithChildren) => {
   const darkMode = useDarkMode(false);
@@ -29,7 +30,9 @@ export const Layout = ({ children }: PropsWithChildren) => {
         />
       </Head>
       <Navbar />
-      <main>{children}</main>
+      <Background>
+        <main>{children}</main>
+      </Background>
     </>
   );
 };
