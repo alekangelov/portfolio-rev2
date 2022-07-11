@@ -30,9 +30,8 @@ export const Layout = ({ children }: PropsWithChildren) => {
         />
       </Head>
       <Navbar />
-      <Background>
-        <main>{children}</main>
-      </Background>
+      <Background />
+      <main>{children}</main>
     </>
   );
 };

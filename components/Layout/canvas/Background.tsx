@@ -3,36 +3,48 @@ import { Canvas } from "@react-three/fiber";
 import {
   Environment,
   Float,
-  Html,
   OrbitControls,
-  SpotLight,
-  Stage,
   useDepthBuffer,
+  ContactShadows,
+  SpotLight,
+  useHelper,
 } from "@react-three/drei";
-import Model, { Bg } from "./Model";
+import { Model } from "./Model";
+import * as THREE from "three";
+import { PointLight } from "three";
 
 const Scene = () => {
-  const depthBuffer = useDepthBuffer({ size: 256 });
+  const depthBuffer = useDepthBuffer({ size: 1024 });
+  const light = useRef<THREE.PointLight>(null);
+  useHelper(light, THREE.PointLightHelper, 0.5, "hotpink");
 
   return (
-    <Float>
+    <>
       {/* <SpotLight
-        penumbra={0.1}
         depthBuffer={depthBuffer}
-        position={[1, 2, 3]}
-        intensity={1}
+        position={[6, 5, 3]}
         angle={0.5}
-        color="#ffffff"
-        castShadow
+        intensity={50}
+        color="white"
+        castShadow={false}
       /> */}
-      <Environment preset="lobby" />
-      <Model />
-      <ambientLight intensity={0} />
-    </Float>
+      <pointLight intensity={3} ref={light} position={[2, 5, 5]} />
+
+      <ContactShadows
+        blur={3}
+        position={[0, -3.5, 0]}
+        scale={40 / 2}
+        far={40 / 2}
+        opacity={1}
+      />
+      <Model scale={3.5} position={[2.5, -3.5, 0]} rotation={[0, -0.7, 0]} />
+
+      {/* <ambientLight  /> */}
+    </>
   );
 };
 
-export function Background({ children }: { children: React.ReactNode }) {
+export function Background() {
   const ref = useRef<any>();
   return (
     <Canvas
@@ -47,12 +59,11 @@ export function Background({ children }: { children: React.ReactNode }) {
       dpr={[1, 2]}
       camera={ref.current}
     >
-      <Bg />
       <Suspense fallback={null}>
+        <Environment preset="lobby" />
         <Scene />
         <OrbitControls position={[0, 0, 0]} ref={ref} />
       </Suspense>
-      <Html position={[0, 0, 0]}>{children}</Html>
     </Canvas>
   );
 }
