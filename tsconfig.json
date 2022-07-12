@@ -20,7 +20,8 @@
       "utils": ["utils/index.ts"],
       "types": ["types/index.ts"],
       "styles": ["styles/index.ts"],
-      "three": ["node_modules/three"]
+      "three": ["node_modules/three"],
+      "stores": ["stores/index.ts"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],

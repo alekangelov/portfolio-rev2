@@ -17,10 +17,26 @@ export const landing = {
     fontSize: "48px",
     fontFamily: "Manofa",
     lineHeight: 1.2,
+    marginBottom: vars.spacing.lg,
   }),
   titleMain: style({
     fontSize: "128px",
     fontWeight: 900,
+    overflow: "hidden",
+    position: "relative",
+    display: "block",
+  }),
+  firstTitle: style({
+    position: "relative",
+    overflow: "hidden",
+    height: "max-content",
+    display: "block",
+    marginBottom: 0,
+  }),
+  innerSpan: style({
+    position: "absolute",
+    top: "100%",
+    left: "0%",
   }),
   sub: style({
     fontWeight: 100,

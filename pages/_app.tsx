@@ -4,16 +4,15 @@ import { Suspense } from "react";
 import * as styles from "styles";
 
 // gotta do this so they're "used" and propagate...
-console.log(styles.globals, styles.resets);
+const log = (...args: any) => void 0;
+log(styles.globals, styles.resets);
 
 function MyApp({ Component, pageProps }: AppProps) {
   // if (typeof window === "undefined") return;
   return (
-    <Suspense fallback={null}>
-      <Layout>
-        <Component {...pageProps} />
-      </Layout>
-    </Suspense>
+    <Layout>
+      <Component {...pageProps} />
+    </Layout>
   );
 }
 

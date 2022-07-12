@@ -1461,16 +1461,6 @@
     suspend-react "^0.0.8"
     zustand "^3.7.1"
 
-"@react-three/postprocessing@^2.4.6":
-  version "2.4.6"
-  resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.4.6.tgz#1dfd6869ea064df36a7e4b770943c74a76a96377"
-  integrity sha512-LxCCtBamNT5uHN8Y1K5ec7ZqdmcIEoWUTWW0ujofX9kode5htk0E2zl8onSXMvRaDsOCMzP5EK3MycLXWgGFuA==
-  dependencies:
-    postprocessing "^6.28.1"
-    react-merge-refs "^1.1.0"
-    screen-space-reflections "^1.0.8"
-    three-stdlib "^2.8.11"
-
 "@rollup/plugin-node-resolve@^7.1.1":
   version "7.1.3"
   resolved "https://registry.yarnpkg.com/@rollup/plugin-node-resolve/-/plugin-node-resolve-7.1.3.tgz#80de384edfbd7bfc9101164910f86078151a3eca"
@@ -4170,11 +4160,6 @@ postcss@8.4.5:
     picocolors "^1.0.0"
     source-map-js "^1.0.1"
 
-postprocessing@^6.28.1, postprocessing@^6.28.2:
-  version "6.28.2"
-  resolved "https://registry.yarnpkg.com/postprocessing/-/postprocessing-6.28.2.tgz#7da068f0d54fbf37fed29b8e206ccf5eef8acd45"
-  integrity sha512-B2qBTiL3tXp5/rdWKG65ePBuQG6U/mie8K8mpvJrBfy9VhgQLJ5YOfx4Hjxv2vHSpXRs3rM0JwekficDFxCpyQ==
-
 potpack@^1.0.1:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/potpack/-/potpack-1.0.2.tgz#23b99e64eb74f5741ffe7656b5b5c4ddce8dfc14"
@@ -4568,11 +4553,6 @@ schema-utils@^3.0.0:
     ajv "^6.12.5"
     ajv-keywords "^3.5.2"
 
-screen-space-reflections@^1.0.8:
-  version "1.0.8"
-  resolved "https://registry.yarnpkg.com/screen-space-reflections/-/screen-space-reflections-1.0.8.tgz#304de62086cdcfa92151a48d19a608539e548586"
-  integrity sha512-UBahDIY3TBds7RIkiGmBMQLZKjBYuAdatOBHEs8jpkSe414cJ66nKNPh/cBFL7ZekTorluNbmxdbJ1GEw/e8xQ==
-
 semver@7.0.0:
   version "7.0.0"
   resolved "https://registry.yarnpkg.com/semver/-/semver-7.0.0.tgz#5f3ca35761e47e05b206c6daff2cf814f0316b8e"
@@ -4896,7 +4876,7 @@ three-mesh-bvh@^0.5.10:
   resolved "https://registry.yarnpkg.com/three-mesh-bvh/-/three-mesh-bvh-0.5.14.tgz#605654cf802b3e92ea7b18997535960d04344159"
   integrity sha512-rSk7SpKDR47m1PmkUxt5na5+dM4h0KW5zF43lMniZGjT4hQn9Om+g64ooFreFIWlQlrNN8pFqiPnDMRZS58/Yw==
 
-three-stdlib@^2.10.2, three-stdlib@^2.12.1, three-stdlib@^2.8.11:
+three-stdlib@^2.10.2, three-stdlib@^2.12.1:
   version "2.12.1"
   resolved "https://registry.yarnpkg.com/three-stdlib/-/three-stdlib-2.12.1.tgz#b63de05cf7f7803e630a7c0c5887e85ae06178ca"
   integrity sha512-G3SSsCOBiWa0sjjPt+K28ikQ84Plm/ZVUozMfWagK59kZqBWcaPVXpOThkAgvdBpm2zCWLW3edAoW/4XIbljVQ==
@@ -5418,3 +5398,10 @@ zustand@^3.5.13, zustand@^3.6.9, zustand@^3.7.1:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/zustand/-/zustand-3.7.2.tgz#7b44c4f4a5bfd7a8296a3957b13e1c346f42514d"
   integrity sha512-PIJDIZKtokhof+9+60cpockVOq05sJzHCriyvaLBmEJixseQ1a5Kdov6fWZfWOu5SK9c+FhH1jU0tntLxRJYMA==
+
+zustand@^4.0.0-rc.1:
+  version "4.0.0-rc.1"
+  resolved "https://registry.yarnpkg.com/zustand/-/zustand-4.0.0-rc.1.tgz#ec30a3afc03728adec7e1bd7bcc3592176372201"
+  integrity sha512-qgcs7zLqBdHu0PuT3GW4WCIY5SgXdsv30GQMu9Qpp1BA2aS+sNS8l4x0hWuyEhjXkN+701aGWawhKDv6oWJAcw==
+  dependencies:
+    use-sync-external-store "1.1.0"

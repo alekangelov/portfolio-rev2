@@ -1,27 +1,42 @@
+import { Html } from "@react-three/drei";
 import { Navbar } from "components";
 import Head from "next/head";
 import { PropsWithChildren, useEffect } from "react";
+import { ThemeStore, useTheme } from "stores";
 import { useDarkMode } from "usehooks-ts";
 import { Background } from "./canvas";
 
+const selector = (store: ThemeStore) => {
+  return {
+    theme: store.theme,
+    getSystemTheme: store.getSystemTheme,
+  };
+};
+
 export const Layout = ({ children }: PropsWithChildren) => {
-  const darkMode = useDarkMode(false);
+  const { theme, getSystemTheme } = useTheme(selector);
   useEffect(() => {
-    console.log(darkMode);
-    if (darkMode.isDarkMode) {
+    const mainTheme = theme === "system" ? getSystemTheme() : theme;
+    console.log(mainTheme);
+    if (mainTheme === "dark") {
       document.documentElement.classList.add("dark");
-    } else {
-      document.documentElement.classList.remove("dark");
+      document.documentElement.classList.remove("light");
+      return;
     }
-  }, [darkMode]);
+    document.documentElement.classList.add("light");
+    document.documentElement.classList.remove("dark");
+  }, [theme, getSystemTheme]);
   return (
     <>
       <Head>
         <title>Alek Angelov</title>
       </Head>
       <Navbar />
-      <Background />
-      <main style={{ zIndex: 1 }}>{children}</main>
+      <Background key="bg">
+        <Html fullscreen>
+          <main>{children}</main>
+        </Html>
+      </Background>
     </>
   );
 };

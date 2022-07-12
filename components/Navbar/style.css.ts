@@ -6,7 +6,7 @@ import { vars } from "../../styles/vars.css";
 
 export const navbar = {
   wrapper: style({
-    background: parseColor(vars.colors.surface, 0.8),
+    background: parseColor(vars.colors.surface, 0.5),
     color: parseColor(vars.onColors.surface),
     border: `1px solid ${parseColor(vars.onColors.surface, 0.2)}`,
     backdropFilter: "blur(24px)",
@@ -15,15 +15,10 @@ export const navbar = {
     left: "50%",
     transform: "translateX(-50%)",
     width: "90%",
-    maxWidth: calc.add(
-      vars.spacing.lg,
-      vars.spacing.lg,
-      vars.spacing.lg,
-      vars.spacing.lg,
-      vars.size.container
-    ),
+    maxWidth: calc.add(vars.size.container),
     borderRadius: 16,
     zIndex: 10,
+    boxShadow: `0 30px 50px -25px ${parseColor("0,0,0", 0.5)}`,
   }),
   container: style({
     width: "100%",
@@ -46,6 +41,8 @@ export const navbar = {
     letterSpacing: calc.multiply(vars.font.size.lg, -0.005),
     maxWidth: "100%",
     textOverflow: "ellipsis",
+    color: parseColor(vars.onColors.surface),
+    textDecoration: "none",
   }),
   nav: {
     wrapper: style({
@@ -66,6 +63,8 @@ export const navbar = {
       borderRadius: 16,
       cursor: "pointer",
       transition: transition("color", "background"),
+      color: parseColor(vars.onColors.surface),
+      textDecoration: "none",
       selectors: {
         "&:hover": {
           background: parseColor(vars.onColors.surface, 1),

@@ -9,6 +9,11 @@ export const media = {
   tablet: `screen and (min-width: ${breakpoints.tablet}px)`,
   desktop: `screen and (min-width: ${breakpoints.desktop}px)`,
 };
+
+export const getVariantBaseClass = (variant: string) => {
+  return variant.split(" ").at(0);
+};
+
 export * from "./color";
 
 export * from "./transition";

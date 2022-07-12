@@ -1,12 +1,15 @@
 import { Logo } from "components/Logo";
 import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
-import { MdDarkMode, MdLightMode } from "react-icons/md";
+import { MdDarkMode, MdLightMode, MdPalette } from "react-icons/md";
 import { useDarkMode } from "usehooks-ts";
+import Link from "next/link";
+import { Button } from "components/Button";
+import { ThemeStore, useTheme } from "stores/theme";
 
 type M = {
   onClick?: () => void;
-  href?: string;
+  href: string;
   active?: boolean;
 };
 
@@ -24,26 +27,44 @@ const MenuLink = forwardRef(
   ) => {
     return (
       <li ref={ref} className={navbar.nav.item} {...props}>
-        <a href={href} className={navbar.nav.link}>
-          {children}
-        </a>
+        <Link href={href} passHref>
+          <Button
+            as="a"
+            color="transparent"
+            onClick={onClick}
+            className={navbar.nav.link}
+          >
+            {children}
+          </Button>
+        </Link>
       </li>
     );
   }
 );
-
+const selector = (store: ThemeStore) => {
+  return {
+    theme: store.theme,
+    toggle: store.toggleTheme,
+  };
+};
 export const Menu = () => {
-  const { isDarkMode, toggle } = useDarkMode();
+  const { theme, toggle } = useTheme(selector);
   return (
     <>
       <ul className={navbar.nav.wrapper}>
-        <MenuLink>About</MenuLink>
-        <MenuLink>Projects</MenuLink>
-        <MenuLink>Blog</MenuLink>
-        <MenuLink>Contact</MenuLink>
+        <MenuLink href="/about">About</MenuLink>
+        <MenuLink href="/projects">Projects</MenuLink>
+        <MenuLink href="/blog">Blog</MenuLink>
+        <MenuLink href="/contact">Contact</MenuLink>
         <li>
           <button onClick={toggle} className={navbar.nav.button}>
-            {isDarkMode ? <MdLightMode size={16} /> : <MdDarkMode size={16} />}
+            {theme === "system" ? (
+              <MdPalette size={16} />
+            ) : theme === "dark" ? (
+              <MdLightMode size={16} />
+            ) : (
+              <MdDarkMode size={16} />
+            )}
           </button>
         </li>
       </ul>
@@ -55,12 +76,14 @@ export const Navbar = () => {
   return (
     <nav className={navbar.wrapper}>
       <div className={navbar.container}>
-        <h3 className={navbar.title}>
-          <span role="icon">
-            <Logo onColor="surface" />
-          </span>
-          ALKNGLV
-        </h3>
+        <Link href="/" passHref>
+          <a className={navbar.title}>
+            <span role="icon">
+              <Logo onColor="surface" />
+            </span>
+            ALKNGLV
+          </a>
+        </Link>
         <Menu />
       </div>
     </nav>

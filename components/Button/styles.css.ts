@@ -1,3 +1,4 @@
+import { keyframes, style } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { vars } from "styles";
@@ -16,6 +17,7 @@ export const button = recipe({
     border: "none",
     color: parseColor(vars.colors.surface),
     cursor: "pointer",
+    overflow: "hidden",
     transition: transition(
       "background",
       "filter",
@@ -70,6 +72,34 @@ export const button = recipe({
       })),
     },
   },
+});
+
+export const rippleVars = {
+  top: `--ripple-top`,
+  left: `--ripple-left`,
+};
+
+export const rippleAnimation = keyframes({
+  "0%": {
+    opacity: 1,
+    transform: "translate(-50%,-50%) scale(0)",
+  },
+  "100%": {
+    opacity: 0,
+    transform: "translate(-50%,-50%) scale(2)",
+  },
+});
+
+export const ripple = style({
+  zIndex: 1,
+  top: `var(${rippleVars.top})`,
+  left: `var(${rippleVars.left})`,
+  position: "absolute",
+  width: "100%",
+  borderRadius: "100%",
+  aspectRatio: "1 / 1",
+  transform: `translate(-50%,-50%)`,
+  backgroundColor: parseColor(vars.colors.surface),
 });
 
 export type ButtonProps = RecipeVariants<typeof button>;
