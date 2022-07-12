@@ -1,3 +1,4 @@
+import { Grid, Button } from "components";
 import { landing } from "./style.css";
 
 export const Landing = () => {
@@ -11,6 +12,14 @@ export const Landing = () => {
           <span className={landing.titleMain}>STERCORE</span>
         </h1>
       </hgroup>
+      <Grid>
+        <Grid.Item>
+          <Button>Find out more</Button>
+        </Grid.Item>
+        <Grid.Item>
+          <Button color="transparent">Find out more</Button>
+        </Grid.Item>
+      </Grid>
     </div>
   );
 };

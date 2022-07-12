@@ -21,7 +21,7 @@ export const Layout = ({ children }: PropsWithChildren) => {
       </Head>
       <Navbar />
       <Background />
-      <main>{children}</main>
+      <main style={{ zIndex: 1 }}>{children}</main>
     </>
   );
 };

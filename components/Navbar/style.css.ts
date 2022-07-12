@@ -8,12 +8,13 @@ export const navbar = {
   wrapper: style({
     background: parseColor(vars.colors.surface, 0.8),
     color: parseColor(vars.onColors.surface),
+    border: `1px solid ${parseColor(vars.onColors.surface, 0.2)}`,
     backdropFilter: "blur(24px)",
     position: "fixed",
     top: vars.spacing.md,
     left: "50%",
     transform: "translateX(-50%)",
-    width: "100%",
+    width: "90%",
     maxWidth: calc.add(
       vars.spacing.lg,
       vars.spacing.lg,
@@ -43,6 +44,8 @@ export const navbar = {
     fontSize: vars.font.size.lg,
     fontWeight: 900,
     letterSpacing: calc.multiply(vars.font.size.lg, -0.005),
+    maxWidth: "100%",
+    textOverflow: "ellipsis",
   }),
   nav: {
     wrapper: style({
