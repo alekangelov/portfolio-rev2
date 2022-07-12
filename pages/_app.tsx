@@ -6,6 +6,7 @@ import * as styles from "styles";
 console.log(styles.globals, styles.resets);
 
 function MyApp({ Component, pageProps }: AppProps) {
+  if (typeof window === "undefined") return;
   return (
     <Layout>
       <Component {...pageProps} />

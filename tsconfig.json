@@ -19,7 +19,8 @@
       "components": ["components/index.ts"],
       "utils": ["utils/index.ts"],
       "types": ["types/index.ts"],
-      "styles": ["styles/index.ts"]
+      "styles": ["styles/index.ts"],
+      "three": ["node_modules/three"]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
