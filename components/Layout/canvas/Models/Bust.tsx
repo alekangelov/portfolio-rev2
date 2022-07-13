@@ -9,6 +9,9 @@ import { Color, Depth, Fresnel, LayerMaterial } from "lamina";
 import type { Group } from "three";
 import { GroupProps } from "@react-three/fiber";
 import { mergeRefs } from "utils";
+import { useTransition, a } from "@react-spring/three";
+import { useState } from "react";
+import { useEffect } from "react";
 
 const InnerMaterial = ({ speed = 10, gradient = 0.7 }) => {
   return (
@@ -60,16 +63,6 @@ const InnerMaterial = ({ speed = 10, gradient = 0.7 }) => {
   );
 };
 
-const black = new THREE.MeshBasicMaterial({
-  color: "black",
-  toneMapped: false,
-});
-
-const white = new THREE.MeshBasicMaterial({
-  color: "#fefefe",
-  toneMapped: false,
-});
-
 const OuterMaterial = new THREE.MeshStandardMaterial({
   color: "#292929",
   roughness: 0,
@@ -83,66 +76,103 @@ const OuterMaterial = new THREE.MeshStandardMaterial({
 //   );
 // };
 
+const useMeshes = () => {
+  const { nodes } = useGLTF("/bust2/bust.gltf") as any;
+  return [
+    {
+      position: [0.67, 0.79, 0.24],
+      mesh: {
+        geometry: nodes.Object_2_cell105.geometry,
+      },
+      mesh2: {
+        geometry: nodes.Object_2_cell105_1.geometry,
+        children: <InnerMaterial />,
+      },
+    },
+    {
+      position: [0.59, 3.77, -0.36],
+      mesh: {
+        geometry: nodes.Object_2_cell106.geometry,
+      },
+      mesh2: {
+        geometry: nodes.Object_2_cell106_1.geometry,
+        children: <InnerMaterial />,
+      },
+    },
+    {
+      position: [-0.36, 5.09, 0.05],
+      mesh: {
+        geometry: nodes.Object_2_cell099.geometry,
+      },
+      mesh2: {
+        geometry: nodes.Object_2_cell099_1.geometry,
+        children: <InnerMaterial />,
+      },
+    },
+    {
+      position: [-0.18, 3.23, 0.49],
+      mesh: {
+        geometry: nodes.Object_2_cell102.geometry,
+      },
+      mesh2: {
+        geometry: nodes.Object_2_cell102_1.geometry,
+        children: <InnerMaterial />,
+      },
+    },
+    {
+      position: [-0.54, 1.25, -0.21],
+      mesh: {
+        geometry: nodes.Object_2_cell103.geometry,
+      },
+      mesh2: {
+        geometry: nodes.Object_2_cell103_1.geometry,
+        children: <InnerMaterial />,
+      },
+    },
+  ];
+};
+
+const Geometry = ({ position, mesh, mesh2, ...props }: any) => {
+  console.log({ position, mesh, mesh2, props });
+  return (
+    <Float>
+      <a.group position={position} scale={props.scale}>
+        <a.mesh material={OuterMaterial} geometry={mesh.geometry} />
+        <a.mesh {...mesh2} />
+      </a.group>
+    </Float>
+  );
+};
+
 function Model({ ...props }: GroupProps, ref: Ref<Group>) {
   const group = useRef<Group>(null);
-  const { nodes } = useGLTF("/bust2/bust.gltf") as any;
+  const meshes = useMeshes();
+  const transition = useTransition(meshes, {
+    from: {
+      scale: 0,
+    },
+    enter: {
+      scale: 1,
+    },
+    leave: {
+      scale: 0,
+    },
+    trail: 100,
+  });
+  console.log(meshes);
   return (
     <group ref={mergeRefs([group, ref])} {...props} dispose={null}>
-      <Float>
-        <group position={[0.67, 0.79, 0.24]}>
-          <mesh
-            material={OuterMaterial}
-            geometry={nodes.Object_2_cell105.geometry}
-          ></mesh>
-          <mesh geometry={nodes.Object_2_cell105_1.geometry}>
-            <InnerMaterial />
-          </mesh>
-        </group>
-      </Float>
-      <Float>
-        <group position={[0.59, 3.77, -0.36]}>
-          <mesh
-            material={OuterMaterial}
-            geometry={nodes.Object_2_cell106.geometry}
-          ></mesh>
-          <mesh geometry={nodes.Object_2_cell106_1.geometry}>
-            <InnerMaterial />
-          </mesh>
-        </group>
-      </Float>
-      <Float>
-        <group position={[-0.36, 5.09, 0.05]}>
-          <mesh
-            material={OuterMaterial}
-            geometry={nodes.Object_2_cell099.geometry}
-          ></mesh>
-          <mesh geometry={nodes.Object_2_cell099_1.geometry}>
-            <InnerMaterial />
-          </mesh>
-        </group>
-      </Float>
-      <Float>
-        <group position={[-0.18, 3.23, 0.49]}>
-          <mesh
-            material={OuterMaterial}
-            geometry={nodes.Object_2_cell102.geometry}
-          ></mesh>
-          <mesh geometry={nodes.Object_2_cell102_1.geometry}>
-            <InnerMaterial />
-          </mesh>
-        </group>
-      </Float>
-      <Float>
-        <group position={[-0.54, 1.25, -0.21]}>
-          <mesh
-            material={OuterMaterial}
-            geometry={nodes.Object_2_cell103.geometry}
-          ></mesh>
-          <mesh geometry={nodes.Object_2_cell103_1.geometry}>
-            <InnerMaterial />
-          </mesh>
-        </group>
-      </Float>
+      {transition((props, { position, mesh, mesh2 }, key) => {
+        return (
+          <Geometry
+            key={key}
+            position={position}
+            mesh={mesh}
+            mesh2={mesh2}
+            {...props}
+          />
+        );
+      })}
     </group>
   );
 }

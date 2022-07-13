@@ -1,59 +1,59 @@
 import { Grid, Button, FullScreen } from "components";
 import { landing } from "./style.css";
-import { useSpring, a } from "@react-spring/web";
+import { useSpring, a, useTrail } from "@react-spring/web";
 import { useState } from "react";
 import { useBoolean } from "usehooks-ts";
-const HiddenOnHover = ({
-  mainText,
-  subText,
-  className,
-  active,
-}: {
-  mainText: React.ReactNode;
-  subText: React.ReactNode;
-  className: string;
-  active?: boolean;
-}) => {
-  const style = useSpring({
+import { useEffect } from "react";
+const HiddenOnHover = ({ active }: { active?: boolean }) => {
+  const style = useTrail(2, {
     transform: !active ? "translate(0%, 0%)" : "translate(0%, -100%)",
     display: "block",
   });
   return (
-    <span className={className}>
-      <a.span style={style}>{mainText}</a.span>
-      <a.span style={style} className={landing.innerSpan}>
-        {subText}
-      </a.span>
-    </span>
+    <h1 className={landing.title}>
+      <span className={landing.firstTitle}>
+        <a.span style={style[0] as any}>MIHI PLACET FACERE FRIGUS</a.span>
+        <a.span style={style[0] as any} className={landing.innerSpan}>
+          I LIKE MAKING REALLY
+        </a.span>
+      </span>
+      <span className={landing.titleMain}>
+        <a.span style={style[1] as any}>STERCORE</a.span>
+        <a.span style={style[1] as any} className={landing.innerSpan}>
+          DOPE SHIT
+        </a.span>
+      </span>
+    </h1>
+  );
+};
+
+const randomNum = () => {
+  return Math.random() * 100;
+};
+
+const Rev = () => {
+  const [{ num }, api] = useSpring(() => ({
+    num: 0,
+  }));
+  useEffect(() => {
+    api.start({ num: randomNum() });
+  }, [api]);
+  return (
+    <a.h6 className={landing.sub}>
+      {num.to((num) => `PORTFOLIO rev2 - fixation ${num.toFixed(3)}`)}
+    </a.h6>
   );
 };
 
 export const Landing = () => {
-  const { value, setTrue, setFalse } = useBoolean(false);
+  const { value, toggle } = useBoolean(false);
 
   return (
     <FullScreen>
       <div className={landing.container}>
-        <hgroup
-          onMouseEnter={setTrue}
-          onMouseLeave={setFalse}
-          style={{ width: "100%" }}
-        >
-          <h6 className={landing.sub}>PORTFOLIO rev2 - fixation 3.456</h6>
-          <h1 className={landing.title}>
-            <HiddenOnHover
-              mainText="MIHI PLACET FACERE FRIGUS"
-              subText="I LIKE MAKING REALLY"
-              className={landing.firstTitle}
-              active={value}
-            />
-            <HiddenOnHover
-              mainText="STERCORE"
-              subText="DOPE SHIT"
-              className={landing.titleMain}
-              active={value}
-            />
-          </h1>
+        <hgroup onClick={toggle} style={{ width: "100%", userSelect: "none" }}>
+          <Rev />
+          <HiddenOnHover active={value} />
         </hgroup>
         <Grid>
           <Grid.Item>

@@ -1,6 +1,6 @@
 import React, { memo, Suspense, useRef, useState } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { ContactShadows, Environment } from "@react-three/drei";
+import { ContactShadows, Environment, OrbitControls } from "@react-three/drei";
 import { Effects } from "./Effects";
 import { HomeScene } from "./Scenes/HomeScene";
 
@@ -22,6 +22,7 @@ export const Background = memo(({ children }: any) => {
         <Environment preset="studio" />
         <HomeScene />
       </Suspense>
+      <OrbitControls />
       <Effects />
 
       {children}
