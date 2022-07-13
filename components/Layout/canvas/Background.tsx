@@ -30,7 +30,7 @@ export const Background = memo(({ children }: any) => {
         <HomeScene />
         <Effects />
       </Suspense>
-      {/* <OrbitControls /> */}
+      <OrbitControls />
       {children}
     </Canvas>
   );

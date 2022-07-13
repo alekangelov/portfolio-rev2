@@ -10,9 +10,6 @@ const AnimatedBust = animated(Bust);
 const v = new THREE.Vector3();
 export const HomeScene = () => {
   const light = useRef<PointLight>(null);
-  const [{ scale }, api] = useSpring(() => ({
-    scale: 1,
-  }));
   return (
     <group position={[0, -3, 0]}>
       <pointLight
@@ -29,18 +26,8 @@ export const HomeScene = () => {
         color="#0059ff"
         castShadow
       />
-      <AnimatedBust
-        onClick={() => {
-          api.set({
-            scale: 1.5,
-          });
-          api.start({
-            scale: 1,
-          });
-        }}
-        scale={scale}
-        position={[3, 0, 0]}
-      />
+
+      <AnimatedBust position={[3, 0, 0]} />
       <ContactShadows
         position={[0, -0.5, 0]}
         blur={10}
@@ -48,7 +35,6 @@ export const HomeScene = () => {
         width={2}
         height={2}
       />
-      <Physics iterations={10} allowSleep={false}></Physics>
     </group>
   );
 };

@@ -40,7 +40,7 @@ export default function Effects() {
     >
       <renderPass ref={b} clear clearAlpha={1} scene={scene} camera={camera} />
       {/* <bloomPass ref={ref} attachArray="passes" args={[2, 100, 10, 512]} />{" "} */}
-      <filmPass attachArray="passes" args={[1, 0, 0, false]} />
+      <filmPass attachArray="passes" args={[0.3, 0, 0, false]} />
     </EffectComposer>
   );
 }
