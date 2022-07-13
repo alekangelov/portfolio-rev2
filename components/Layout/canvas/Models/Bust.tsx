@@ -7,16 +7,9 @@ import { Float, useGLTF } from "@react-three/drei";
 import * as THREE from "three";
 import { Depth, Fresnel, LayerMaterial } from "lamina";
 import type { Group } from "three";
-import { GroupProps, useFrame, useThree } from "@react-three/fiber";
-import { mergeRefs } from "utils";
-import { useTransition, a } from "@react-spring/three";
-import {
-  PlaneProps,
-  useBox,
-  useCompoundBody,
-  usePlane,
-  useSphere,
-} from "@react-three/cannon";
+import { GroupProps } from "@react-three/fiber";
+import { mergeRefs } from "@utils";
+import { useTransition, a, useSpring, to } from "@react-spring/three";
 
 const InnerMaterial = ({ speed = 10, gradient = 0.7 }) => {
   return (
@@ -134,10 +127,22 @@ const useMeshes = (active = true) => {
   return active ? meshes : [];
 };
 
-const Geometry = ({ position, mesh, mesh2, ...props }: any) => {
+const Geometry = ({ position, mesh, mesh2, scale, ...props }: any) => {
+  const [{ scale: scaleSpring }, set] = useSpring(() => ({
+    scale: 1,
+  }));
   return (
-    <Float speed={0.2}>
-      <a.mesh {...props} position={position} dispose={null}>
+    <Float speed={2}>
+      <a.mesh
+        {...props}
+        scale={to([scaleSpring, scale], (s1, s2) => {
+          return s1 * s2;
+        })}
+        onPointerEnter={() => set({ scale: 1.2 })}
+        onPointerLeave={() => set({ scale: 1 })}
+        position={position}
+        dispose={null}
+      >
         <a.mesh geometry={mesh.geometry} material={OuterMaterial} />
         <a.mesh {...mesh2} />
       </a.mesh>

@@ -1,8 +1,8 @@
 import { createVar } from "@vanilla-extract/css";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { vars } from "styles";
+import { vars } from "@styles";
 import { media } from "styles/helpers";
-import { createVariation } from "utils";
+import { createVariation } from "@utils";
 
 export const gap = createVar();
 const { spacing } = vars;

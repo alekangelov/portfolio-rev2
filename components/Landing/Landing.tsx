@@ -1,7 +1,6 @@
-import { Grid, Button, FullScreen } from "components";
+import { Grid, Button, FullScreen } from "@components";
 import { landing } from "./style.css";
 import { useSpring, a, useTrail } from "@react-spring/web";
-import { useState } from "react";
 import { useBoolean } from "usehooks-ts";
 import { useEffect } from "react";
 const HiddenOnHover = ({ active }: { active?: boolean }) => {
@@ -49,7 +48,7 @@ export const Landing = () => {
   const { value, toggle } = useBoolean(false);
 
   return (
-    <FullScreen>
+    <>
       <div className={landing.container}>
         <hgroup onClick={toggle} style={{ width: "100%", userSelect: "none" }}>
           <Rev />
@@ -64,6 +63,6 @@ export const Landing = () => {
           </Grid.Item>
         </Grid>
       </div>
-    </FullScreen>
+    </>
   );
 };

@@ -1,9 +1,7 @@
 import { Html } from "@react-three/drei";
-import { Navbar } from "components";
-import Head from "next/head";
+import { Navbar } from "@components";
 import { PropsWithChildren, useEffect } from "react";
-import { ThemeStore, useTheme } from "stores";
-import { useDarkMode } from "usehooks-ts";
+import { ThemeStore, useTheme } from "@stores";
 import { Background } from "./canvas";
 
 const selector = (store: ThemeStore) => {
@@ -28,9 +26,6 @@ export const Layout = ({ children }: PropsWithChildren) => {
   }, [theme, getSystemTheme]);
   return (
     <>
-      <Head>
-        <title>Alek Angelov</title>
-      </Head>
       <Navbar />
       <Background key="bg">
         <Html fullscreen>

@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { createElement, forwardRef, Ref, useEffect } from "react";
 import { useRef } from "react";
-import { mergeRefs } from "utils";
+import { mergeRefs } from "@utils";
 import { createRipple } from "./ripple";
 import { ButtonProps, button } from "./styles.css";
 

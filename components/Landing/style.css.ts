@@ -1,6 +1,6 @@
 import { style } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
-import { container, vars } from "styles";
+import { container, vars } from "@styles";
 
 export const landing = {
   container: style([

@@ -1,32 +1,29 @@
 {
   "compilerOptions": {
     "baseUrl": ".",
-    "target": "es5",
-    "lib": ["dom", "dom.iterable", "esnext"],
-    "allowJs": true,
+    "target": "ESNext",
+    "useDefineForClassFields": true,
+    "lib": ["DOM", "DOM.Iterable", "ESNext"],
+    "allowJs": false,
     "skipLibCheck": true,
+    "esModuleInterop": false,
+    "allowSyntheticDefaultImports": true,
     "strict": true,
     "forceConsistentCasingInFileNames": true,
-    "noEmit": true,
-    "esModuleInterop": true,
-    "module": "esnext",
-    "moduleResolution": "node",
+    "module": "ESNext",
+    "moduleResolution": "Node",
     "resolveJsonModule": true,
     "isolatedModules": true,
-    "jsx": "preserve",
-    "incremental": true,
+    "noEmit": true,
+    "jsx": "react-jsx",
     "paths": {
-      "components": ["components/index.ts"],
-      "utils": ["utils/index.ts"],
+      "@components": ["components/index.ts"],
+      "@utils": ["utils/index.ts"],
       "types": ["types/index.ts"],
-      "styles": ["styles/index.ts"],
-      "three": ["node_modules/three"],
-      "stores": ["stores/index.ts"],
-      "three/examples/jsm/capabilities/WebGL": [
-        "node_modules/three/examples/jsm/capabilities/WebGL.js"
-      ]
+      "@styles": ["styles/index.ts"],
+      "@stores": ["stores/index.ts"]
     }
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
-  "exclude": ["node_modules"]
+  "include": ["src", "components", "stores", "styles", "utils", "types"],
+  "references": [{ "path": "./tsconfig.node.json" }]
 }

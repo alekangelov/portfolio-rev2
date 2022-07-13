@@ -1,5 +1,5 @@
 import { ComplexStyleRule } from "@vanilla-extract/css";
-import { vars } from "styles";
+import { vars } from "@styles";
 
 export const objectForEach = <T>(
   obj: T,

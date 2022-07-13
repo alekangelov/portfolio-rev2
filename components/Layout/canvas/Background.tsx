@@ -24,7 +24,6 @@ export const Background = memo(({ children }: any) => {
       dpr={dpr as any}
       camera={ref.current}
     >
-      <fog color="#ffffff" attach="fog" near={8} far={1000} />
       <Suspense>
         <Environment preset="studio" />
         <HomeScene />

@@ -3,13 +3,13 @@ import {
   BloomPass,
   SSAOPass,
   RenderPass,
-  UnrealBloomPass,
   GlitchPass,
   FilmPass,
 } from "three-stdlib";
 import { Effects as EffectComposer } from "@react-three/drei";
-import { useRef } from "react";
+import { useMemo, useRef } from "react";
 import * as THREE from "three";
+import { UnrealBloomPass } from "./Helpers/BloomPass";
 
 extend({
   BloomPass,
@@ -26,10 +26,14 @@ export default function Effects() {
   //   [size]
   // );
   // useFrame(() => composer.current.render(), 2);
-  const ref = useRef();
-  const b = useRef();
+  const ref = useRef<any>();
+  const b = useRef<any>();
   console.log({ ref, b });
-  const { gl, scene, camera } = useThree();
+  const { scene, camera, size } = useThree();
+  const aspect = useMemo(
+    () => new THREE.Vector2(size.width, size.height),
+    [size]
+  );
   // return null;
   return (
     <EffectComposer
@@ -39,8 +43,10 @@ export default function Effects() {
       disableRender={false}
     >
       <renderPass ref={b} clear clearAlpha={1} scene={scene} camera={camera} />
-      {/* <bloomPass ref={ref} attachArray="passes" args={[2, 100, 10, 512]} />{" "} */}
+      {/* @ts-ignore */}
       <filmPass attachArray="passes" args={[0.3, 0, 0, false]} />
+      {/* @ts-ignore */}
+      {/* <unrealBloomPass attachArray="passes" args={[aspect, 5, 0.5, 0.9]} /> */}
     </EffectComposer>
   );
 }

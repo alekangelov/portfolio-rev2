@@ -1,11 +1,8 @@
-import { Logo } from "components/Logo";
+import { Logo, Button, Link } from "@components";
 import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
 import { MdDarkMode, MdLightMode, MdPalette } from "react-icons/md";
-import { useDarkMode } from "usehooks-ts";
-import Link from "next/link";
-import { Button } from "components/Button";
-import { ThemeStore, useTheme } from "stores/theme";
+import { ThemeStore, useTheme } from "@stores";
 
 type M = {
   onClick?: () => void;
@@ -27,7 +24,7 @@ const MenuLink = forwardRef(
   ) => {
     return (
       <li ref={ref} className={navbar.nav.item} {...props}>
-        <Link href={href} passHref>
+        <Link to={href}>
           <Button
             as="a"
             color="transparent"
@@ -76,7 +73,7 @@ export const Navbar = () => {
   return (
     <nav className={navbar.wrapper}>
       <div className={navbar.container}>
-        <Link href="/" passHref>
+        <Link to="/">
           <a className={navbar.title}>
             <span role="icon">
               <Logo onColor="surface" />

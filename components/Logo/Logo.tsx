@@ -1,5 +1,4 @@
-import { vars } from "styles";
-import { parseColor } from "styles/helpers";
+import { vars, parseColor } from "@styles";
 
 type P = JSX.IntrinsicElements["svg"] & {
   color?: keyof typeof vars.colors;

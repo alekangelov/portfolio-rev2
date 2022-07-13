@@ -1,15 +1,14 @@
 {
-  "name": "portvolio-rev2",
-  "version": "0.1.0",
+  "name": "portfolio-rev3",
   "private": true,
+  "version": "0.0.0",
+  "type": "module",
   "scripts": {
-    "dev": "next dev",
-    "build": "next build",
-    "start": "next start",
-    "lint": "next lint"
+    "dev": "vite",
+    "build": "tsc && vite build",
+    "preview": "vite preview"
   },
   "dependencies": {
-    "@next/bundle-analyzer": "^12.2.2",
     "@react-spring/core": "^9.4.5",
     "@react-spring/web": "^9.4.5",
     "@react-three/cannon": "^6.3.0",
@@ -25,32 +24,34 @@
     "color": "^4.2.3",
     "lamina": "^1.1.20",
     "lerp": "^1.0.3",
-    "next": "12.2.2",
-    "next-offline": "^5.0.5",
     "postprocessing": "^6.28.2",
-    "react": "18.2.0",
-    "react-dom": "18.2.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
     "react-icons": "^4.4.0",
+    "react-router-dom": "^6.3.0",
     "three": "^0.142.0",
     "three-stdlib": "^2.12.1",
-    "url-loader": "^4.1.1",
     "usehooks-ts": "^2.6.0",
     "zustand": "^4.0.0-rc.1"
   },
   "devDependencies": {
     "@types/color": "^3.0.3",
     "@types/node": "18.0.3",
-    "@types/react": "18.0.15",
-    "@types/react-dom": "18.0.6",
+    "@types/react": "^18.0.15",
+    "@types/react-dom": "^18.0.6",
     "@types/three": "^0.141.0",
     "@vanilla-extract/babel-plugin": "^1.1.7",
     "@vanilla-extract/next-plugin": "^2.0.2",
+    "@vanilla-extract/vite-plugin": "^3.2.1",
+    "@vitejs/plugin-react": "^2.0.0",
     "eslint": "8.19.0",
     "eslint-config-next": "12.2.2",
     "file-loader": "^6.2.0",
     "glslify-loader": "^2.0.0",
     "next-compose-plugins": "^2.2.1",
     "raw-loader": "^4.0.2",
-    "typescript": "4.7.4"
+    "typescript": "4.7.4",
+    "vite": "^3.0.0",
+    "vite-tsconfig-paths": "^3.5.0"
   }
 }

@@ -1,9 +1,9 @@
 import { keyframes, style } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
 import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
-import { vars } from "styles";
+import { vars } from "@styles";
 import { parseColor, transition } from "styles/helpers";
-import { createVariation, getBigger } from "utils";
+import { createVariation, getBigger } from "@utils";
 
 export const button = recipe({
   base: {
