@@ -16,6 +16,10 @@ const withOffline = require('next-offline')
 const nextConfig = {
   reactStrictMode: true,
   swcMinify: true,
+  typescript: {
+    ignoreBuildErrors: true,
+
+  }
   // webpack(config, { isServer }) {
   //   // audio support
   //   config.module.rules.push({
