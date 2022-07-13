@@ -21,7 +21,10 @@
       "types": ["types/index.ts"],
       "styles": ["styles/index.ts"],
       "three": ["node_modules/three"],
-      "stores": ["stores/index.ts"]
+      "stores": ["stores/index.ts"],
+      "three/examples/jsm/capabilities/WebGL": [
+        "node_modules/three/examples/jsm/capabilities/WebGL.js"
+      ]
     }
   },
   "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx"],
