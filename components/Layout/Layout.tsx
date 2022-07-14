@@ -8,7 +8,6 @@ import { Location } from "react-router-dom";
 const selector = (store: ThemeStore) => {
   return {
     theme: store.theme,
-    getSystemTheme: store.getSystemTheme,
   };
 };
 
@@ -16,18 +15,16 @@ export const Layout = ({
   children,
   location,
 }: PropsWithChildren<{ location: Location }>) => {
-  const { theme, getSystemTheme } = useTheme(selector);
+  const { theme } = useTheme(selector);
   useEffect(() => {
-    const mainTheme = theme === "system" ? getSystemTheme() : theme;
-    console.log(mainTheme);
-    if (mainTheme === "dark") {
+    if (theme === "dark") {
       document.documentElement.classList.add("dark");
       document.documentElement.classList.remove("light");
       return;
     }
     document.documentElement.classList.add("light");
     document.documentElement.classList.remove("dark");
-  }, [theme, getSystemTheme]);
+  }, [theme]);
   return (
     <>
       <Navbar />
