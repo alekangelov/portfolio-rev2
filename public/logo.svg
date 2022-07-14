@@ -2,9 +2,15 @@
   width="29"
   height="24"
   viewBox="0 0 29 24"
-  fill="white"
   xmlns="http://www.w3.org/2000/svg"
 >
+  <style>
+    @media (prefers-color-scheme: dark) {
+      path {
+        fill: white;
+      }
+    }
+  </style>
   <path
     fillRule="evenodd"
     clipRule="evenodd"

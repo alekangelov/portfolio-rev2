@@ -1,4 +1,4 @@
-import { Logo, Button, Link } from "@components";
+import { Logo, Button, Link, Switch } from "@components";
 import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
 import { MdDarkMode, MdLightMode, MdPalette } from "react-icons/md";
@@ -48,7 +48,7 @@ const MenuLink = forwardRef(
 const selector = (store: ThemeStore) => {
   return {
     theme: store.theme,
-    toggle: store.toggleTheme,
+    toggle: store.setTheme,
   };
 };
 export const Menu = () => {
@@ -61,15 +61,12 @@ export const Menu = () => {
         <MenuLink href="/blog">Blog</MenuLink>
         <MenuLink href="/contact">Contact</MenuLink>
         <li>
-          <button onClick={toggle} className={navbar.nav.button}>
-            {theme === "system" ? (
-              <MdPalette size={16} />
-            ) : theme === "dark" ? (
-              <MdLightMode size={16} />
-            ) : (
-              <MdDarkMode size={16} />
-            )}
-          </button>
+          <Switch
+            value={theme}
+            icons={[<MdDarkMode />, <MdLightMode />]}
+            onChange={toggle}
+            options={["light", "dark"]}
+          />
         </li>
       </ul>
     </>

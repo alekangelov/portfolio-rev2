@@ -8,29 +8,30 @@ export const Routes = () => {
   const transition = useTransition(location, {
     from: {
       opacity: 0,
-      transform: "translate(0px, 50px)",
       position: "absolute",
     },
     enter: {
       opacity: 1,
-      transform: "translate(0px, 0px)",
       position: "relative",
     },
     leave: {
       opacity: 0,
-      transform: "translate(0px, -50px)",
       position: "absolute",
     },
     trail: 100,
   });
   return (
     <Layout location={location}>
-      {transition(({ opacity, transform }, location) => {
+      {transition(({ opacity, position }, location) => {
         return (
           <a.div
             style={{
               opacity,
-              transform,
+              position: position as any,
+              top: 0,
+              left: 0,
+              width: "100%",
+              height: "100%",
             }}
           >
             <DomRoutes location={location}>

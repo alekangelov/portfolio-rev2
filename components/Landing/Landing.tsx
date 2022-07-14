@@ -2,7 +2,7 @@ import { Grid, Button, FullScreen } from "@components";
 import { landing } from "./style.css";
 import { useSpring, a, useTrail } from "@react-spring/web";
 import { useBoolean } from "usehooks-ts";
-import { useEffect } from "react";
+import { memo, useEffect } from "react";
 const HiddenOnHover = ({ active }: { active?: boolean }) => {
   const style = useTrail(2, {
     transform: !active ? "translate(0%, 0%)" : "translate(0%, -100%)",
@@ -30,19 +30,13 @@ const randomNum = () => {
   return Math.random() * 100;
 };
 
-const Rev = () => {
-  const [{ num }, api] = useSpring(() => ({
-    num: "0",
-  }));
-  useEffect(() => {
-    api.start({ num: randomNum().toFixed(3) });
-  }, [api]);
+const Rev = memo(() => {
   return (
-    <a.h6 className={landing.sub}>
-      {num.to((num) => `PORTFOLIO rev2 - fixation ${num}`)}
-    </a.h6>
+    <h6 className={landing.sub}>
+      {`PORTFOLIO rev2 - fixation ${randomNum().toFixed(3)}`}
+    </h6>
   );
-};
+});
 
 export const Landing = () => {
   const { value, toggle } = useBoolean(false);
