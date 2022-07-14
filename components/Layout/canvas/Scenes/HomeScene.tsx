@@ -28,13 +28,13 @@ export const HomeScene = () => {
       />
 
       <AnimatedBust position={[3, 0, 0]} />
-      <ContactShadows
+      {/* <ContactShadows
         position={[0, -0.5, 0]}
         blur={10}
         far={100}
         width={2}
         height={2}
-      />
+      /> */}
     </group>
   );
 };

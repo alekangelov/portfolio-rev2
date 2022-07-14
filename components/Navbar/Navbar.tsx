@@ -77,10 +77,11 @@ export const Menu = () => {
 };
 
 export const Navbar = () => {
+  const { pathname } = useLocation();
   return (
     <nav className={navbar.wrapper}>
       <div className={navbar.container}>
-        <Link to="/">
+        <Link to={pathname === "/" ? (undefined as any) : "/"}>
           <a className={navbar.title}>
             <span role="icon">
               <Logo onColor="surface" />
