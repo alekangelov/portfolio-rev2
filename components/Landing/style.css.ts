@@ -32,6 +32,7 @@ export const landing = {
     height: "max-content",
     display: "block",
     marginBottom: 0,
+    fontWeight: 600,
   }),
   innerSpan: style({
     position: "absolute",
@@ -42,6 +43,7 @@ export const landing = {
     fontWeight: 100,
     fontSize: vars.font.size.lg,
     marginBottom: vars.spacing.xl,
-    letterSpacing: calc.multiply(vars.font.size.lg, -0.02),
+    letterSpacing: calc.multiply(vars.font.size.lg, 0.5),
+    textTransform: "uppercase",
   }),
 };

@@ -594,6 +594,13 @@
   dependencies:
     "@babel/runtime" "^7.13.10"
 
+"@react-pdf/yoga@^2.0.4":
+  version "2.0.4"
+  resolved "https://registry.yarnpkg.com/@react-pdf/yoga/-/yoga-2.0.4.tgz#6b14c6f244dc551db209acd05a06354a19fed66e"
+  integrity sha512-bsU48GQ8E4LEQ38AtyQPQZ9oEATMpolGPFewgI4sBXOZBNH2miLtoBTbyB/xEOMuBcyqtvJQwSNg2czSZjrlyQ==
+  dependencies:
+    "@types/yoga-layout" "^1.9.3"
+
 "@react-spring/animated@~9.5.0":
   version "9.5.0"
   resolved "https://registry.yarnpkg.com/@react-spring/animated/-/animated-9.5.0.tgz#bedc9301ec81a29331327aa25e37125a94080f48"
@@ -695,6 +702,14 @@
     suspend-react "^0.0.8"
     zustand "^3.7.1"
 
+"@react-three/flex@^1.0.0":
+  version "1.0.0"
+  resolved "https://registry.yarnpkg.com/@react-three/flex/-/flex-1.0.0.tgz#53bcdd5b0ad712e865ffd6a088eca10c13294416"
+  integrity sha512-6Ti01VYdzMiBJv2pDowiOFt9N/AiuGFiLlnzbBHnuuM7FV+yjicy1OTkHHPxiL1Dda6mp84i7eLYhWCAMs5sTw==
+  dependencies:
+    "@react-pdf/yoga" "^2.0.4"
+    react-merge-refs "^1.1.0"
+
 "@react-three/postprocessing@^2.4.6":
   version "2.4.6"
   resolved "https://registry.yarnpkg.com/@react-three/postprocessing/-/postprocessing-2.4.6.tgz#1dfd6869ea064df36a7e4b770943c74a76a96377"
@@ -793,6 +808,11 @@
   version "0.4.0"
   resolved "https://registry.yarnpkg.com/@types/webxr/-/webxr-0.4.0.tgz#ad06c96a324293e0d5175d13dd5ded5931f90ba3"
   integrity sha512-LQvrACV3Pj17GpkwHwXuTd733gfY+D7b9mKdrTmLdO7vo7P/o6209Qqtk63y/FCv/lspdmi0pWz6Qe/ull9kQg==
+
+"@types/yoga-layout@^1.9.3":
+  version "1.9.4"
+  resolved "https://registry.yarnpkg.com/@types/yoga-layout/-/yoga-layout-1.9.4.tgz#fad54fef623464dacd9e765d854f0e76ff1184f7"
+  integrity sha512-RRHc1+8Hc5mf/2lZKnom6kCnqcNS07s8keahniWTOva0KELF6RgDJmaEcvGEKUUJgN4UgessmEsWuidaOycIOw==
 
 "@typescript-eslint/parser@^5.21.0":
   version "5.30.6"

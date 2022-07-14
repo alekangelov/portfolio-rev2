@@ -22,6 +22,7 @@ import {
   UNSAFE_LocationContext,
   UNSAFE_NavigationContext,
 } from "react-router-dom";
+import { AboutScene } from "./Scenes/AboutScene";
 
 const style = {
   width: "100%",
@@ -78,12 +79,13 @@ const Scenes = ({
           <a.group {...(props as any)}>
             <Routes location={location}>
               <Route path="/" element={<HomeScene />} />
+              <Route path="/about" element={<AboutScene />} />
             </Routes>
           </a.group>
         ))}
         <Effects />
       </Suspense>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       {children}
     </>
   );

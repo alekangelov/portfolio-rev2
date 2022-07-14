@@ -62,7 +62,7 @@ export const navbar = {
       padding: `${vars.spacing.sm} ${vars.spacing.lg}`,
       borderRadius: 16,
       cursor: "pointer",
-      transition: transition("color", "background"),
+      transition: transition("font-weight"),
       color: parseColor(vars.onColors.surface),
       textDecoration: "none",
       selectors: {
@@ -77,7 +77,6 @@ export const navbar = {
         "&.active": {
           background: parseColor(vars.onColors.surface, 1),
           color: parseColor(vars.colors.surface),
-          transition: transition("color", "background"),
         },
       },
     }),
