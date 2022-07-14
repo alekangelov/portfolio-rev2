@@ -1,5 +1,4 @@
-import { Html } from "@react-three/drei";
-import { Navbar } from "@components";
+import { Navbar, Footer } from "@components";
 import { PropsWithChildren, useEffect } from "react";
 import { ThemeStore, useTheme } from "@stores";
 import { Background } from "./canvas";
@@ -30,6 +29,7 @@ export const Layout = ({
       <Navbar />
       <Background location={location} key="bg" />
       <main>{children}</main>
+      <Footer />
     </>
   );
 };

@@ -7,3 +7,4 @@ export * from "./Button";
 export * from "./Fullscreen";
 export * from "./Link";
 export * from "./Switch";
+export * from "./Footer";
