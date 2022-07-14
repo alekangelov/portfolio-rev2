@@ -3,6 +3,8 @@ import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
 import { MdDarkMode, MdLightMode, MdPalette } from "react-icons/md";
 import { ThemeStore, useTheme } from "@stores";
+import { useLocation } from "react-router-dom";
+import clsx from "clsx";
 
 type M = {
   onClick?: () => void;
@@ -22,6 +24,8 @@ const MenuLink = forwardRef(
     }: PropsWithChildren<M & JSX.IntrinsicElements["li"]>,
     ref: ForwardedRef<HTMLLIElement>
   ) => {
+    const { pathname } = useLocation();
+
     return (
       <li ref={ref} className={navbar.nav.item} {...props}>
         <Link to={href}>
@@ -29,7 +33,10 @@ const MenuLink = forwardRef(
             as="a"
             color="transparent"
             onClick={onClick}
-            className={navbar.nav.link}
+            className={clsx({
+              [navbar.nav.link]: true,
+              ["active"]: pathname.includes(href),
+            })}
           >
             {children}
           </Button>

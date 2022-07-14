@@ -21,9 +21,18 @@
       "@utils": ["utils/index.ts"],
       "types": ["types/index.ts"],
       "@styles": ["styles/index.ts"],
-      "@stores": ["stores/index.ts"]
+      "@stores": ["stores/index.ts"],
+      "@routes": ["routes/index.ts"]
     }
   },
-  "include": ["src", "components", "stores", "styles", "utils", "types"],
+  "include": [
+    "src",
+    "components",
+    "stores",
+    "styles",
+    "utils",
+    "types",
+    "routes"
+  ],
   "references": [{ "path": "./tsconfig.node.json" }]
 }

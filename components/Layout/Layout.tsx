@@ -3,6 +3,7 @@ import { Navbar } from "@components";
 import { PropsWithChildren, useEffect } from "react";
 import { ThemeStore, useTheme } from "@stores";
 import { Background } from "./canvas";
+import { Location } from "react-router-dom";
 
 const selector = (store: ThemeStore) => {
   return {
@@ -11,7 +12,10 @@ const selector = (store: ThemeStore) => {
   };
 };
 
-export const Layout = ({ children }: PropsWithChildren) => {
+export const Layout = ({
+  children,
+  location,
+}: PropsWithChildren<{ location: Location }>) => {
   const { theme, getSystemTheme } = useTheme(selector);
   useEffect(() => {
     const mainTheme = theme === "system" ? getSystemTheme() : theme;
@@ -27,11 +31,8 @@ export const Layout = ({ children }: PropsWithChildren) => {
   return (
     <>
       <Navbar />
-      <Background key="bg">
-        <Html fullscreen>
-          <main>{children}</main>
-        </Html>
-      </Background>
+      <Background location={location} key="bg" />
+      <main>{children}</main>
     </>
   );
 };

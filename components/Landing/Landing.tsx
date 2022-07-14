@@ -32,14 +32,14 @@ const randomNum = () => {
 
 const Rev = () => {
   const [{ num }, api] = useSpring(() => ({
-    num: 0,
+    num: "0",
   }));
   useEffect(() => {
-    api.start({ num: randomNum() });
+    api.start({ num: randomNum().toFixed(3) });
   }, [api]);
   return (
     <a.h6 className={landing.sub}>
-      {num.to((num) => `PORTFOLIO rev2 - fixation ${num.toFixed(3)}`)}
+      {num.to((num) => `PORTFOLIO rev2 - fixation ${num}`)}
     </a.h6>
   );
 };

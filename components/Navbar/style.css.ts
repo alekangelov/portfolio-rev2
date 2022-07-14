@@ -74,6 +74,10 @@ export const navbar = {
           background: parseColor(vars.onColors.surface, 0.8),
           transition: "none",
         },
+        "&.active": {
+          background: parseColor(vars.onColors.surface, 1),
+          color: parseColor(vars.colors.surface),
+        },
       },
     }),
     button: style({
