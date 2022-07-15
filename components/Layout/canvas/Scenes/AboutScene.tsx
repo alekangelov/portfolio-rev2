@@ -1,38 +1,55 @@
-import { Text } from "@react-three/drei";
-import { fontPaths } from "styles/fonts";
 import { Flex, Box, useFlexSize } from "@react-three/flex";
-import { useThree } from "@react-three/fiber";
 import { useContainer } from "../Helpers/hooks";
+import { Box as BBox, Environment, Text, Plane } from "@react-three/drei";
+import { memo, useRef } from "react";
+
+const id = (() => {
+  let i = 0;
+  return () => i++;
+})();
+
+const Title = () => {
+  const [width, height] = useFlexSize();
+  const color = useRef(id() % 2 ? "red" : "blue");
+  return (
+    <group>
+      <Text textAlign="left">ABOUT ME</Text>
+    </group>
+  );
+};
 
 export const AboutScene = () => {
-  const { width, viewport } = useContainer();
+  const {
+    width: innerWidth,
+    percent,
+    viewport: { width, height },
+  } = useContainer();
+  console.log(innerWidth);
   return (
-    <Flex
-      width={width}
-      minHeight={viewport.height}
-      flexDirection={"column"}
-      justifyContent="flex-start"
-      alignItems="flex-start"
-    >
-      <Box>
-        <Text
-          color="black"
-          textAlign="left"
-          font={fontPaths.manofa.bold}
-          fontSize={1.5}
+    <>
+      <Flex size={[innerWidth, height, 0]} position={[-innerWidth, height, 0]}>
+        <Box
+          width="100%"
+          height="auto"
+          flexDirection={"row"}
+          justify="space-around"
+          centerAnchor
         >
-          ABOUT ME
-        </Text>
-      </Box>
-      <Box>
-        <Text
-          textAlign="left"
-          color="black"
-          font={fontPaths.inter}
-          fontSize={0.2}
-          children={`I said "I make cool shit",\nbut who's the person behind\nall that cool shit`}
-        />
-      </Box>
-    </Flex>
+          <Box
+            mt={1.3}
+            width="50%"
+            height={3}
+            centerAnchor
+            alignItems="flex-start"
+            justifyContent="flex-start"
+          >
+            <Title />
+          </Box>
+          <Box mt={1.3} width="50%" height={3} centerAnchor>
+            <Title />
+          </Box>
+        </Box>
+      </Flex>
+    </>
   );
 };

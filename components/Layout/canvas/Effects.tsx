@@ -26,14 +26,8 @@ export default function Effects() {
   //   [size]
   // );
   // useFrame(() => composer.current.render(), 2);
-  const ref = useRef<any>();
   const b = useRef<any>();
-  console.log({ ref, b });
   const { scene, camera, size } = useThree();
-  const aspect = useMemo(
-    () => new THREE.Vector2(size.width, size.height),
-    [size]
-  );
   // return null;
   return (
     <EffectComposer
@@ -44,7 +38,7 @@ export default function Effects() {
     >
       <renderPass ref={b} clear clearAlpha={1} scene={scene} camera={camera} />
       {/* @ts-ignore */}
-      <filmPass attachArray="passes" args={[0.3, 0, 0, false]} />
+      {/* <filmPass attachArray="passes" args={[0.3, 0, 0, false]} /> */}
       {/* @ts-ignore */}
       {/* <unrealBloomPass attachArray="passes" args={[aspect, 5, 0.5, 0.9]} /> */}
     </EffectComposer>

@@ -31,6 +31,7 @@ const style = {
   top: 0,
   left: 0,
 };
+const dpr = [1, 2];
 
 const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   const ContextBridge = useContextBridge(
@@ -85,13 +86,12 @@ const Scenes = ({
         ))}
         <Effects />
       </Suspense>
-      {/* <OrbitControls /> */}
+      <OrbitControls />
       {children}
     </>
   );
 };
 
-const dpr = [1, 1];
 // eslint-disable-next-line react/display-name
 export const Background = memo(
   ({ children, location }: PropsWithChildren<{ location: Location }>) => {
