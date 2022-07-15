@@ -12,8 +12,6 @@ import { Effects as EffectComposer } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
 import { UnrealBloomPass } from "./Helpers/BloomPass";
-import { useLocation } from "react-router-dom";
-import { useTransition } from "@react-spring/three";
 import { EffectPass } from "./Helpers/EffectPass";
 import { WaterPass } from "./Helpers/WaterPass";
 // extend({
@@ -33,18 +31,6 @@ export default function Effects() {
   //   [size]
   // );
   // useFrame(() => composer.current.render(), 2);
-  const location = useLocation();
-  const transition = useTransition(location, {
-    from: {
-      animate: 0,
-    },
-    enter: {
-      animate: 1,
-    },
-    leave: {
-      animate: 0,
-    },
-  });
   const b = useRef<any>();
   const { scene, camera, size, gl } = useThree();
   const composer = useRef<EC>(null);

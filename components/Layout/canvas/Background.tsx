@@ -14,14 +14,7 @@ import {
 import { a, useTransition } from "@react-spring/three";
 import { HomeScene } from "./Scenes/HomeScene";
 import Effects from "./Effects";
-import {
-  Location,
-  Route,
-  Routes,
-  UNSAFE_RouteContext,
-  UNSAFE_LocationContext,
-  UNSAFE_NavigationContext,
-} from "react-router-dom";
+
 import { AboutScene } from "./Scenes/AboutScene";
 
 const style = {
@@ -34,11 +27,6 @@ const style = {
 const dpr = [1, 2];
 
 const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
-  const ContextBridge = useContextBridge(
-    UNSAFE_RouteContext,
-    UNSAFE_LocationContext,
-    UNSAFE_NavigationContext
-  );
   return (
     <Canvas
       // gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
@@ -46,7 +34,7 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
       shadows
       dpr={dpr as any}
     >
-      <ContextBridge>{children}</ContextBridge>
+      {children}
     </Canvas>
   );
 };
@@ -68,10 +56,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
           color="#0059ff"
           castShadow
         />
-        <Routes>
-          <Route path="/" element={<HomeScene />} />
-          <Route path="/about" element={<AboutScene />} />
-        </Routes>
+        <HomeScene />
         <Effects />
       </Suspense>
       {/* <OrbitControls /> */}

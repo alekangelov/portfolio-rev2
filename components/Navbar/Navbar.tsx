@@ -3,7 +3,6 @@ import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
 import { MdDarkMode, MdLightMode, MdPalette } from "react-icons/md";
 import { ThemeStore, useTheme } from "@stores";
-import { useLocation } from "react-router-dom";
 import clsx from "clsx";
 
 type M = {
@@ -24,23 +23,19 @@ const MenuLink = forwardRef(
     }: PropsWithChildren<M & JSX.IntrinsicElements["li"]>,
     ref: ForwardedRef<HTMLLIElement>
   ) => {
-    const { pathname } = useLocation();
-
     return (
       <li ref={ref} className={navbar.nav.item} {...props}>
-        <Link to={href}>
-          <Button
-            as="a"
-            color="transparent"
-            onClick={onClick}
-            className={clsx({
-              [navbar.nav.link]: true,
-              ["active"]: pathname.includes(href),
-            })}
-          >
-            {children}
-          </Button>
-        </Link>
+        <Button
+          as="a"
+          color="transparent"
+          onClick={onClick}
+          className={clsx({
+            [navbar.nav.link]: true,
+            // ["active"]: pathname.includes(href),
+          })}
+        >
+          {children}
+        </Button>
       </li>
     );
   }
@@ -74,18 +69,15 @@ export const Menu = () => {
 };
 
 export const Navbar = () => {
-  const { pathname } = useLocation();
   return (
     <nav className={navbar.wrapper}>
       <div className={navbar.container}>
-        <Link to={pathname === "/" ? (undefined as any) : "/"}>
-          <a className={navbar.title}>
-            <span role="icon">
-              <Logo onColor="surface" />
-            </span>
-            ALKNGLV
-          </a>
-        </Link>
+        <a className={navbar.title}>
+          <span role="icon">
+            <Logo onColor="surface" />
+          </span>
+          ALKNGLV
+        </a>
         <Menu />
       </div>
     </nav>
