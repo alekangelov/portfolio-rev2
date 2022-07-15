@@ -51,54 +51,40 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   );
 };
 
-const Scenes = ({
-  children,
-  location,
-}: PropsWithChildren<{ location: Location }>) => {
-  const transition = useTransition(location, {
-    from: {
-      // scale: 0,
-      position: [0, 0, 0],
-      opacity: 0,
-    },
-    enter: {
-      // scale: 1,
-      position: [0, 0, 0],
-      opacity: 1,
-    },
-    leave: {
-      // scale: 0,
-      position: [0, -10, 0],
-      opacity: 0,
-    },
-  });
+const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <>
       <Suspense>
         <Environment preset="studio" />
-        {transition((props, location) => (
-          <a.group {...(props as any)}>
-            <Routes location={location}>
-              <Route path="/" element={<HomeScene />} />
-              <Route path="/about" element={<AboutScene />} />
-            </Routes>
-          </a.group>
-        ))}
+        <pointLight
+          intensity={0.5}
+          position={[0, 5, 3]}
+          color="#e92fab"
+          castShadow
+        />
+        <pointLight
+          intensity={50}
+          position={[10, 10, -5]}
+          color="#0059ff"
+          castShadow
+        />
+        <Routes>
+          <Route path="/" element={<HomeScene />} />
+          <Route path="/about" element={<AboutScene />} />
+        </Routes>
         <Effects />
       </Suspense>
-      <OrbitControls />
+      {/* <OrbitControls /> */}
       {children}
     </>
   );
 };
 
 // eslint-disable-next-line react/display-name
-export const Background = memo(
-  ({ children, location }: PropsWithChildren<{ location: Location }>) => {
-    return (
-      <Wrapper>
-        <Scenes {...{ children, location }} />
-      </Wrapper>
-    );
-  }
-);
+export const Background = memo(({ children }: PropsWithChildren<unknown>) => {
+  return (
+    <Wrapper>
+      <Scenes {...{ children }} />
+    </Wrapper>
+  );
+});

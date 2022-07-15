@@ -1,7 +1,14 @@
 import { Flex, Box, useFlexSize } from "@react-three/flex";
 import { useContainer } from "../Helpers/hooks";
-import { Box as BBox, Environment, Text, Plane } from "@react-three/drei";
+import {
+  Box as BBox,
+  Environment,
+  Text,
+  Plane,
+  Image,
+} from "@react-three/drei";
 import { memo, useRef } from "react";
+import { SceneProps } from "./types";
 
 const id = (() => {
   let i = 0;
@@ -18,13 +25,14 @@ const Title = () => {
   );
 };
 
-export const AboutScene = () => {
+export const AboutScene = ({}: SceneProps) => {
   const {
     width: innerWidth,
     percent,
     viewport: { width, height },
   } = useContainer();
-  console.log(innerWidth);
+  const w = width < 10 ? 1.5 / 3 : 1 / 3;
+
   return (
     <>
       <Flex size={[innerWidth, height, 0]} position={[-innerWidth, height, 0]}>
@@ -32,21 +40,21 @@ export const AboutScene = () => {
           width="100%"
           height="auto"
           flexDirection={"row"}
-          justify="space-around"
+          justify="flex-start"
           centerAnchor
         >
           <Box
-            mt={1.3}
+            mt={3}
             width="50%"
             height={3}
             centerAnchor
             alignItems="flex-start"
             justifyContent="flex-start"
           >
-            <Title />
-          </Box>
-          <Box mt={1.3} width="50%" height={3} centerAnchor>
-            <Title />
+            <Image
+              url="/images/abstract/1.jpg"
+              scale={[width * w - 0.4 * 2, 5, 1] as any}
+            />
           </Box>
         </Box>
       </Flex>

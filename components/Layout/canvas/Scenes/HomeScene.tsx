@@ -5,28 +5,13 @@ import * as THREE from "three";
 import { useSpring, animated } from "@react-spring/three";
 import { useRef } from "react";
 import { ContactShadows } from "@react-three/drei";
+import { SceneProps } from "./types";
 
 const AnimatedBust = animated(Bust);
 const v = new THREE.Vector3();
-export const HomeScene = () => {
-  const light = useRef<PointLight>(null);
+export const HomeScene = ({}: SceneProps) => {
   return (
-    <group position={[0, -3, 0]}>
-      <pointLight
-        ref={light}
-        intensity={0.5}
-        position={[0, 5, 3]}
-        color="#e92fab"
-        castShadow
-      />
-      <pointLight
-        ref={light}
-        intensity={50}
-        position={[10, 10, -5]}
-        color="#0059ff"
-        castShadow
-      />
-
+    <animated.group position={[0, -3, 0]}>
       <AnimatedBust position={[3, 0, 0]} />
       {/* <ContactShadows
         position={[0, -0.5, 0]}
@@ -35,6 +20,6 @@ export const HomeScene = () => {
         width={2}
         height={2}
       /> */}
-    </group>
+    </animated.group>
   );
 };

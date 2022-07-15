@@ -10,10 +10,7 @@ const selector = (store: ThemeStore) => {
   };
 };
 
-export const Layout = ({
-  children,
-  location,
-}: PropsWithChildren<{ location: Location }>) => {
+export const Layout = ({ children }: PropsWithChildren<unknown>) => {
   const { theme } = useTheme(selector);
   useEffect(() => {
     if (theme === "dark") {
@@ -27,7 +24,7 @@ export const Layout = ({
   return (
     <>
       <Navbar />
-      <Background location={location} key="bg" />
+      <Background key="bg" />
       <main>{children}</main>
       <Footer />
     </>

@@ -21,7 +21,7 @@ export const Routes = () => {
     trail: 100,
   });
   return (
-    <Layout location={location}>
+    <Layout>
       {transition(({ opacity, position }, location) => {
         return (
           <a.div
