@@ -1,21 +1,10 @@
-import React, {
-  memo,
-  PropsWithChildren,
-  Suspense,
-  useRef,
-  useState,
-} from "react";
-import { Canvas } from "@react-three/fiber";
-import {
-  Environment,
-  OrbitControls,
-  useContextBridge,
-} from "@react-three/drei";
-import { a, useTransition } from "@react-spring/three";
+import { memo, PropsWithChildren, Suspense } from "react";
+import { Canvas, useFrame } from "@react-three/fiber";
+import { Environment } from "@react-three/drei";
 import { HomeScene } from "./Scenes/HomeScene";
 import Effects from "./Effects";
-
-import { AboutScene } from "./Scenes/AboutScene";
+import { scroll } from "@stores";
+import * as THREE from "three";
 
 const style = {
   width: "100%",
@@ -39,7 +28,13 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   );
 };
 
+const v = new THREE.Vector3();
+
 const Scenes = ({ children }: PropsWithChildren<unknown>) => {
+  useFrame((state) => {
+    console.log(scroll.top);
+    state.camera.position.lerp(v.set(0, scroll.top, 0), 1);
+  });
   return (
     <>
       <Suspense>

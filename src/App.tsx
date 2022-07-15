@@ -4,6 +4,8 @@ function App() {
   return (
     <Layout>
       <Landing />
+      <Landing />
+      <Landing />
     </Layout>
   );
 }

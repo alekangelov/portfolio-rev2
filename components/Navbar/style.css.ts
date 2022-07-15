@@ -6,10 +6,10 @@ import { vars } from "../../styles/vars.css";
 
 export const navbar = {
   wrapper: style({
-    background: parseColor(vars.colors.surface, 0.5),
+    // background: parseColor(vars.colors.surface, 0.5),
     color: parseColor(vars.onColors.surface),
-    border: `1px solid ${parseColor(vars.onColors.surface, 0.2)}`,
-    backdropFilter: "blur(24px)",
+    // border: `1px solid ${parseColor(vars.onColors.surface, 0.2)}`,
+    // backdropFilter: "blur(24px)",
     position: "fixed",
     top: vars.spacing.md,
     left: "50%",
@@ -27,7 +27,7 @@ export const navbar = {
     // borderRadius: 16,
     // boxShadow: `0 20px 64px -24px ${`black`}`,
     margin: "0 auto",
-    padding: `${vars.spacing.md} ${calc.multiply(vars.spacing.lg, 2)}`,
+    // padding: `${vars.spacing.md} ${calc.multiply(vars.spacing.lg, 2)}`,
     display: "flex",
     alignItems: "center",
     justifyContent: "space-between",

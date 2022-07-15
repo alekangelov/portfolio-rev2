@@ -2,7 +2,7 @@ import { vars } from "@styles";
 import { style } from "@vanilla-extract/css";
 
 export const footer = style({
-  position: "absolute",
+  position: "fixed",
   bottom: 10,
   left: "50%",
   transform: "translateX(-50%)",

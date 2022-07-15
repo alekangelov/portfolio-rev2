@@ -1,8 +1,6 @@
-import { Navbar, Footer } from "@components";
-import { PropsWithChildren, useEffect } from "react";
-import { ThemeStore, useTheme } from "@stores";
-import { Background } from "./canvas";
-import { Location } from "react-router-dom";
+import { Navbar, Footer, Background } from "@components";
+import { PropsWithChildren, useEffect, useRef } from "react";
+import { ThemeStore, useTheme, scroll } from "@stores";
 
 const selector = (store: ThemeStore) => {
   return {
@@ -10,8 +8,13 @@ const selector = (store: ThemeStore) => {
   };
 };
 
+const handleScroll: React.UIEventHandler<HTMLElement> = (event) => {
+  scroll.top = (event.target as HTMLElement).scrollTop;
+};
+
 export const Layout = ({ children }: PropsWithChildren<unknown>) => {
   const { theme } = useTheme(selector);
+  const scrollRef = useRef<HTMLElement>(null);
   useEffect(() => {
     if (theme === "dark") {
       document.documentElement.classList.add("dark");
@@ -25,7 +28,9 @@ export const Layout = ({ children }: PropsWithChildren<unknown>) => {
     <>
       <Navbar />
       <Background key="bg" />
-      <main>{children}</main>
+      <main ref={scrollRef} onScroll={handleScroll}>
+        {children}
+      </main>
       <Footer />
     </>
   );
