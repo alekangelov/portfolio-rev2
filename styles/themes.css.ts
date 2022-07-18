@@ -110,7 +110,7 @@ const defaults = {
     },
   },
   size: {
-    container: "1200px",
+    container: "90%",
   },
 };
 

@@ -12,4 +12,7 @@ export default defineConfig({
       projects: ["./tsconfig.json"],
     }),
   ],
+  ssr: {
+    target: "node",
+  },
 });

@@ -42,21 +42,19 @@ export const Landing = () => {
   const { value, toggle } = useBoolean(false);
 
   return (
-    <>
-      <div className={landing.container}>
-        <hgroup onClick={toggle} style={{ width: "100%", userSelect: "none" }}>
-          <Rev />
-          <HiddenOnHover active={value} />
-        </hgroup>
-        <Grid>
-          <Grid.Item>
-            <Button>Find out more</Button>
-          </Grid.Item>
-          <Grid.Item>
-            <Button color="transparent">Contact me</Button>
-          </Grid.Item>
-        </Grid>
-      </div>
-    </>
+    <div className={landing.container}>
+      <hgroup onClick={toggle} style={{ width: "100%", userSelect: "none" }}>
+        <Rev />
+        <HiddenOnHover active={value} />
+      </hgroup>
+      <Grid>
+        <Grid.Item>
+          <Button>Find out more</Button>
+        </Grid.Item>
+        <Grid.Item>
+          <Button color="transparent">Contact me</Button>
+        </Grid.Item>
+      </Grid>
+    </div>
   );
 };

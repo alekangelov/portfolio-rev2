@@ -25,8 +25,7 @@ const MenuLink = forwardRef(
   ) => {
     return (
       <li ref={ref} className={navbar.nav.item} {...props}>
-        <Button
-          as="a"
+        <a
           color="transparent"
           onClick={onClick}
           className={clsx({
@@ -35,7 +34,7 @@ const MenuLink = forwardRef(
           })}
         >
           {children}
-        </Button>
+        </a>
       </li>
     );
   }
@@ -55,14 +54,14 @@ export const Menu = () => {
         <MenuLink href="/projects">Projects</MenuLink>
         <MenuLink href="/blog">Blog</MenuLink>
         <MenuLink href="/contact">Contact</MenuLink>
-        <li>
+        {/* <li>
           <Switch
             value={theme}
             icons={[<MdDarkMode />, <MdLightMode />]}
             onChange={toggle}
             options={["light", "dark"]}
           />
-        </li>
+        </li> */}
       </ul>
     </>
   );

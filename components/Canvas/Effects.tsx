@@ -7,23 +7,23 @@ import {
   FilmPass,
   EffectComposer as EC,
   Water,
+  UnrealBloomPass,
 } from "three-stdlib";
 import { Effects as EffectComposer } from "@react-three/drei";
 import { useMemo, useRef } from "react";
 import * as THREE from "three";
-import { UnrealBloomPass } from "./Helpers/BloomPass";
 import { EffectPass } from "./Helpers/EffectPass";
 import { WaterPass } from "./Helpers/WaterPass";
-// extend({
-//   BloomPass,
-//   UnrealBloomPass,
-//   SSAOPass,
-//   RenderPass,
-//   FilmPass,
-//   GlitchPass,
-//   WaterPass,
-//   EffectPass,
-// });
+extend({
+  BloomPass,
+  UnrealBloomPass,
+  SSAOPass,
+  RenderPass,
+  FilmPass,
+  GlitchPass,
+  WaterPass,
+  EffectPass,
+});
 
 export default function Effects() {
   // useEffect(
@@ -47,6 +47,7 @@ export default function Effects() {
       disableRender={false}
     >
       <renderPass ref={b} clear clearAlpha={1} scene={scene} camera={camera} />
+      <unrealBloomPass args={[1, 0.25, 3, 0.2]} />
     </EffectComposer>
   );
 }

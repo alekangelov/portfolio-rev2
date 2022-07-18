@@ -6,8 +6,9 @@ export const landing = {
   container: style([
     container,
     {
-      minHeight: "100vh",
+      zIndex: 10,
       display: "flex",
+      minHeight: "100vh",
       alignItems: "flex-start",
       justifyContent: "center",
       flexDirection: "column",

@@ -48,7 +48,7 @@ export const navbar = {
     wrapper: style({
       display: "flex",
       alignItems: "center",
-      gap: vars.spacing.sm,
+      gap: vars.spacing.xl,
       zIndex: 1,
     }),
     item: style({
@@ -59,24 +59,28 @@ export const navbar = {
     }),
     link: style({
       display: "flex",
-      padding: `${vars.spacing.sm} ${vars.spacing.lg}`,
+      padding: `${vars.spacing.sm} ${vars.spacing.sm}`,
       borderRadius: 16,
       cursor: "pointer",
-      transition: transition("font-weight"),
       color: parseColor(vars.onColors.surface),
       textDecoration: "none",
+      fontWeight: "600 !important",
+      position: "relative",
       selectors: {
-        "&:hover": {
-          background: parseColor(vars.onColors.surface, 1),
-          color: parseColor(vars.colors.surface),
+        "&:before": {
+          content: "",
+          position: "absolute",
+          top: "90%",
+          left: 0,
+          width: "100%",
+          height: 2,
+          background: parseColor(vars.onColors.surface),
+          transformOrigin: "center left",
+          transform: "scaleX(0)",
+          transition: transition("transform"),
         },
-        "&:active": {
-          background: parseColor(vars.onColors.surface, 0.8),
-          transition: "none",
-        },
-        "&.active": {
-          background: parseColor(vars.onColors.surface, 1),
-          color: parseColor(vars.colors.surface),
+        "&:hover:before": {
+          transform: "scaleX(1)",
         },
       },
     }),
