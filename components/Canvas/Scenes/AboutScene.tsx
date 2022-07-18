@@ -9,6 +9,7 @@ import {
 } from "@react-three/drei";
 import { memo, useRef } from "react";
 import { SceneProps } from "./types";
+import { BoxDebug } from "../Helpers/Debug";
 
 const id = (() => {
   let i = 0;
@@ -34,30 +35,22 @@ export const AboutScene = ({}: SceneProps) => {
   const w = width < 10 ? 1.5 / 3 : 1 / 3;
 
   return (
-    <>
-      <Flex size={[innerWidth, height, 0]} position={[-innerWidth, height, 0]}>
-        <Box
-          width="100%"
-          height="auto"
-          flexDirection={"row"}
-          justify="flex-start"
-          centerAnchor
-        >
-          <Box
-            mt={3}
-            width="50%"
-            height={3}
-            centerAnchor
-            alignItems="flex-start"
-            justifyContent="flex-start"
-          >
-            <Image
-              url="/images/abstract/1.jpg"
-              scale={[width * w - 0.4 * 2, 5, 1] as any}
-            />
-          </Box>
-        </Box>
-      </Flex>
-    </>
+    <Box
+      width="100%"
+      height="auto"
+      flexDirection={"row"}
+      centerAnchor
+      alignItems="center"
+      justifyContent="flex-start"
+    >
+      <BoxDebug />
+      <Box width="100%" minHeight="100%">
+        <BoxDebug />
+        <Image
+          url="/images/abstract/1.jpg"
+          scale={[width * w - 0.4 * 2, 5, 1] as any}
+        />
+      </Box>
+    </Box>
   );
 };

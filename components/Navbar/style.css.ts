@@ -82,6 +82,9 @@ export const navbar = {
         "&:hover:before": {
           transform: "scaleX(1)",
         },
+        "&.active:hover": {
+          transform: "scaleX(1)",
+        },
       },
     }),
     button: style({

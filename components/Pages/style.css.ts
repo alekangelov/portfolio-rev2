@@ -4,11 +4,9 @@ import { container, vars } from "@styles";
 
 export const landing = {
   container: style([
-    container,
     {
       zIndex: 10,
       display: "flex",
-      minHeight: "100vh",
       alignItems: "flex-start",
       justifyContent: "center",
       flexDirection: "column",

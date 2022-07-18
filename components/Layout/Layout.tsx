@@ -28,23 +28,22 @@ export const Layout = ({ children }: PropsWithChildren<unknown>) => {
     document.documentElement.classList.remove("dark");
   }, [theme]);
   useEffect(() => {
+    document.body.style.height = "400rem";
     document.addEventListener("scroll", handleScroll, { passive: true });
     return () => {
       document.removeEventListener("scroll", handleScroll);
     };
   }, []);
+  // useEffect(() => {
+  //   if (!bodyRef.current || !scrollRef.current) return;
+  //   const { current: bodyCurrent } = bodyRef;
+  //   const { current: scrollCurrent } = scrollRef;
+  //   scrollCurrent.style.height = `${bodyCurrent.offsetHeight}px`;
+  // }, [bodyRef, scrollRef]);
   return (
     <>
       <Navbar />
       <Background key="bg" />
-      <main ref={bodyRef} className={layout}>
-        {children}
-      </main>
-      <div
-        style={{ height: "400rem", width: "100%" }}
-        ref={scrollRef}
-        className={scrollContainer}
-      />
       <Footer />
     </>
   );

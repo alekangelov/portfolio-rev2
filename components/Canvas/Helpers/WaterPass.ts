@@ -61,7 +61,7 @@ export class WaterPass extends Pass {
     });
     (this as any).camera = new OrthographicCamera(-1, 1, 1, -1, 0, 1);
     (this as any).scene = new Scene();
-    (this as any).quad = new Mesh(new PlaneBufferGeometry(2, 2), null);
+    (this as any).quad = new Mesh(new PlaneBufferGeometry(2, 2), null as any);
     (this as any).quad.frustumCulled = false; // Avoid getting clipped
     (this as any).scene.add((this as any).quad);
     (this as any).factor = 0;

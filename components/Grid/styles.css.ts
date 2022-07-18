@@ -3,30 +3,18 @@ import { recipe, RecipeVariants } from "@vanilla-extract/recipes";
 import { vars } from "@styles";
 import { media } from "styles/helpers";
 import { createVariation } from "@utils";
+import { columns } from "styles";
 
 export const gap = createVar();
 const { spacing } = vars;
-
-const columns = {
-  "1": ((1 / 12) * 100).toFixed(2),
-  "2": ((2 / 12) * 100).toFixed(2),
-  "3": ((3 / 12) * 100).toFixed(2),
-  "4": ((4 / 12) * 100).toFixed(2),
-  "5": ((5 / 12) * 100).toFixed(2),
-  "6": ((6 / 12) * 100).toFixed(2),
-  "7": ((7 / 12) * 100).toFixed(2),
-  "8": ((8 / 12) * 100).toFixed(2),
-  "9": ((9 / 12) * 100).toFixed(2),
-  "10": ((10 / 12) * 100).toFixed(2),
-  "11": ((11 / 12) * 100).toFixed(2),
-  "12": ((12 / 12) * 100).toFixed(2),
-};
 
 export const gridContainer = recipe({
   base: {
     display: "flex",
     rowGap: gap,
     width: "100%",
+    marginLeft: `calc(0px - ${gap} / 2)`,
+    marginRight: `calc(0px - ${gap} / 2)`,
   },
   variants: {
     wrap: {

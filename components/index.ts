@@ -1,6 +1,6 @@
 export * from "./Navbar";
 export * from "./Layout";
-export * from "./Landing";
+export * from "./Pages";
 export * from "./Logo";
 export * from "./Grid";
 export * from "./Button";

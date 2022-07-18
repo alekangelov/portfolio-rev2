@@ -5,7 +5,7 @@ export const BoxDebug = ({ color = "red" }) => {
   const [width, height] = useFlexSize();
   return (
     <mesh>
-      <planeGeometry args={[width, height, 2, 2]} />
+      <planeGeometry args={[width, height]} />
       <meshBasicMaterial wireframe color={color} />
     </mesh>
   );
@@ -15,7 +15,7 @@ export const FlexDebug = () => {
   const { width, height } = useContainer();
   return (
     <mesh position={[width / 2, -height / 2, -0.01]}>
-      <planeGeometry args={[width, height, 2, 2]} />
+      <planeGeometry args={[width, height, 12, 12]} />
       <meshBasicMaterial wireframe color="white" />
     </mesh>
   );
