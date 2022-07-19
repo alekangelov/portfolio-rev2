@@ -6,10 +6,15 @@ import {
   Text,
   Plane,
   Image,
+  Float,
 } from "@react-three/drei";
 import { memo, useRef } from "react";
 import { SceneProps } from "./types";
 import { BoxDebug } from "../Helpers/Debug";
+import { useFrame } from "@react-three/fiber";
+import * as THREE from "three";
+import { scroll } from "@stores";
+import { fontPaths } from "styles/fonts";
 
 const id = (() => {
   let i = 0;
@@ -25,31 +30,43 @@ const Title = () => {
     </group>
   );
 };
-
+const v = new THREE.Vector3();
 export const AboutScene = ({}: SceneProps) => {
-  const {
-    width: innerWidth,
-    percent,
-    viewport: { width, height },
-  } = useContainer();
-  const w = width < 10 ? 1.5 / 3 : 1 / 3;
+  const ref = useRef<THREE.Group>(null);
+  useFrame(() => {
+    const normalized = scroll.top / 100;
+    ref.current?.position.lerp(v.set(-normalized + 6, 0, 0), 0.2);
+  });
 
   return (
     <Box
-      width="100%"
-      height="auto"
-      flexDirection={"row"}
-      centerAnchor
-      alignItems="center"
+      mt={2}
+      wrap="no-wrap"
+      flexDirection="column"
+      alignItems="flex-start"
       justifyContent="flex-start"
     >
       <BoxDebug />
-      <Box width="100%" minHeight="100%">
+      <Box>
         <BoxDebug />
-        <Image
-          url="/images/abstract/1.jpg"
-          scale={[width * w - 0.4 * 2, 5, 1] as any}
-        />
+
+        <Box alignSelf="flex-start" height={5} ref={ref} flexDirection="row">
+          <Box centerAnchor width={4} mr={0.5} height={5} position={[0, 0, 0]}>
+            <Image scale={[4, 5, 0] as any} url="/images/me/5.jpg" />
+          </Box>
+          <Box centerAnchor width={6} mr={0.5} height={5} position={[0, 0, 3]}>
+            <Image scale={[6, 5, 0] as any} url="/images/me/2.jpg" />
+          </Box>
+          <Box centerAnchor width={4} mr={0.5} height={5} position={[0, 0, 3]}>
+            <Image scale={[4, 5, 0] as any} url="/images/abstract/2.jpg" />
+          </Box>
+          <Box centerAnchor width={6} mr={0.5} height={5} position={[0, 0, -3]}>
+            <Image scale={[6, 5, 0] as any} url="/images/me/3.jpg" />
+          </Box>
+          <Box centerAnchor width={4} mr={0.5} height={5} position={[0, 0, 3]}>
+            <Image scale={[4, 5, 0] as any} url="/images/abstract/4.jpg" />
+          </Box>
+        </Box>
       </Box>
     </Box>
   );

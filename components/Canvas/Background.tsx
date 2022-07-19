@@ -9,6 +9,8 @@ import { useContainer } from "./hooks/useContainer";
 import { scroll } from "@stores";
 import { AboutScene } from "./Scenes/AboutScene";
 import { BoxDebug, FlexDebug } from "./Helpers/Debug";
+import { darkTheme } from "styles/themes.css";
+import Color from "color";
 
 const style = {
   width: "100%",
@@ -20,6 +22,7 @@ const style = {
 const dpr = [1, 1];
 
 const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
+  console.log(Color(`rgb(${darkTheme.colors.surface})`).hex());
   return (
     <Canvas
       // gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
@@ -31,9 +34,16 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
       gl={{
         antialias: true,
         outputEncoding: THREE.sRGBEncoding,
+        alpha: false,
         toneMapping: THREE.ReinhardToneMapping,
+        autoClear: false,
+        logarithmicDepthBuffer: true,
       }}
     >
+      <color
+        attach="background"
+        args={[Color(`rgb(${darkTheme.colors.surface})`).hex()]}
+      />
       {children}
     </Canvas>
   );

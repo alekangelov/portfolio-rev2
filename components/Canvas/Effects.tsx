@@ -7,6 +7,7 @@ import {
   FilmPass,
   UnrealBloomPass,
   FXAAShader,
+  ColorCorrectionShader,
   ShaderPass,
 } from "three-stdlib";
 import { useRef } from "react";
@@ -47,17 +48,17 @@ export default function Effects() {
     if (!effect.current || !water.current || !bloom.current) return;
     effect.current.factor = THREE.MathUtils.lerp(
       effect.current.factor,
-      (top - last) / -30,
+      (top - last) / -100,
       0.1
     );
     bloom.current.strength = THREE.MathUtils.lerp(
       bloom.current.strength,
-      Math.abs((top - last) / 100),
+      Math.abs((top - last) / 100) + 0.15,
       0.1
     );
     water.current.factor = THREE.MathUtils.lerp(
       water.current.factor,
-      Math.abs((top - last) / 30),
+      Math.abs((top - last) / 50),
       0.1
     );
     last = top;
