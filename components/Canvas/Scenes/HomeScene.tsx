@@ -16,6 +16,7 @@ import { useRef } from "react";
 import { Group, Vector3 } from "three";
 import { scroll } from "@stores";
 import { useScrollPosition } from "../hooks/useScroll";
+import { HeightReporter } from "../Helpers/HeightReporter";
 
 const colors = [
   ["#FF00C7", "#0066FF"],
@@ -75,6 +76,7 @@ export const HomeScene = ({}: SceneProps) => {
   const ref = useScrollPosition();
   return (
     <Box ref={ref} width={`${columns[12]}%`} height="100%" flexDirection="row">
+      <HeightReporter name="landing" />
       <Box
         flexDirection="row"
         minHeight={"100%"}

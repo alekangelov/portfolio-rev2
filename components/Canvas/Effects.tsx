@@ -76,19 +76,19 @@ export default function Effects() {
         camera={camera}
       />
       {/* @ts-ignore */}
-      <sSAOPass
+      {/* <sSAOPass
         attachArray="passes"
         args={[scene, camera, 1024, 1024]}
         kernelRadius={0.1}
         maxDistance={0.4}
-      />
+      /> */}
       <shaderPass
         {...{ attachArray: "passes" }}
         args={[FXAAShader]}
         material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
       />
       {/* @ts-ignore */}
-      <filmPass attachArray="passes" args={[1, 0, 0, 0]} />
+      <filmPass attachArray="passes" args={[0.3, 0, 0, 0]} />
       {/* @ts-ignore */}
       <unrealBloomPass
         attachArray="passes"

@@ -29,11 +29,13 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
       camera={{ position: [0, 0, 5], far: 1000 }}
       shadows
       dpr={dpr as any}
+      flat
+      linear
       gl={{
         antialias: true,
         outputEncoding: THREE.sRGBEncoding,
         alpha: false,
-        toneMapping: THREE.ReinhardToneMapping,
+        toneMapping: THREE.ACESFilmicToneMapping,
         autoClear: false,
         logarithmicDepthBuffer: true,
       }}
@@ -61,7 +63,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         castShadow
       />
       <pointLight
-        intensity={50}
+        intensity={1}
         position={[10, 10, -5]}
         color="#0059ff"
         castShadow
