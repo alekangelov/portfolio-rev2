@@ -27,13 +27,13 @@ const HiddenOnHover = ({ active }: { active?: boolean }) => {
 };
 
 const randomNum = () => {
-  return Math.random() * 100;
+  return Math.random() * 10;
 };
 
 const Rev = memo(() => {
   return (
     <h6 className={landing.sub}>
-      {`PORTFOLIO rev2 - fixation ${randomNum().toFixed(3)}`}
+      {`PORTFOLIO rev2 - fixv ${randomNum().toFixed(3)}`}
     </h6>
   );
 });

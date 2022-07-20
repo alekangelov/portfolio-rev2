@@ -60,6 +60,7 @@ export const navbar = {
     link: style({
       display: "flex",
       padding: `${vars.spacing.sm} ${vars.spacing.sm}`,
+      backgroundImage: "none",
       borderRadius: 16,
       cursor: "pointer",
       color: parseColor(vars.onColors.surface),

@@ -19,6 +19,15 @@ export type Contract = {
     success: string;
     warning: string;
   };
+  darker: {
+    surface: string;
+    primary: string;
+    secondary: string;
+    terciary: string;
+    error: string;
+    success: string;
+    warning: string;
+  };
   spacing: {
     sm: string;
     md: string;
@@ -63,6 +72,15 @@ export const contract: Contract = {
     success: "c-success-on",
     warning: "c-warning-on",
   },
+  darker: {
+    surface: "c-surface-d",
+    primary: "c-primary-d",
+    secondary: "c-secondary-d",
+    terciary: "c-terciary-d",
+    error: "c-error-d",
+    success: "c-success-d",
+    warning: "c-warning-d",
+  },
   spacing: {
     sm: "s-sm",
     md: "s-md",
@@ -99,10 +117,10 @@ const defaults = {
   font: {
     size: {
       sm: "12px",
-      md: "14px",
-      lg: "16px",
-      xl: "18px",
-      xxl: "24px",
+      md: "16px",
+      lg: "24px",
+      xl: "36px",
+      xxl: "48px",
     },
     family: {
       primary: "Inter",
@@ -133,6 +151,15 @@ export const lightTheme: Contract = {
     success: prepColor("#FFFFFF"),
     warning: prepColor("#FFFFFF"),
   },
+  darker: {
+    surface: prepColor("#FFFFFF"),
+    primary: prepColor("#0883bb"),
+    secondary: prepColor("#484ab7"),
+    terciary: prepColor("#b033c3"),
+    error: prepColor("#b02b41"),
+    success: prepColor("#0f855e"),
+    warning: prepColor("#ac700a"),
+  },
   ...defaults,
 };
 
@@ -154,6 +181,15 @@ export const darkTheme: Contract = {
     error: prepColor("#FFFFFF"),
     success: prepColor("#FFFFFF"),
     warning: prepColor("#FFFFFF"),
+  },
+  darker: {
+    surface: prepColor("#FFFFFF"),
+    primary: prepColor("#0883bb"),
+    secondary: prepColor("#484ab7"),
+    terciary: prepColor("#b033c3"),
+    error: prepColor("#b02b41"),
+    success: prepColor("#0f855e"),
+    warning: prepColor("#ac700a"),
   },
   ...defaults,
 };

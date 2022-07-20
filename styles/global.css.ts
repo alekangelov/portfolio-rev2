@@ -1,4 +1,6 @@
 import { globalStyle } from "@vanilla-extract/css";
+import { calc } from "@vanilla-extract/css-utils";
+import { transition } from "./helpers";
 import { parseColor } from "./helpers/color";
 import { vars } from "./vars.css";
 
@@ -71,5 +73,27 @@ export const globals = [
     background: parseColor(vars.colors.surface),
     color: parseColor(vars.onColors.surface),
     fontFamily: `${vars.font.family.primary}, --apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol"`,
+  }),
+  globalStyle("h1", {
+    fontSize: calc.multiply(vars.font.size.xxl, 3),
+  }),
+  globalStyle("p", {
+    fontSize: vars.font.size.md,
+    lineHeight: 2,
+    // textAlign: "justify",
+    letterSpacing: calc.multiply(vars.font.size.md, -0.05),
+  }),
+  globalStyle("a", {
+    color: parseColor(vars.colors.primary),
+    textDecoration: "none",
+    fontWeight: 900,
+    backgroundImage: "linear-gradient(currentColor, currentColor)",
+    backgroundPosition: "0% 100%",
+    backgroundRepeat: "no-repeat",
+    backgroundSize: "0% 2px",
+    transition: transition("background-size"),
+  }),
+  globalStyle("a:hover", {
+    backgroundSize: "100% 2px",
   }),
 ];

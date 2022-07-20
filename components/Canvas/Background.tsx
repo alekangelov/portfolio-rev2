@@ -1,5 +1,5 @@
 import { memo, PropsWithChildren, Suspense } from "react";
-import { Canvas, useFrame } from "@react-three/fiber";
+import { Canvas, useFrame, useThree } from "@react-three/fiber";
 import { Environment } from "@react-three/drei";
 import { HomeScene } from "./Scenes/HomeScene";
 import Effects from "./Effects";
@@ -25,12 +25,10 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   console.log(Color(`rgb(${darkTheme.colors.surface})`).hex());
   return (
     <Canvas
-      // gl={{ alpha: true, stencil: false, depth: false, antialias: false }}
       style={style as any}
+      camera={{ position: [0, 0, 5], far: 1000 }}
       shadows
       dpr={dpr as any}
-      camera={{ far: 100 }}
-      // performance={{ min: 0.1 }}
       gl={{
         antialias: true,
         outputEncoding: THREE.sRGBEncoding,
@@ -53,47 +51,40 @@ const v = new THREE.Vector3();
 
 const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const { width, height } = useContainer();
-  useFrame((state) => {
-    state.camera.position.lerp(v.set(0, -scroll.top / 100, 5), 0.2);
-    // state.viewport.aspect = window.innerWidth / window.innerHeight;
-    // state.camera.updateProjectionMatrix();
-  });
   return (
-    <>
+    <Suspense>
+      <Environment preset="studio" />
+      <pointLight
+        intensity={0.5}
+        position={[0, 5, 3]}
+        color="#e92fab"
+        castShadow
+      />
+      <pointLight
+        intensity={50}
+        position={[10, 10, -5]}
+        color="#0059ff"
+        castShadow
+      />
+      <ambientLight color="white" intensity={0.25} />
       <Flex
-        width={width}
-        minHeight={height}
+        size={[width, 0, 0]}
         position={[-width / 2, height / 2, 0]}
-        flexDirection="row"
-        wrap="wrap"
+        dir="column"
       >
-        {/* <FlexDebug /> */}
-        <Suspense>
-          <Environment preset="studio" />
-          <pointLight
-            intensity={0.5}
-            position={[0, 5, 3]}
-            color="#e92fab"
-            castShadow
-          />
-          <pointLight
-            intensity={50}
-            position={[10, 10, -5]}
-            color="#0059ff"
-            castShadow
-          />
-          <Box width="100%">
+        <Box dir="column" width="100%" height={10}>
+          <Box mt={-2} width="100%" minHeight={height}>
             <HomeScene />
           </Box>
           <Box width="100%">
             <AboutScene />
           </Box>
-          <Effects />
-        </Suspense>
+        </Box>
+        <Effects />
         {/* <OrbitControls /> */}
         {children}
       </Flex>
-    </>
+    </Suspense>
   );
 };
 

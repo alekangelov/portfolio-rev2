@@ -46,3 +46,17 @@ export const landing = {
     textTransform: "uppercase",
   }),
 };
+
+export const about = {
+  container: style({
+    maxWidth: "90vw",
+    width: 640,
+  }),
+  title: style({
+    fontSize: "48px",
+    lineHeight: 1.2,
+    fontWeight: 900,
+    letterSpacing: calc.multiply(vars.font.size.lg, -0.05),
+    marginBottom: vars.spacing.lg,
+  }),
+};

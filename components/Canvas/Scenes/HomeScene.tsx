@@ -10,7 +10,12 @@ import Bust from "../Models/Bust";
 import { Box, useFlexSize } from "@react-three/flex";
 import { Landing } from "components/Pages";
 import { calculateColumnWidth, columns } from "styles";
-import { MeshProps } from "@react-three/fiber";
+import { MeshProps, useFrame } from "@react-three/fiber";
+import { BoxDebug } from "../Helpers/Debug";
+import { useRef } from "react";
+import { Group, Vector3 } from "three";
+import { scroll } from "@stores";
+import { useScrollPosition } from "../hooks/useScroll";
 
 const colors = [
   ["#FF00C7", "#0066FF"],
@@ -65,17 +70,17 @@ const Debug = () => {
     </Plane>
   );
 };
-
+const v = new Vector3();
 export const HomeScene = ({}: SceneProps) => {
+  const ref = useScrollPosition();
   return (
-    <Box width={`${columns[12]}%`} height="100%" flexDirection="row">
+    <Box ref={ref} width={`${columns[12]}%`} height="100%" flexDirection="row">
       <Box
         flexDirection="row"
         minHeight={"100%"}
         centerAnchor
         width={`${columns[8]}%`}
       >
-        {/* <BoxDebug /> */}
         <Html
           center
           style={{
