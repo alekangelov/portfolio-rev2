@@ -36,28 +36,39 @@ const HoverableImage: typeof Image = forwardRef((props, ref) => {
 const v = new THREE.Vector3();
 
 function TextBox() {
-  const ref = useRef<PointLight>(null);
-  useHelper(ref, PointLightHelper, 1, "white");
-  const [width, height] = useFlexSize();
+  const [width] = useFlexSize();
   return (
-    <Box width={"100%"} height={2}>
-      {/* <pointLight position={[2, 0, 2]} ref={ref} intensity={10} color="white" /> */}
-      <Text
-        letterSpacing={-0.1}
-        fontSize={0.5}
-        lineHeight={2}
-        font={fontPaths.manofa.bold}
-        maxWidth={width / 1.5}
-        color="white"
-      >{`BUT WHO MAKES ALL THIS`}</Text>
-      <Text
-        letterSpacing={-0.1}
-        fontSize={1.25}
-        lineHeight={1}
-        font={fontPaths.manofa.bold}
-        maxWidth={width / 1.5}
-        color="white"
-      >{`\nDOPE SHIT`}</Text>
+    <Box width="100%" height={2} mb={-1}>
+      <Box
+        centerAnchor
+        mt={-0.5}
+        width={6.25}
+        height={2}
+        alignSelf="flex-end"
+        alignItems={"flex-end"}
+        dir="column"
+      >
+        <Box width={6} mb={0.25}>
+          <Text
+            letterSpacing={-0.1}
+            fontSize={0.5}
+            lineHeight={1}
+            font={fontPaths.manofa.regular}
+            maxWidth={width / 1.5}
+            color="white"
+          >{`BUT WHO MAKES ALL THIS`}</Text>
+        </Box>
+        <Box width={6}>
+          <Text
+            letterSpacing={-0.1}
+            fontSize={1.25}
+            lineHeight={1}
+            font={fontPaths.manofa.bold}
+            maxWidth={width / 1.5}
+            color="white"
+          >{`\nDOPE SHIT`}</Text>
+        </Box>
+      </Box>
     </Box>
   );
 }
@@ -65,26 +76,27 @@ function TextBox() {
 function ImageBox() {
   return (
     <Box
-      width={"100%"}
       height={5}
-      wrap="no-wrap"
+      mb={0}
       dir="row"
-      alignItems="flex-start"
+      width="100%"
+      flexWrap="no-wrap"
       justifyContent="flex-start"
+      alignItems="flex-start"
     >
-      <Box width={4} height={5}>
+      <Box width={4} centerAnchor height="100%" mr={0.5}>
         <HoverableImage scale={[4, 5, 0] as any} url="/images/me/5.jpg" />
       </Box>
-      <Box width={6} height={5}>
+      <Box width={6} centerAnchor height="100%" mr={0.5}>
         <HoverableImage scale={[6, 5, 0] as any} url="/images/me/2.jpg" />
       </Box>
-      <Box width={4} height={5}>
+      <Box width={4} centerAnchor height="100%" mr={0.5}>
         <HoverableImage scale={[4, 5, 0] as any} url="/images/abstract/2.jpg" />
       </Box>
-      <Box width={6} height={5}>
+      <Box width={6} centerAnchor height="100%" mr={0.5}>
         <HoverableImage scale={[6, 5, 0] as any} url="/images/me/3.jpg" />
       </Box>
-      <Box width={4} height={5}>
+      <Box width={4} centerAnchor height="100%" mr={0.5}>
         <HoverableImage scale={[4, 5, 0] as any} url="/images/abstract/4.jpg" />
       </Box>
     </Box>
@@ -94,12 +106,25 @@ function ImageBox() {
 export const AboutScene = ({}: SceneProps) => {
   const ref = useScrollPosition();
   return (
-    <Box ref={ref} width="100%">
+    <Box ref={ref} width="100%" dir="column">
       <HeightReporter name="about" />
-      <BoxDebug />
-      <Box centerAnchor>
-        <TextBox />
-        <ImageBox />
+      <Box
+        mt={-2}
+        dir="column"
+        alignItems="flex-start"
+        justifyContent="flex-start"
+      >
+        <Box width="100%">
+          <TextBox />
+        </Box>
+        <Box width="100%">
+          <ImageBox />
+        </Box>
+      </Box>
+      <Box centerAnchor alignSelf="center" width="100%" height={5}>
+        <Html center>
+          <About />
+        </Html>
       </Box>
     </Box>
   );

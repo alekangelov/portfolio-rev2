@@ -77,6 +77,12 @@ export const globals = [
   globalStyle("h1", {
     fontSize: calc.multiply(vars.font.size.xxl, 3),
   }),
+  globalStyle("h2", {
+    fontSize: calc.multiply(vars.font.size.xxl, 0.5),
+    fontWeight: 900,
+    marginTop: vars.spacing.md,
+    marginBottom: vars.spacing.md,
+  }),
   globalStyle("p", {
     fontSize: vars.font.size.md,
     lineHeight: 2,

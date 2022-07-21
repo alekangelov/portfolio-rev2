@@ -1,3 +1,4 @@
+import { parseColor, vars } from "@styles";
 import { style } from "@vanilla-extract/css";
 
 export const layout = style({
@@ -9,3 +10,11 @@ export const layout = style({
 });
 
 export const scrollContainer = style({});
+
+export const hr = style({
+  marginBottom: vars.spacing.md,
+  marginTop: vars.spacing.md,
+  border: 0,
+  height: 1,
+  background: parseColor(vars.onColors.surface, 0.1),
+});
