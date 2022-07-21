@@ -60,3 +60,13 @@ export const about = {
     marginBottom: vars.spacing.lg,
   }),
 };
+
+export const li = {
+  parent: style({}),
+  name: style({}),
+  amount: style({}),
+  description: style({}),
+  track: style({}),
+  fill: style({}),
+  thumb: style({}),
+};

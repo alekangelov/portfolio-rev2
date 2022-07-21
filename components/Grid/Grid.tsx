@@ -12,12 +12,14 @@ import { assignGap } from "./helpers";
 export function Grid({
   gap,
   wrap,
+  align,
+  justify,
   ...props
 }: GridProps & JSX.IntrinsicElements["div"]) {
   return (
     <div
       {...props}
-      className={clsx(gridContainer({ wrap }), props.className)}
+      className={clsx(gridContainer({ wrap, align, justify }), props.className)}
       style={{
         ...assignGap(gap),
         ...props.style,

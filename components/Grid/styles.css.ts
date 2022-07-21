@@ -25,6 +25,43 @@ export const gridContainer = recipe({
         flexWrap: "nowrap",
       },
     },
+    justify: {
+      center: {
+        justifyContent: "center",
+      },
+      start: {
+        justifyContent: "flex-start",
+      },
+      end: {
+        justifyContent: "flex-end",
+      },
+      between: {
+        justifyContent: "space-between",
+      },
+      around: {
+        justifyContent: "space-around",
+      },
+    },
+    align: {
+      center: {
+        alignItems: "center",
+      },
+      start: {
+        alignItems: "flex-start",
+      },
+      end: {
+        alignItems: "flex-end",
+      },
+      stretch: {
+        alignItems: "stretch",
+      },
+      between: {
+        alignItems: "space-between",
+      },
+      around: {
+        alignItems: "space-around",
+      },
+    },
   },
 });
 

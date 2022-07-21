@@ -1,12 +1,40 @@
 import { textGradient } from "@styles";
-import { HR } from "components";
-import { about } from "./style.css";
+import { Grid, HR } from "components";
+import { about, li } from "./style.css";
 
 type P = {
   name: string;
   amount: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
+  years: number;
+  description?: string;
 };
-const Thing = () => {};
+
+const ListItem = ({ name, amount, years, description }: P) => {
+  return (
+    <div className={li.parent}>
+      <Grid gap="md">
+        <Grid.Item size="12">
+          <Grid align="center" justify="between">
+            <Grid.Item>
+              <h4 className={li.name}>{name}</h4>
+            </Grid.Item>
+            <Grid.Item>
+              <h4 className={li.amount}>{years} years</h4>
+            </Grid.Item>
+          </Grid>
+        </Grid.Item>
+        <Grid.Item size="12">
+          <p className={li.description}>{description}</p>
+        </Grid.Item>
+      </Grid>
+      <div className={li.track}>
+        <div className={li.fill}>
+          <div className={li.thumb} />
+        </div>
+      </div>
+    </div>
+  );
+};
 
 export const About = () => {
   return (
@@ -41,9 +69,15 @@ export const About = () => {
         how long.
       </p>
       <HR />
-      <h2>
-        <span role="icon">👨🏻‍💻</span> What I've been doing:
-      </h2>
+      <hgroup>
+        <h2>What I've been doing</h2>
+        <h3>and for how long and stuff</h3>
+      </hgroup>
+      <Grid gap="md">
+        <Grid.Item size="12">
+          <ListItem name="TypeScript" amount={10} years={4} />
+        </Grid.Item>
+      </Grid>
     </div>
   );
 };

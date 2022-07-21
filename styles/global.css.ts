@@ -83,6 +83,19 @@ export const globals = [
     marginTop: vars.spacing.md,
     marginBottom: vars.spacing.md,
   }),
+  globalStyle("h3", {
+    fontSize: vars.font.size.md,
+    fontWeight: 700,
+  }),
+  globalStyle("hgroup", {
+    margin: `${vars.spacing.lg} 0`,
+  }),
+  globalStyle("hgroup *:nth-child(1)", {
+    marginBottom: vars.spacing.sm,
+  }),
+  globalStyle("hgroup *:nth-child(2)", {
+    opacity: 0.75,
+  }),
   globalStyle("p", {
     fontSize: vars.font.size.md,
     lineHeight: 2,
