@@ -1,6 +1,12 @@
 import { style } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
-import { container, vars } from "@styles";
+import {
+  textGradient,
+  parseColor,
+  vars,
+  makeGradient,
+  gradients,
+} from "@styles";
 
 export const landing = {
   container: style([
@@ -17,6 +23,7 @@ export const landing = {
     fontFamily: "Manofa",
     lineHeight: 1.2,
     marginBottom: vars.spacing.lg,
+    opacity: "1 !important",
   }),
   titleMain: style({
     fontSize: "128px",
@@ -62,11 +69,36 @@ export const about = {
 };
 
 export const li = {
+  name: style({
+    fontSize: 18,
+    fontWeight: 900,
+  }),
+  amount: style({
+    color: parseColor(vars.colors.secondary),
+    fontWeight: 900,
+  }),
+  description: style({
+    fontSize: 14,
+  }),
   parent: style({}),
-  name: style({}),
-  amount: style({}),
-  description: style({}),
-  track: style({}),
-  fill: style({}),
-  thumb: style({}),
+  track: style({
+    width: "100%",
+    height: 12,
+  }),
+  fill: style({
+    borderRadius: 24,
+    background: makeGradient(gradients.secondaryTerciary),
+    width: "100%",
+    height: "100%",
+    position: "relative",
+  }),
+  thumb: style({
+    height: "100%",
+    aspectRatio: "1 / 1",
+    background: parseColor(vars.onColors.surface),
+    borderRadius: 24,
+    position: "absolute",
+    right: 0,
+    opacity: 0.5,
+  }),
 };

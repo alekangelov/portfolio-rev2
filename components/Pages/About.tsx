@@ -1,20 +1,49 @@
+import { useSpring, a } from "@react-spring/web";
 import { textGradient } from "@styles";
 import { Grid, HR } from "components";
+import { masonrySkills, P } from "./data";
 import { about, li } from "./style.css";
-
-type P = {
-  name: string;
-  amount: 1 | 2 | 3 | 4 | 5 | 6 | 7 | 8 | 9 | 10;
-  years: number;
-  description?: string;
-};
+import { Waypoint } from "react-waypoint";
 
 const ListItem = ({ name, amount, years, description }: P) => {
+  const [spring, api] = useSpring(() => {
+    return {
+      width: 0,
+    };
+  });
+  const [inProps, inApi] = useSpring(() => ({
+    opacity: 0,
+    transform: "translateY(24px)",
+  }));
   return (
-    <div className={li.parent}>
-      <Grid gap="md">
+    <a.div
+      style={{
+        ...inProps,
+      }}
+    >
+      <Waypoint
+        onEnter={() => {
+          api.start({
+            width: amount * 10,
+          });
+          inApi.start({
+            opacity: 1,
+            transform: "translateY(0px)",
+          });
+        }}
+        onLeave={() => {
+          api.start({
+            width: 0,
+          });
+          inApi.start({
+            opacity: 0,
+            transform: "translateY(24px)",
+          });
+        }}
+      />
+      <Grid gap="md" wrap className={li.parent}>
         <Grid.Item size="12">
-          <Grid align="center" justify="between">
+          <Grid align="end" justify="between">
             <Grid.Item>
               <h4 className={li.name}>{name}</h4>
             </Grid.Item>
@@ -26,19 +55,38 @@ const ListItem = ({ name, amount, years, description }: P) => {
         <Grid.Item size="12">
           <p className={li.description}>{description}</p>
         </Grid.Item>
+        <Grid.Item size="12">
+          <div className={li.track}>
+            <a.div
+              className={li.fill}
+              style={{
+                width: spring.width.to((e) => `${e}%`),
+              }}
+            >
+              <div className={li.thumb} />
+            </a.div>
+          </div>
+        </Grid.Item>
       </Grid>
-      <div className={li.track}>
-        <div className={li.fill}>
-          <div className={li.thumb} />
-        </div>
-      </div>
-    </div>
+    </a.div>
   );
 };
 
 export const About = () => {
+  const [inProps, inApi] = useSpring(() => ({
+    opacity: 0,
+    transform: "translateY(24px)",
+  }));
   return (
-    <div className={about.container}>
+    <a.div style={inProps} className={about.container}>
+      <Waypoint
+        onEnter={() => {
+          inApi.start({
+            opacity: 1,
+            transform: "translateY(0px)",
+          });
+        }}
+      />
       <h1 className={about.title}>
         Hey there, I'm{" "}
         <span className={textGradient.primaryTerciary}>Alek</span>.{" "}
@@ -73,11 +121,23 @@ export const About = () => {
         <h2>What I've been doing</h2>
         <h3>and for how long and stuff</h3>
       </hgroup>
-      <Grid gap="md">
-        <Grid.Item size="12">
-          <ListItem name="TypeScript" amount={10} years={4} />
-        </Grid.Item>
+      <Grid gap="md" wrap>
+        {masonrySkills.map((elements) => {
+          return (
+            <Grid.Item size="6">
+              <Grid wrap>
+                {elements.map((element) => {
+                  return (
+                    <Grid.Item size="12">
+                      <ListItem {...element} />
+                    </Grid.Item>
+                  );
+                })}
+              </Grid>
+            </Grid.Item>
+          );
+        })}
       </Grid>
-    </div>
+    </a.div>
   );
 };

@@ -90,10 +90,10 @@ export const globals = [
   globalStyle("hgroup", {
     margin: `${vars.spacing.lg} 0`,
   }),
-  globalStyle("hgroup *:nth-child(1)", {
+  globalStyle("hgroup > *:nth-child(1)", {
     marginBottom: vars.spacing.sm,
   }),
-  globalStyle("hgroup *:nth-child(2)", {
+  globalStyle("hgroup > *:nth-child(2)", {
     opacity: 0.75,
   }),
   globalStyle("p", {

@@ -121,7 +121,7 @@ export const AboutScene = ({}: SceneProps) => {
           <ImageBox />
         </Box>
       </Box>
-      <Box centerAnchor alignSelf="center" width="100%" height={5}>
+      <Box centerAnchor alignSelf="center" width="100%" height={13}>
         <Html center>
           <About />
         </Html>

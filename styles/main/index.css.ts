@@ -33,3 +33,18 @@ export const textGradient = {
     WebkitBackgroundClip: "text",
   }),
 };
+
+export const gradients = {
+  primarySecondary: [
+    parseColor(vars.colors.primary),
+    parseColor(vars.colors.secondary),
+  ],
+  primaryTerciary: [
+    parseColor(vars.colors.primary),
+    parseColor(vars.colors.terciary),
+  ],
+  secondaryTerciary: [
+    parseColor(vars.colors.secondary),
+    parseColor(vars.colors.terciary),
+  ],
+};

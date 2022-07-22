@@ -12,7 +12,6 @@ export const gridContainer = recipe({
   base: {
     display: "flex",
     rowGap: gap,
-    width: "100%",
     marginLeft: `calc(0px - ${gap} / 2)`,
     marginRight: `calc(0px - ${gap} / 2)`,
   },
