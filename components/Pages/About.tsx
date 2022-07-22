@@ -1,7 +1,7 @@
 import { useSpring, a } from "@react-spring/web";
 import { textGradient } from "@styles";
 import { Grid, HR } from "components";
-import { masonrySkills, P } from "./data";
+import { skills, P } from "./data";
 import { about, li } from "./style.css";
 import { Waypoint } from "react-waypoint";
 
@@ -121,23 +121,19 @@ export const About = () => {
         <h2>What I've been doing</h2>
         <h3>and for how long and stuff</h3>
       </hgroup>
-      <Grid gap="md" wrap>
-        {masonrySkills.map((elements) => {
-          return (
-            <Grid.Item size="6">
-              <Grid wrap>
-                {elements.map((element) => {
-                  return (
-                    <Grid.Item size="12">
-                      <ListItem {...element} />
-                    </Grid.Item>
-                  );
-                })}
-              </Grid>
-            </Grid.Item>
-          );
-        })}
-      </Grid>
+      <Grid.Masonry
+        gap="md"
+        wrap
+        columns={{
+          base: 2,
+        }}
+      >
+        {skills.map((skill) => (
+          <Grid.Item size="12">
+            <ListItem {...skill} />
+          </Grid.Item>
+        ))}
+      </Grid.Masonry>
     </a.div>
   );
 };

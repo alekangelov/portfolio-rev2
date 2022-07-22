@@ -7,7 +7,7 @@ export type P = {
   description?: string;
 };
 
-const whatIDo: P[] = [
+export const skills: P[] = [
   {
     name: "Typescript",
     amount: 10,
@@ -28,6 +28,13 @@ const whatIDo: P[] = [
     description: "Good UI library, maybe the best?",
   },
   {
+    name: "Solid",
+    amount: 4,
+    years: 0.5,
+    description:
+      "Insane UI library, will maybe overtake React if it continues to grow",
+  },
+  {
     name: "Styling",
     amount: 10,
     years: "10+",
@@ -40,6 +47,13 @@ const whatIDo: P[] = [
     years: 4,
     description:
       "When I want to do anything backend, Node is my safe and comfortable choice.",
+  },
+  {
+    name: "Databases",
+    amount: 10,
+    years: 5,
+    description:
+      "I like both Document and SQL databses. Mainly worked with Maria/MySql and Postgres.",
   },
   {
     name: "GraphQL",
@@ -63,5 +77,3 @@ const whatIDo: P[] = [
       "Been dabbling with rust for the past year. It's an amazing and fast language that is going to take the world by storm.",
   },
 ];
-
-export const masonrySkills = splitInHalf(whatIDo);
