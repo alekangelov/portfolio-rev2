@@ -22,7 +22,7 @@ import { columns } from "../Helpers/sizing";
 import { About } from "components/Pages";
 import { useScrollPosition } from "../hooks/useScroll";
 import { HeightReporter } from "../Helpers/HeightReporter";
-import { PointLight, PointLightHelper } from "three";
+import { Group, PointLight, PointLightHelper, Vector3 } from "three";
 
 const id = (() => {
   let i = 0;
@@ -32,8 +32,6 @@ const id = (() => {
 const HoverableImage: typeof Image = forwardRef((props, ref) => {
   return <Image {...(props as any)} ref={ref} />;
 });
-
-const v = new THREE.Vector3();
 
 function TextBox() {
   const [width] = useFlexSize();
@@ -72,32 +70,52 @@ function TextBox() {
     </Box>
   );
 }
+const vx = new Vector3();
 
 function ImageBox() {
+  const ref = useRef<Group>(null);
+  useFrame(() => {
+    ref.current?.position.lerp(vx.set(-(scroll.top - 500) / 100, 0, 0), 0.1);
+  });
   return (
     <Box
       height={5}
-      mb={0}
       dir="row"
       width="100%"
       flexWrap="no-wrap"
       justifyContent="flex-start"
       alignItems="flex-start"
     >
-      <Box width={4} centerAnchor height="100%" mr={0.5}>
-        <HoverableImage scale={[4, 5, 0] as any} url="/images/me/5.jpg" />
-      </Box>
-      <Box width={6} centerAnchor height="100%" mr={0.5}>
-        <HoverableImage scale={[6, 5, 0] as any} url="/images/me/2.jpg" />
-      </Box>
-      <Box width={4} centerAnchor height="100%" mr={0.5}>
-        <HoverableImage scale={[4, 5, 0] as any} url="/images/abstract/2.jpg" />
-      </Box>
-      <Box width={6} centerAnchor height="100%" mr={0.5}>
-        <HoverableImage scale={[6, 5, 0] as any} url="/images/me/3.jpg" />
-      </Box>
-      <Box width={4} centerAnchor height="100%" mr={0.5}>
-        <HoverableImage scale={[4, 5, 0] as any} url="/images/abstract/4.jpg" />
+      <Box
+        ref={ref}
+        height={5}
+        dir="row"
+        width="100%"
+        flexWrap="no-wrap"
+        justifyContent="flex-start"
+        alignItems="flex-start"
+      >
+        <Box width={4} centerAnchor height="100%" mr={0.5}>
+          <HoverableImage scale={[4, 5, 0] as any} url="/images/me/5.jpg" />
+        </Box>
+        <Box width={6} centerAnchor height="100%" mr={0.5}>
+          <HoverableImage scale={[6, 5, 0] as any} url="/images/me/2.jpg" />
+        </Box>
+        <Box width={4} centerAnchor height="100%" mr={0.5}>
+          <HoverableImage
+            scale={[4, 5, 0] as any}
+            url="/images/abstract/2.jpg"
+          />
+        </Box>
+        <Box width={6} centerAnchor height="100%" mr={0.5}>
+          <HoverableImage scale={[6, 5, 0] as any} url="/images/me/3.jpg" />
+        </Box>
+        <Box width={4} centerAnchor height="100%" mr={0.5}>
+          <HoverableImage
+            scale={[4, 5, 0] as any}
+            url="/images/abstract/4.jpg"
+          />
+        </Box>
       </Box>
     </Box>
   );
@@ -121,7 +139,7 @@ export const AboutScene = ({}: SceneProps) => {
           <ImageBox />
         </Box>
       </Box>
-      <Box centerAnchor alignSelf="center" width="100%" height={13}>
+      <Box centerAnchor alignSelf="center" width="100%" height={10}>
         <Html center>
           <About />
         </Html>
