@@ -1,47 +1,55 @@
-import { Logo, Button, Link, Switch } from "@components";
+import { Logo } from "@components";
 import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
-import { MdDarkMode, MdLightMode, MdPalette } from "react-icons/md";
-import { scroll, ThemeStore, useTheme } from "@stores";
+import { scroll, ThemeStore } from "@stores";
 import clsx from "clsx";
+import { useEventListener } from "usehooks-ts";
 
 type M = {
   href: string;
   active?: boolean;
 };
-
 // eslint-disable-next-line react/display-name
-const MenuLink = forwardRef(
-  (
-    {
-      href,
-      active,
-      children,
-      ...props
-    }: PropsWithChildren<M & JSX.IntrinsicElements["li"]>,
-    ref: ForwardedRef<HTMLLIElement>
-  ) => {
-    const onClick = () => {
-      const elementToScrollTo = document.querySelector(`#${href}`);
-      if (!elementToScrollTo) return;
-      const bounds = elementToScrollTo.getBoundingClientRect();
-    };
-    return (
-      <li ref={ref} className={navbar.nav.item} {...props}>
-        <a
-          onClick={onClick}
-          color="transparent"
-          className={clsx({
-            [navbar.nav.link]: true,
-            // ["active"]: pathname.includes(href),
-          })}
-        >
-          {children}
-        </a>
-      </li>
-    );
-  }
-);
+// const MenuLink = forwardRef(
+//   (
+//     {
+//       href,
+//       active,
+//       children,
+//       ...props
+//     }: PropsWithChildren<M & JSX.IntrinsicElements["li"]>,
+//     ref: ForwardedRef<HTMLLIElement>
+//   ) => {
+//     const onClick = () => {
+//       const elementToScrollTo = document.querySelector(`#${href}`);
+//       if (!elementToScrollTo) return;
+//       const pos = findPosition(elementToScrollTo);
+//       window.scroll(0, pos.top);
+//     };
+//     useEventListener(
+//       "scroll",
+//       () => {
+//         console.log("it's scrolling");
+//       },
+//       undefined,
+//       { passive: true }
+//     );
+//     return (
+//       <li ref={ref} className={navbar.nav.item} {...props}>
+//         <a
+//           onClick={onClick}
+//           color="transparent"
+//           className={clsx({
+//             [navbar.nav.link]: true,
+//             // ["active"]: pathname.includes(href),
+//           })}
+//         >
+//           {children}
+//         </a>
+//       </li>
+//     );
+//   }
+// );
 const selector = (store: ThemeStore) => {
   return {
     theme: store.theme,
@@ -74,12 +82,15 @@ export const Navbar = () => {
   return (
     <nav className={navbar.wrapper}>
       <div className={navbar.container}>
-        <a className={navbar.title}>
+        <span
+          onClick={() => window.scroll({ top: 0 })}
+          className={navbar.title}
+        >
           <span role="icon">
             <Logo onColor="surface" />
           </span>
           ALKNGLV
-        </a>
+        </span>
         {/* <Menu /> */}
       </div>
     </nav>

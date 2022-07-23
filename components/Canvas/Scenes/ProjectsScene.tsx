@@ -1,9 +1,8 @@
 import { Text } from "@react-three/drei";
 import { Box, Flex, useSyncGeometrySize } from "@react-three/flex";
-import { Projects } from "components/Pages/Projects";
+import { Projects } from "components";
 import { fontPaths } from "styles/fonts";
 import { FlexedHtml } from "../components/FlexedHtml";
-import { BoxDebug } from "../Helpers/Debug";
 import { useScrollPosition } from "../hooks/useScroll";
 
 const Title = () => {

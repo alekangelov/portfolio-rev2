@@ -110,3 +110,18 @@ export const projectStyles = {
     width: "90vw",
   }),
 };
+
+export const draggable = style({
+  cursor: "grab",
+  userSelect: "none",
+  width: "max-content",
+  selectors: {
+    "&:active": {
+      cursor: "grabbing",
+    },
+  },
+});
+
+export const draggableInner = style({
+  maxWidth: "90vw",
+});

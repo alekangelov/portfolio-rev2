@@ -10,7 +10,6 @@ const selector = (store: ThemeStore) => {
 };
 
 const handleScroll = () => {
-  // scroll.top = (event.target as HTMLElement).scrollTop;
   scroll.top = window.scrollY;
 };
 

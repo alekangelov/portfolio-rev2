@@ -120,7 +120,7 @@ export const About = () => {
         }}
       >
         {skills.map((skill) => (
-          <Grid.Item size="12">
+          <Grid.Item size="12" key={skill.name}>
             <ListItem {...skill} />
           </Grid.Item>
         ))}

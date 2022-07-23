@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { gridContainer, gridCol, GridProps, GridItemProps } from "./styles.css";
 import { assignGap } from "./helpers";
-import { Children, useMemo } from "react";
+import { Children, forwardRef, Ref, useMemo } from "react";
 import { makeMasonryFromArray, useResponsiveValue } from "@utils";
 
 export function Grid({
@@ -64,18 +64,22 @@ function MasonryGrid({
   );
 }
 
-function GridItem({
-  size,
-  tabletSize,
-  desktopSize,
-  offset,
-  tabletOffset,
-  desktopOffset,
-  ...props
-}: GridItemProps & JSX.IntrinsicElements["div"]) {
+function GridItem(
+  {
+    size,
+    tabletSize,
+    desktopSize,
+    offset,
+    tabletOffset,
+    desktopOffset,
+    ...props
+  }: GridItemProps & JSX.IntrinsicElements["div"],
+  ref: Ref<HTMLDivElement>
+) {
   return (
     <div
       {...props}
+      ref={ref}
       className={clsx(
         gridCol({
           size,
@@ -91,5 +95,5 @@ function GridItem({
   );
 }
 
-Grid.Item = GridItem;
+Grid.Item = forwardRef(GridItem);
 Grid.Masonry = MasonryGrid;

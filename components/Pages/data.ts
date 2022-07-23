@@ -13,7 +13,7 @@ export const skills: P[] = [
     amount: 10,
     years: 4,
     description:
-      "I love typescript, it's slow but it has the best type system (in my oppinion, ofcourse).",
+      "I love typescript, it's slow but it has the best type system ever (in my oppinion, ofcourse).",
   },
   {
     name: "Javascript",
@@ -54,7 +54,7 @@ export const skills: P[] = [
     amount: 10,
     years: 5,
     description:
-      "I like both Document and SQL databses. Mainly worked with Maria/MySql and Postgres.",
+      "I like both Document and SQL databases. Mainly worked with Maria/MySql, Postgres and Mongo.",
   },
   {
     name: "GraphQL",
@@ -84,10 +84,10 @@ export const skills: P[] = [
     description: "A neccesary evil.",
   },
   {
-    name: "Engineering Management",
+    name: "Mgmt",
     amount: 5,
     years: "1+",
-    description: "It's like I don't even code anymore.",
+    description: "Like the band, but not really.",
   },
   {
     name: "Mentorship",
@@ -95,5 +95,103 @@ export const skills: P[] = [
     years: "3+",
     description:
       "I love to help people grow and develop. Been doing it for a while now.",
+  },
+];
+
+type Project = {
+  name: string;
+  position: string;
+  description: string;
+  link: string;
+  image: string;
+  tags: string[];
+};
+
+export const projects: Project[] = [
+  {
+    name: "Pabau",
+    position: "Frontend Lead",
+    description: `A enterprise level CRM software for clinics to manage their bussiness. 
+    Bells and whistles included. I mainly manage the developers and the frontend.`,
+    link: "https://pabau.com",
+    image: "/projects/pabau.png",
+    tags: [
+      "work",
+      "react",
+      "node",
+      "typescript",
+      "graphql",
+      "postgres",
+      "hasura",
+    ],
+  },
+  {
+    name: "Endava (Fintech + Internal)",
+    position: "Senior Developer",
+    description: `While working for Endava I ended up making a bunch of various POCs and worked on a huge fintech frontend.
+                  Was really involved with architecture and business requirements of POCs and tightly coupled with business
+                  on the fintech project as well.`,
+    link: "https://endava.com",
+    image: "/projects/endava.png",
+    tags: ["work", "react", "fintech"],
+  },
+  {
+    name: "Digital Present",
+    position: "Frontend Lead",
+    description: `Was in charge of the frontends and general architecture of apps. Tried to sneak in as much
+                  bleeding tech as possible. Worked on a bunch of stuff with Three, WebGL, GraphQL etc.
+                  Shipped a bunch of web apps and crossplatform apps.`,
+    link: "https://digitalpresent.io",
+    image: "/projects/digitalpresent.png",
+    tags: [
+      "work",
+      "react",
+      "node",
+      "typescript",
+      "graphql",
+      "mariadb",
+      "postgres",
+      "mongodb",
+    ],
+  },
+  {
+    name: "Zaibatsu Bud",
+    position: "Creator",
+    description: `A combo aggregator for Tekken made with Electron and React. It can also overlay on top of the game so you can practice your combos.`,
+    link: "https://github.com/alekangelov/zaibatsu-bud_app",
+    image: "/projects/zaibatsu-bud.png",
+    tags: ["open-source", "electron", "react"],
+  },
+  {
+    name: "NT Dashboard",
+    position: "Creator",
+    description: `A dashboard for your New Tab in a browser. Beautiful, extensible and easy to use.`,
+    link: "https://github.com/alekangelov/nt-dashboard",
+    image: "/projects/nt-dashboard.png",
+    tags: ["open-source", "react"],
+  },
+  {
+    name: "React Alert Async",
+    position: "Creator",
+    description: `React components for altering the default alert messages of the browser.`,
+    link: "https://github.com/alekangelov/react-alert-async",
+    image: "/projects/react-alert-async.png",
+    tags: ["open-source", "react"],
+  },
+  {
+    name: "Solid Hotkeys",
+    position: "Creator",
+    description: `A hotkey manager for SolidJS with optimistic default prevention. Weighs around 2kb and only attaches 2 event listeners.`,
+    link: "https://github.com/alekangelov/solid-hotkeys",
+    image: "/projects/solid-hotkeys.png",
+    tags: ["open-source", "solid"],
+  },
+  {
+    name: "Icarus UI",
+    position: "Creator",
+    description: `An isomorphic UI library that can be plugged into any framework. Built on top of Vanilla Extract.`,
+    link: "https://github.com/alekangelov/icarus",
+    image: "/projects/icarus.png",
+    tags: ["open-source", "react"],
   },
 ];

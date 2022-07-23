@@ -73,11 +73,13 @@ export const gridCol = recipe({
   variants: {
     size: createVariation(columns, (value, key) => ({
       flex: `0 0 ${value}%`,
+      maxWidth: `${value}%`,
     })),
     tabletSize: createVariation(columns, (value, key) => ({
       "@media": {
         [media.tablet]: {
           flex: `0 0 ${value}%`,
+          maxWidth: `${value}%`,
         },
       },
     })),
@@ -85,6 +87,7 @@ export const gridCol = recipe({
       "@media": {
         [media.desktop]: {
           flex: `0 0 ${value}%`,
+          maxWidth: `${value}%`,
         },
       },
     })),
