@@ -77,4 +77,23 @@ export const skills: P[] = [
     description:
       "Amazing, intuitive and fast language that is taking the world by storm.",
   },
+  {
+    name: "Scrum",
+    amount: 7,
+    years: 3,
+    description: "A neccesary evil.",
+  },
+  {
+    name: "Engineering Management",
+    amount: 5,
+    years: "1+",
+    description: "It's like I don't even code anymore.",
+  },
+  {
+    name: "Mentorship",
+    amount: 10,
+    years: "3+",
+    description:
+      "I love to help people grow and develop. Been doing it for a while now.",
+  },
 ];

@@ -29,6 +29,7 @@ import { About } from "components/Pages";
 import { useScrollPosition } from "../hooks/useScroll";
 import { HeightReporter } from "../Helpers/HeightReporter";
 import { Group, PointLight, PointLightHelper, Vector3 } from "three";
+import { FlexedHtml } from "../components/FlexedHtml";
 
 const id = (() => {
   let i = 0;
@@ -159,10 +160,12 @@ export const AboutScene = ({}: SceneProps) => {
           <ImageBox />
         </Box>
       </Box>
-      <Box centerAnchor alignSelf="center" width="100%" height={10}>
-        <Html center>
-          <About />
-        </Html>
+      <Box centerAnchor>
+        <Box mt={0.5} mb={0.5} width="100%" justify="center">
+          <FlexedHtml>
+            <About />
+          </FlexedHtml>
+        </Box>
       </Box>
     </Box>
   );

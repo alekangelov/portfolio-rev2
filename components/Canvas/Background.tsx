@@ -24,7 +24,6 @@ const style = {
 const dpr = [1, 1];
 
 const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
-  console.log(Color(`rgb(${darkTheme.colors.surface})`).hex());
   return (
     <Canvas
       style={style as any}

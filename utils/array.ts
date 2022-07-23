@@ -4,7 +4,6 @@ export const splitInHalf = <T>(arr: T[]) => {
 };
 
 export const makeMasonryFromArray = <T>(base: T[], columns = 2) => {
-  console.log(base);
   const columnArray = Array.from({ length: columns }).map(() => []) as T[][];
   let currentColumn = 0;
   for (let i = 0; i < base.length; i++) {
@@ -13,7 +12,6 @@ export const makeMasonryFromArray = <T>(base: T[], columns = 2) => {
       if (currentColumn > columnArray.length - 1) {
         currentColumn = 0;
       }
-      console.log(columnArray[currentColumn]);
       columnArray[currentColumn].push(element);
       currentColumn++;
     }

@@ -32,7 +32,6 @@ export const useContainer = () => {
   const marginedWidth = viewportWidth - viewportWidth * 0.1;
   const x = getMaxWidth(viewportWidth);
   const y = viewportWidth - x;
-  console.log({ marginedWidth, y });
   const width = Math.min(marginedWidth, y);
   const percent = getOnePercent(width);
   return { width, viewport, percent };

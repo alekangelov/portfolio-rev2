@@ -11,12 +11,10 @@ export const createRipple = (animationDuration = 0.2) => {
       clearTimeout(timeout);
       const maybeTarget = e.target as HTMLElement;
       const target = maybeTarget.closest(".ripple-target");
-      console.log(target);
       if (!target) return;
       const rect = target.getBoundingClientRect();
       const x = e.clientX - rect.left;
       const y = e.clientY - rect.top;
-      console.log({ x, y });
       const ripple = document.createElement("span");
       ripple.classList.add(rippleClass);
       ripple.style.setProperty(rippleVars.top, `${y}px`);
