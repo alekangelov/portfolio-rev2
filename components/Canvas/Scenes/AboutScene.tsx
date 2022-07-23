@@ -161,7 +161,7 @@ export const AboutScene = ({}: SceneProps) => {
         </Box>
       </Box>
       <Box centerAnchor>
-        <Box mt={0.5} mb={0.5} width="100%" justify="center">
+        <Box mt={0.5} mb={1} width="100%" justify="center">
           <FlexedHtml>
             <About />
           </FlexedHtml>

@@ -57,7 +57,7 @@ export const Landing = () => {
       });
   }, []);
   return (
-    <div className={landing.container}>
+    <div id="landing" className={landing.container}>
       <a.hgroup
         onClick={toggle}
         style={{ width: "100%", userSelect: "none", ...spring[0] }}

@@ -66,6 +66,7 @@ q:before, q:after`,
 export const globals = [
   globalStyle("*", {
     boxSizing: "border-box",
+    lineHeight: 1.5,
   }),
 
   globalStyle("html", {
@@ -86,6 +87,7 @@ export const globals = [
   globalStyle("h3", {
     fontSize: vars.font.size.md,
     fontWeight: 700,
+    lineHeight: 2,
   }),
   globalStyle("hgroup", {
     margin: `${vars.spacing.lg} 0`,

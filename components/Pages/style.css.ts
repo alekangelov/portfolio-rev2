@@ -102,3 +102,11 @@ export const li = {
     opacity: 0.5,
   }),
 };
+
+export const projectStyles = {
+  container: style({
+    maxWidth: "90vw",
+    margin: "0 auto",
+    width: "90vw",
+  }),
+};

@@ -2,11 +2,10 @@ import { Logo, Button, Link, Switch } from "@components";
 import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
 import { navbar } from "./style.css";
 import { MdDarkMode, MdLightMode, MdPalette } from "react-icons/md";
-import { ThemeStore, useTheme } from "@stores";
+import { scroll, ThemeStore, useTheme } from "@stores";
 import clsx from "clsx";
 
 type M = {
-  onClick?: () => void;
   href: string;
   active?: boolean;
 };
@@ -15,7 +14,6 @@ type M = {
 const MenuLink = forwardRef(
   (
     {
-      onClick,
       href,
       active,
       children,
@@ -23,11 +21,16 @@ const MenuLink = forwardRef(
     }: PropsWithChildren<M & JSX.IntrinsicElements["li"]>,
     ref: ForwardedRef<HTMLLIElement>
   ) => {
+    const onClick = () => {
+      const elementToScrollTo = document.querySelector(`#${href}`);
+      if (!elementToScrollTo) return;
+      const bounds = elementToScrollTo.getBoundingClientRect();
+    };
     return (
       <li ref={ref} className={navbar.nav.item} {...props}>
         <a
-          color="transparent"
           onClick={onClick}
+          color="transparent"
           className={clsx({
             [navbar.nav.link]: true,
             // ["active"]: pathname.includes(href),
@@ -46,14 +49,14 @@ const selector = (store: ThemeStore) => {
   };
 };
 export const Menu = () => {
-  const { theme, toggle } = useTheme(selector);
+  // const { theme, toggle } = useTheme(selector);
   return (
     <>
       <ul className={navbar.nav.wrapper}>
-        <MenuLink href="/about">About</MenuLink>
-        <MenuLink href="/projects">Projects</MenuLink>
-        <MenuLink href="/blog">Blog</MenuLink>
-        <MenuLink href="/contact">Contact</MenuLink>
+        <MenuLink href="about">About</MenuLink>
+        <MenuLink href="projects">Projects</MenuLink>
+        <MenuLink href="blog">Blog</MenuLink>
+        <MenuLink href="contact">Contact</MenuLink>
         {/* <li>
           <Switch
             value={theme}
@@ -77,7 +80,7 @@ export const Navbar = () => {
           </span>
           ALKNGLV
         </a>
-        <Menu />
+        {/* <Menu /> */}
       </div>
     </nav>
   );

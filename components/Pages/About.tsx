@@ -31,15 +31,6 @@ const ListItem = ({ name, amount, years, description }: P) => {
             transform: "translateY(0px)",
           });
         }}
-        onLeave={() => {
-          api.start({
-            width: 0,
-          });
-          inApi.start({
-            opacity: 0,
-            transform: "translateY(24px)",
-          });
-        }}
       />
       <Grid gap="md" wrap className={li.parent}>
         <Grid.Item size="12">
@@ -78,7 +69,7 @@ export const About = () => {
     transform: "translateY(24px)",
   }));
   return (
-    <a.div style={inProps} className={about.container}>
+    <a.div id="about" style={inProps} className={about.container}>
       <Waypoint
         onEnter={() => {
           inApi.start({
