@@ -1,4 +1,10 @@
-import { Flex, Box, useFlexSize, useReflow } from "@react-three/flex";
+import {
+  Flex,
+  Box,
+  useFlexSize,
+  useReflow,
+  useSyncGeometrySize,
+} from "@react-three/flex";
 import { useContainer } from "../Helpers/hooks";
 import {
   Box as BBox,
@@ -33,38 +39,52 @@ const HoverableImage: typeof Image = forwardRef((props, ref) => {
   return <Image {...(props as any)} ref={ref} />;
 });
 
+function TopText() {
+  const onSync = useSyncGeometrySize();
+  return (
+    <Text
+      onSync={onSync}
+      letterSpacing={-0.1}
+      fontSize={0.5}
+      lineHeight={1}
+      font={fontPaths.manofa.regular}
+      color="white"
+    >{`BUT WHO MAKES ALL THIS`}</Text>
+  );
+}
+
+function BottomText() {
+  const onSync = useSyncGeometrySize();
+  return (
+    <Text
+      onSync={onSync}
+      letterSpacing={-0.1}
+      fontSize={1.25}
+      lineHeight={1}
+      font={fontPaths.manofa.bold}
+      color="white"
+    >{`\nDOPE SHIT`}</Text>
+  );
+}
+
 function TextBox() {
   const [width] = useFlexSize();
+
   return (
     <Box width="100%" height={2} mb={-1}>
       <Box
         centerAnchor
         mt={-0.5}
-        width={6.25}
         height={2}
         alignSelf="flex-end"
         alignItems={"flex-end"}
         dir="column"
       >
-        <Box width={6} mb={0.25}>
-          <Text
-            letterSpacing={-0.1}
-            fontSize={0.5}
-            lineHeight={1}
-            font={fontPaths.manofa.regular}
-            maxWidth={width / 1.5}
-            color="white"
-          >{`BUT WHO MAKES ALL THIS`}</Text>
+        <Box mb={-0.2}>
+          <TopText />
         </Box>
-        <Box width={6}>
-          <Text
-            letterSpacing={-0.1}
-            fontSize={1.25}
-            lineHeight={1}
-            font={fontPaths.manofa.bold}
-            maxWidth={width / 1.5}
-            color="white"
-          >{`\nDOPE SHIT`}</Text>
+        <Box>
+          <BottomText />
         </Box>
       </Box>
     </Box>
@@ -75,7 +95,7 @@ const vx = new Vector3();
 function ImageBox() {
   const ref = useRef<Group>(null);
   useFrame(() => {
-    ref.current?.position.lerp(vx.set(-(scroll.top - 500) / 100, 0, 0), 0.1);
+    ref.current?.position.lerp(vx.set(-(scroll.top - 700) / 100, 0, 0), 0.1);
   });
   return (
     <Box

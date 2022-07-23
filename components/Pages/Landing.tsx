@@ -40,19 +40,41 @@ const Rev = memo(() => {
 
 export const Landing = () => {
   const { value, toggle } = useBoolean(false);
-
+  const [spring, api] = useTrail(3, () => ({
+    transform: `translateY(25px)`,
+    opacity: 0,
+    delay: 0.1,
+  }));
+  useEffect(() => {
+    api.start({
+      transform: `translateY(0px)`,
+      opacity: 1,
+    });
+    () =>
+      api.set({
+        transform: `translateY(25px)`,
+        opacity: 0,
+      });
+  }, []);
   return (
     <div className={landing.container}>
-      <hgroup onClick={toggle} style={{ width: "100%", userSelect: "none" }}>
+      <a.hgroup
+        onClick={toggle}
+        style={{ width: "100%", userSelect: "none", ...spring[0] }}
+      >
         <Rev />
         <HiddenOnHover active={value} />
-      </hgroup>
+      </a.hgroup>
       <Grid>
         <Grid.Item>
-          <Button>Find out more</Button>
+          <a.div style={spring[1]}>
+            <Button>Find out more</Button>
+          </a.div>
         </Grid.Item>
         <Grid.Item>
-          <Button color="transparent">Contact me</Button>
+          <a.div style={spring[2]}>
+            <Button color="transparent">Contact me</Button>
+          </a.div>
         </Grid.Item>
       </Grid>
     </div>

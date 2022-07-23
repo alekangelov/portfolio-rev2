@@ -19,7 +19,8 @@ export const skills: P[] = [
     name: "Javascript",
     amount: 10,
     years: 6,
-    description: "Typescript solves JavaScript's issues.",
+    description:
+      "Typescript solves JavaScript's issues, but I started out with it. Has sentimental value.",
   },
   {
     name: "React (Native)",
@@ -39,7 +40,7 @@ export const skills: P[] = [
     amount: 10,
     years: "10+",
     description:
-      "Have been writing CSS since I was 14. I love it. I've also worked with S(A)(C)SS, LESS, Emotion, Styled Components, Vanilla Extract and a bunch I'm probably forgetting.",
+      "Have worked with S(A)(C)SS, LESS, Emotion, Styled Components, Vanilla Extract etc.",
   },
   {
     name: "Node",
@@ -74,6 +75,6 @@ export const skills: P[] = [
     amount: 3,
     years: 0.5,
     description:
-      "Been dabbling with rust for the past year. It's an amazing and fast language that is going to take the world by storm.",
+      "Amazing, intuitive and fast language that is taking the world by storm.",
   },
 ];

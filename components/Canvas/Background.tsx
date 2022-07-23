@@ -4,13 +4,15 @@ import { Environment } from "@react-three/drei";
 import { HomeScene } from "./Scenes/HomeScene";
 import Effects from "./Effects";
 import * as THREE from "three";
-import { Box, Flex } from "@react-three/flex";
+import { Box, Flex, useReflow } from "@react-three/flex";
 import { useContainer } from "./hooks/useContainer";
 import { scroll } from "@stores";
 import { AboutScene } from "./Scenes/AboutScene";
 import { BoxDebug, FlexDebug } from "./Helpers/Debug";
 import { darkTheme } from "styles/themes.css";
 import Color from "color";
+import { ProjectsScene } from "./Scenes/ProjectsScene";
+import { useEventListener } from "usehooks-ts";
 
 const style = {
   width: "100%",
@@ -53,6 +55,8 @@ const v = new THREE.Vector3();
 
 const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const { width, height } = useContainer();
+  const reflow = useReflow();
+  useEventListener("resize", reflow);
   return (
     <Suspense>
       <Environment preset="studio" />
@@ -80,6 +84,9 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
           </Box>
           <Box width="100%">
             <AboutScene />
+          </Box>
+          <Box width="100%">
+            <ProjectsScene />
           </Box>
         </Box>
         <Effects />
