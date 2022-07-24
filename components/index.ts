@@ -13,3 +13,4 @@ export * from "./Link";
 export * from "./Switch";
 export * from "./Footer";
 export * from "./Canvas";
+export * from "./Loader";

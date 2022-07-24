@@ -1,11 +1,14 @@
-import { About, Landing, Layout } from "@components";
+import { About, Landing, Layout, Loader } from "@components";
 
 function App() {
   return (
-    <Layout>
-      <Landing />
-      <About />
-    </Layout>
+    <>
+      <Loader />
+      <Layout>
+        <Landing />
+        <About />
+      </Layout>
+    </>
   );
 }
 
