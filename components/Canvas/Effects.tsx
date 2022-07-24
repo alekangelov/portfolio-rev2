@@ -99,6 +99,13 @@ export default function Effects() {
       <effectPass attachArray="passes" ref={effect} />
       {/* @ts-ignore */}
       <waterPass attachArray="passes" ref={water} />
+      {/* @ts-ignore */}
+      {/* <sSAOPass
+        args={[scene, camera, 100, 100]}
+        kernelRadius={1.2}
+        kernelSize={0}
+      /> */}
+
       {/* <unrealBloomPass args={[1, 0.25, 3, 0.2]} /> */}
     </EffectsComposer>
   );

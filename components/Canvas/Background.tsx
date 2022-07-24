@@ -1,6 +1,6 @@
 import { memo, PropsWithChildren, Suspense } from "react";
 import { Canvas, useFrame, useThree } from "@react-three/fiber";
-import { Environment } from "@react-three/drei";
+import { Cloud, Environment, Sparkles } from "@react-three/drei";
 import { HomeScene } from "./Scenes/HomeScene";
 import Effects from "./Effects";
 import * as THREE from "three";
@@ -14,6 +14,9 @@ import Color from "color";
 import { ProjectsScene } from "./Scenes/ProjectsScene";
 import { useEventListener } from "usehooks-ts";
 import { useScrollPosition } from "./hooks/useScroll";
+import { Clump, Pointer } from "./Scenes/ClumpScene";
+import { Physics } from "@react-three/cannon";
+import { parseColor } from "@styles";
 
 const style = {
   width: "100%",
@@ -57,7 +60,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   useEventListener("resize", reflow);
   return (
     <Suspense>
-      <Environment preset="studio" />
+      <Environment files="studio.hdr" encoding={THREE.LinearEncoding} />
       <pointLight
         intensity={0.5}
         position={[0, 5, 3]}
@@ -65,12 +68,12 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         castShadow
       />
       <pointLight
-        intensity={1}
+        intensity={5}
         position={[10, 10, -5]}
         color="#0059ff"
         castShadow
       />
-      <ambientLight color="white" intensity={0.25} />
+      <ambientLight color="white" intensity={0.5} />
       <Flex
         size={[width, 0, 0]}
         position={[-width / 2, height / 2, 0]}
@@ -79,6 +82,9 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         <Box ref={ref}>
           <Box dir="column" width="100%" height={10}>
             <Box renderOrder={0} mt={-2} width="100%" minHeight={height}>
+              <Box centerAnchor width="100%" height={0}>
+                <Cloud speed={0.1} opacity={0.1} />
+              </Box>
               <HomeScene />
             </Box>
             <Box renderOrder={1} width="100%">
@@ -86,6 +92,24 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
             </Box>
             <Box renderOrder={2} width="100%">
               <ProjectsScene />
+              <Box centerAnchor width={"100%"} height={0}>
+                <group position={[0, 0, 0]}>
+                  <Sparkles
+                    speed={2}
+                    noise={50}
+                    count={1000}
+                    scale={[50, 70, 10]}
+                    color={"white"}
+                    size={1}
+                    opacity={1}
+                  />
+                </group>
+              </Box>
+            </Box>
+            <Box renderOrder={3} width="100%">
+              <Box centerAnchor height={5} width={"100%"}>
+                <BoxDebug />
+              </Box>
             </Box>
           </Box>
         </Box>

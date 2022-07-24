@@ -20,7 +20,6 @@ export const navbar = {
     transform: "translateX(-50%)",
     width: "100%",
     zIndex: 10,
-    boxShadow: `0 30px 50px -25px ${parseColor("0,0,0", 0.5)}`,
     transition: transition("background", "backdrop-filter"),
   }),
   container: style({
