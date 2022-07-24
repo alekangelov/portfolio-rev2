@@ -46,12 +46,10 @@ export const Modal = ({ visible, title, onVisibilityChange, children }: P) => {
 
   useEffect(() => {
     if (onVisibilityChange) onVisibilityChange(isVisible);
-    if (visible) {
-      document.body.classList.add("blocker");
+    if (isVisible) {
+      return document.body.classList.add("blocker");
     }
-    if (!visible) {
-      document.body.classList.remove("blocker");
-    }
+    document.body.classList.remove("blocker");
   }, [isVisible]);
   useEventListener("keydown", (e) => {
     if (isVisible && e.key.toUpperCase() === "ESCAPE") {

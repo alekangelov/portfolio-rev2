@@ -117,7 +117,28 @@ export const globals = [
   globalStyle("a:hover", {
     backgroundSize: "100% 2px",
   }),
-  // globalStyle("body.blocker", {
-  //   overflow: "hidden",
-  // }),
+  globalStyle("body.blocker", {
+    overflow: "hidden",
+  }),
+  globalStyle("::-webkit-scrollbar", {
+    width: 8,
+  }),
+  globalStyle("::-webkit-scrollbar-track", {
+    background: parseColor(vars.colors.surface, 0),
+  }),
+  globalStyle("::-webkit-scrollbar-thumb", {
+    borderRadius: 4,
+    transition: transition("background"),
+    background: parseColor(vars.onColors.primary, 0.5),
+    cursor: "grab",
+  }),
+  globalStyle("::-webkit-scrollbar-thumb:hover", {
+    background: parseColor(vars.onColors.primary, 1),
+  }),
+  globalStyle("::-webkit-scrollbar-thumb:active", {
+    cursor: "grabbing",
+  }),
+  globalStyle("body", {
+    overflow: "overlay",
+  }),
 ];

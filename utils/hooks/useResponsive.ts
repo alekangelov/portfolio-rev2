@@ -3,7 +3,6 @@ import { useMediaQuery } from "usehooks-ts";
 
 const [, tabletMedia] = media.tablet.split("screen and ");
 const [, desktopMedia] = media.desktop.split("screen and ");
-console.log({ tabletMedia, desktopMedia });
 export const useResponsive = () => {
   const mobile = true;
   const tablet = useMediaQuery(tabletMedia);
@@ -25,7 +24,6 @@ export const useResponsiveValue = <T extends number | string>(
   value?: ResponsiveValue<T>
 ) => {
   const { tablet, desktop } = useResponsive();
-  console.log(tablet, desktop);
   if (!value) return;
   if (desktop && value.desktop) {
     return value.desktop;

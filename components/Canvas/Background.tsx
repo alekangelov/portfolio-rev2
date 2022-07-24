@@ -42,10 +42,7 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
         logarithmicDepthBuffer: true,
       }}
     >
-      <color
-        attach="background"
-        args={[Color(`rgb(${darkTheme.colors.surface})`).hex()]}
-      />
+      <color attach="background" args={[Color(`#343434`).hex()]} />
       {children}
     </Canvas>
   );

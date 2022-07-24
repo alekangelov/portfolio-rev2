@@ -165,7 +165,7 @@ export const lightTheme: Contract = {
 
 export const darkTheme: Contract = {
   colors: {
-    surface: prepColor("#343434"),
+    surface: prepColor("#0b0b0b"),
     primary: prepColor("#0ea5e9"),
     secondary: prepColor("#6366f1"),
     terciary: prepColor("#d946ef"),

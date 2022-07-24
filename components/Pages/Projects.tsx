@@ -83,11 +83,9 @@ export const Projects = () => {
     desktop: "4",
   });
   const gapWidth = getCSSVarValue(vars.spacing.md);
-  console.log(gapWidth);
   const { page, onBack, onNext } = usePages(
     projects.length / parseInt(size ?? "1")
   );
-  console.log(page * bounds.width + gapWidth);
   const scroll = useSpring({
     to: {
       transform: `translate(-${page * bounds.width + gapWidth * page}px, 0px)`,
