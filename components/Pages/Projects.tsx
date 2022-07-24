@@ -1,33 +1,104 @@
 import { useSpring, animated } from "@react-spring/web";
 import { parseColor, vars } from "@styles";
 import { useGesture } from "@use-gesture/react";
-import { Grid, Card, Spacing } from "components";
+import { usePages, useResponsiveValue } from "@utils";
+import { Grid, Card, Spacing, Modal, SafeImage } from "components";
+import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import useMeasure from "react-use-measure";
+import { useBoolean } from "usehooks-ts";
 import { projects } from "./data";
-import { draggable, draggableInner, projectStyles } from "./style.css";
+import {
+  draggable,
+  draggableInner,
+  projectModal,
+  projectStyles,
+  arrowButton,
+} from "./style.css";
 
 const y = <Card></Card>;
 
+type V = typeof projects[0];
+const SingleProject = ({
+  element,
+  size = "12",
+}: {
+  element: V;
+  size?: any;
+}) => {
+  const { value, toggle, setValue } = useBoolean(false);
+  return (
+    <>
+      <Modal visible={value} title={element.name} onVisibilityChange={setValue}>
+        <SafeImage
+          className={projectModal.image}
+          src={`/images${element.image}`}
+        />
+        <Spacing space="xl" />
+        <h3>{element.position}</h3>
+        <Spacing space="sm" />
+        <p>{element.description}</p>
+        <Spacing space="xl" />
+        <Card.TagWrapper>
+          {element.tags.map((tag) => (
+            <Card.Tag key={tag}>{tag}</Card.Tag>
+          ))}
+        </Card.TagWrapper>
+        <Spacing space="xl" />
+
+        <Card.Link target="_blank" href={element.link}>
+          Check it out
+        </Card.Link>
+      </Modal>
+      <Grid.Item size={size}>
+        <Card onClick={toggle}>
+          <Card.Image src={`/images${element.image}`} />
+          <Card.Content>
+            <Card.Title>{element.name}</Card.Title>
+          </Card.Content>
+        </Card>
+      </Grid.Item>
+    </>
+  );
+};
+
+const extractVariableName = (str: string) => {
+  const [, name] = str.split("var(");
+  return name.substring(0, name.length - 1);
+};
+
+let styleCache: CSSStyleDeclaration | undefined;
+
+const getCSSVarValue = (name: string) => {
+  if (!styleCache) {
+    styleCache = window.getComputedStyle(document.body);
+  }
+  return parseInt(styleCache.getPropertyValue(`${extractVariableName(name)}`));
+};
+
 export const Projects = () => {
-  const [scroll, api] = useSpring(() => ({
-    x: 0,
-    y: 0,
-    delay: 0,
-    config: { mass: 5, tension: 2000, friction: 200 },
-  }));
   const [ref, bounds] = useMeasure();
-  const bind = useGesture({
-    onDrag: ({ down, offset: [x, y] }) => {
-      console.log([x]);
-      api.start({
-        x: x * 1.5,
-      });
+  const size = useResponsiveValue({
+    base: "12",
+    tablet: "6",
+    desktop: "4",
+  });
+  const gapWidth = getCSSVarValue(vars.spacing.md);
+  console.log(gapWidth);
+  const { page, onBack, onNext } = usePages(
+    projects.length / parseInt(size ?? "1")
+  );
+  console.log(page * bounds.width + gapWidth);
+  const scroll = useSpring({
+    to: {
+      transform: `translate(-${page * bounds.width + gapWidth * page}px, 0px)`,
+      delay: 0,
     },
+    config: { mass: 5, tension: 2000, friction: 200 },
   });
   return (
     <div id="projects" className={projectStyles.container}>
       <Grid align="center" justify="between">
-        <Grid.Item size="6">
+        <Grid.Item size="12">
           <p>
             I've done my fair share of projects throughout the years. <br />{" "}
             Here's a{" "}
@@ -42,46 +113,31 @@ export const Projects = () => {
             of my work history and some open source projects.
           </p>
         </Grid.Item>
+      </Grid>
+      <Spacing space="xl" />
+      <Grid>
         <Grid.Item>
-          <p>Swipe to view more</p>
+          <button className={arrowButton} onClick={onBack}>
+            <AiOutlineArrowLeft />
+          </button>
+        </Grid.Item>
+        <Grid.Item>
+          <button className={arrowButton} onClick={onNext}>
+            <AiOutlineArrowRight />
+          </button>
         </Grid.Item>
       </Grid>
       <Spacing space="xl" />
-      <animated.div
-        style={{ ...scroll }}
-        className={draggable}
-        {...bind()}
-        ref={ref}
-      >
-        <div className={draggableInner}>
-          <Grid wrap={false}>
+      <animated.div style={{ ...scroll }} className={draggable}>
+        <div className={draggableInner} ref={ref}>
+          <Grid wrap={false} gap="md">
             {projects.map((element, index) => {
               return (
-                <Grid.Item size="12" tabletSize="6" desktopSize="4">
-                  <Card>
-                    <Card.Image src={`/images${element.image}`} />
-                    <Card.Content>
-                      <Card.ContentTop>
-                        <Card.Title>{element.name}</Card.Title>
-                        <Card.Description>
-                          {element.description}
-                        </Card.Description>
-                      </Card.ContentTop>
-                      <Card.TagWrapper>
-                        {element.tags.map((e) => {
-                          return (
-                            <Card.Tag key={element.name + e}>{e}</Card.Tag>
-                          );
-                        })}
-                      </Card.TagWrapper>
-                      <Card.Link href={element.link}>
-                        {element.tags.includes("open-source")
-                          ? "Check it out"
-                          : "Learn More"}
-                      </Card.Link>
-                    </Card.Content>
-                  </Card>
-                </Grid.Item>
+                <SingleProject
+                  element={element}
+                  size={size}
+                  key={element.name}
+                />
               );
             })}
           </Grid>

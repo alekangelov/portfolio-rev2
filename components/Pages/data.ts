@@ -110,7 +110,7 @@ type Project = {
 export const projects: Project[] = [
   {
     name: "Pabau",
-    position: "Frontend Lead",
+    position: "Frontend Lead - Present",
     description: `A enterprise level CRM software for clinics to manage their bussiness. 
     Bells and whistles included. I mainly manage the developers and the frontend.`,
     link: "https://pabau.com",
@@ -127,7 +127,7 @@ export const projects: Project[] = [
   },
   {
     name: "Endava (Fintech + Internal)",
-    position: "Senior Developer",
+    position: "Senior Developer - November 2020 -> November 2021",
     description: `While working for Endava I ended up making a bunch of various POCs and worked on a huge fintech frontend.
                   Was really involved with architecture and business requirements of POCs and tightly coupled with business
                   on the fintech project as well.`,
@@ -137,7 +137,7 @@ export const projects: Project[] = [
   },
   {
     name: "Digital Present",
-    position: "Frontend Lead",
+    position: "Frontend Lead - February 2019 -> November 2020",
     description: `Was in charge of the frontends and general architecture of apps. Tried to sneak in as much
                   bleeding tech as possible. Worked on a bunch of stuff with Three, WebGL, GraphQL etc.
                   Shipped a bunch of web apps and crossplatform apps.`,

@@ -117,4 +117,7 @@ export const globals = [
   globalStyle("a:hover", {
     backgroundSize: "100% 2px",
   }),
+  // globalStyle("body.blocker", {
+  //   overflow: "hidden",
+  // }),
 ];

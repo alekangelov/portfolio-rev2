@@ -1,4 +1,4 @@
-import { parseColor, transition, vars } from "@styles";
+import { gradients, makeGradient, parseColor, transition, vars } from "@styles";
 import { style } from "@vanilla-extract/css";
 const wrapper = style({
   display: "flex",
@@ -9,9 +9,15 @@ const wrapper = style({
   borderRadius: 8,
   overflow: "hidden",
   transition: transition("transform"),
+  position: "relative",
+  cursor: "pointer",
   selectors: {
     "&:hover": {
-      transform: "translateY(-2px)",
+      transform: "translateY(-6px)",
+    },
+    "&:active": {
+      transform: "translateY(6px) scale(0.95)",
+      transition: "none",
     },
   },
 });
@@ -41,9 +47,27 @@ export const card = {
     alignItems: "stretch",
     justifyContent: "flex-start",
     flexFlow: "column",
-    height: "100%",
+    position: "absolute",
+    bottom: 0,
+    left: 0,
+    width: "100%",
+    transform: "translate(0px, 24px) scale(1)",
+    opacity: 0,
+    transition: transition("opacity", "transform"),
+    background: makeGradient(
+      [parseColor("0,0,0", 0.75), parseColor("0,0,0", 0)],
+      "top"
+    ),
+    selectors: {
+      [`${wrapper}:hover &`]: {
+        transform: "translate(0px, 0px) scale(1)",
+        opacity: 1,
+      },
+    },
   }),
-  title: style({ paddingBottom: vars.spacing.lg }),
+  title: style({
+    paddingTop: 24,
+  }),
   topContent: style({
     flex: 1,
   }),

@@ -1,6 +1,7 @@
 export * from "./Navbar";
 export * from "./Layout";
 export * from "./SafeImage";
+export * from "./Modal";
 export * from "./Grid";
 export * from "./Card";
 export * from "./Spacing";

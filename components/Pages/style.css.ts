@@ -6,6 +6,7 @@ import {
   vars,
   makeGradient,
   gradients,
+  transition,
 } from "@styles";
 
 export const landing = {
@@ -124,4 +125,37 @@ export const draggable = style({
 
 export const draggableInner = style({
   maxWidth: "90vw",
+});
+
+export const projectModal = {
+  image: style({
+    maxWidth: "100%",
+    borderRadius: 8,
+    objectFit: "cover",
+    aspectRatio: "3 / 1.5",
+  }),
+};
+
+export const arrowButton = style({
+  cursor: "pointer",
+  display: "flex",
+  alignItems: "center",
+  justifyContent: "center",
+  padding: vars.spacing.md,
+  background: parseColor(vars.onColors.surface, 0.1),
+  borderRadius: 8,
+  border: `1px solid ${parseColor(vars.onColors.surface, 0.1)}`,
+  transition: transition("background", "transform"),
+  color: parseColor(vars.onColors.surface),
+  selectors: {
+    "&:hover": {
+      background: parseColor(vars.onColors.surface, 0.2),
+      transform: "translate(0, -2px)",
+    },
+    "&:active": {
+      background: parseColor(vars.onColors.surface, 0.3),
+      transform: "scale(0.95)",
+      transition: "none",
+    },
+  },
 });

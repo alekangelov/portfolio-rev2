@@ -1,12 +1,28 @@
 import clsx from "clsx";
 import { SafeImage } from "components";
-import { ComponentProps, PropsWithChildren } from "react";
+import { createRipple } from "components/Button/ripple";
+import { ComponentProps, PropsWithChildren, useEffect, useRef } from "react";
 import { card, arrow } from "./style.css";
 
 export const Card = ({
   ...props
 }: PropsWithChildren<unknown> & JSX.IntrinsicElements["div"]) => {
-  return <div {...props} className={clsx(card.wrapper, props.className)} />;
+  const ref = useRef<HTMLDivElement>(null);
+  useEffect(() => {
+    const { listener, cleanup } = createRipple();
+    ref.current?.addEventListener("click", listener);
+    return () => {
+      ref.current?.removeEventListener("click", listener);
+      cleanup();
+    };
+  }, []);
+  return (
+    <div
+      {...props}
+      ref={ref}
+      className={clsx("ripple-target", card.wrapper, props.className)}
+    />
+  );
 };
 Card.Image = ({ ...props }: ComponentProps<typeof SafeImage>) => (
   <div className={card.imageWrapper}>
