@@ -5,20 +5,24 @@ import { parseColor } from "styles/helpers/color";
 import { vars } from "../../styles/vars.css";
 
 export const navbar = {
+  scrolled: style({
+    backdropFilter: "blur(10px)",
+    background: parseColor("0,0,0", 0.2),
+  }),
   wrapper: style({
     // background: parseColor(vars.colors.surface, 0.5),
     color: parseColor(vars.onColors.surface),
     // border: `1px solid ${parseColor(vars.onColors.surface, 0.2)}`,
     // backdropFilter: "blur(24px)",
     position: "fixed",
-    top: vars.spacing.md,
+    padding: `${vars.spacing.md} 10%`,
     left: "50%",
     transform: "translateX(-50%)",
-    width: "90%",
-    maxWidth: calc.add(vars.size.container),
+    width: "100%",
     borderRadius: 16,
     zIndex: 10,
     boxShadow: `0 30px 50px -25px ${parseColor("0,0,0", 0.5)}`,
+    transition: transition("background", "backdrop-filter"),
   }),
   container: style({
     width: "100%",

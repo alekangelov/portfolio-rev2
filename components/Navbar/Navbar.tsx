@@ -1,5 +1,5 @@
 import { Logo } from "@components";
-import { ForwardedRef, forwardRef, PropsWithChildren } from "react";
+import { ForwardedRef, forwardRef, PropsWithChildren, useState } from "react";
 import { navbar } from "./style.css";
 import { scroll, ThemeStore } from "@stores";
 import clsx from "clsx";
@@ -79,8 +79,17 @@ const selector = (store: ThemeStore) => {
 // };
 
 export const Navbar = () => {
+  const [scroll, setScroll] = useState(0);
+  useEventListener("scroll", () => {
+    setScroll(window.scrollY);
+  });
   return (
-    <nav className={navbar.wrapper}>
+    <nav
+      className={clsx({
+        [navbar.wrapper]: true,
+        [navbar.scrolled]: scroll > 100,
+      })}
+    >
       <div className={navbar.container}>
         <span
           onClick={() => window.scroll({ top: 0 })}
