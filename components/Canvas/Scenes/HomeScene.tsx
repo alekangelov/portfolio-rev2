@@ -10,12 +10,8 @@ import Bust from "../Models/Bust";
 import { Box, useFlexSize } from "@react-three/flex";
 import { Landing } from "components/Pages";
 import { calculateColumnWidth, columns } from "styles";
-import { MeshProps, useFrame } from "@react-three/fiber";
-import { BoxDebug } from "../Helpers/Debug";
-import { useRef } from "react";
-import { Group, Vector3 } from "three";
-import { scroll } from "@stores";
-import { useScrollPosition } from "../hooks/useScroll";
+import { MeshProps } from "@react-three/fiber";
+import { Vector3 } from "three";
 import { HeightReporter } from "../Helpers/HeightReporter";
 
 const colors = [
@@ -73,9 +69,8 @@ const Debug = () => {
 };
 const v = new Vector3();
 export const HomeScene = ({}: SceneProps) => {
-  const ref = useScrollPosition();
   return (
-    <Box ref={ref} width={`${columns[12]}%`} height="100%" flexDirection="row">
+    <Box width={`${columns[12]}%`} height="100%" flexDirection="row">
       <HeightReporter name="landing" />
       <Box
         flexDirection="row"

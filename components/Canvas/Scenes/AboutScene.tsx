@@ -26,7 +26,6 @@ import { scroll } from "@stores";
 import { fontPaths } from "styles/fonts";
 import { columns } from "../Helpers/sizing";
 import { About } from "components/Pages";
-import { useScrollPosition } from "../hooks/useScroll";
 import { HeightReporter } from "../Helpers/HeightReporter";
 import { Group, PointLight, PointLightHelper, Vector3 } from "three";
 import { FlexedHtml } from "../components/FlexedHtml";
@@ -143,9 +142,8 @@ function ImageBox() {
 }
 
 export const AboutScene = ({}: SceneProps) => {
-  const ref = useScrollPosition();
   return (
-    <Box ref={ref} width="100%" dir="column">
+    <Box width="100%" dir="column">
       <HeightReporter name="about" />
       <Box
         mt={-2}

@@ -1,9 +1,8 @@
 import { Text } from "@react-three/drei";
-import { Box, Flex, useSyncGeometrySize } from "@react-three/flex";
+import { Box, useSyncGeometrySize } from "@react-three/flex";
 import { Projects } from "components";
 import { fontPaths } from "styles/fonts";
 import { FlexedHtml } from "../components/FlexedHtml";
-import { useScrollPosition } from "../hooks/useScroll";
 
 const Title = () => {
   const onSync = useSyncGeometrySize();
@@ -17,16 +16,8 @@ const Title = () => {
 };
 
 export const ProjectsScene = () => {
-  const ref = useScrollPosition();
-
   return (
-    <Box
-      ref={ref}
-      width="100%"
-      dir="column"
-      align="flex-start"
-      justify="center"
-    >
+    <Box width="100%" dir="column" align="flex-start" justify="center">
       <Box width="100%" align="flex-start">
         <Title />
       </Box>

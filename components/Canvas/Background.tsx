@@ -13,6 +13,7 @@ import { darkTheme } from "styles/themes.css";
 import Color from "color";
 import { ProjectsScene } from "./Scenes/ProjectsScene";
 import { useEventListener } from "usehooks-ts";
+import { useScrollPosition } from "./hooks/useScroll";
 
 const style = {
   width: "100%",
@@ -54,6 +55,7 @@ const v = new THREE.Vector3();
 
 const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const { width, height } = useContainer();
+  const ref = useScrollPosition();
   const reflow = useReflow();
   useEventListener("resize", reflow);
   return (
@@ -77,15 +79,17 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         position={[-width / 2, height / 2, 0]}
         dir="column"
       >
-        <Box dir="column" width="100%" height={10}>
-          <Box mt={-2} width="100%" minHeight={height}>
-            <HomeScene />
-          </Box>
-          <Box width="100%">
-            <AboutScene />
-          </Box>
-          <Box width="100%">
-            <ProjectsScene />
+        <Box ref={ref}>
+          <Box dir="column" width="100%" height={10}>
+            <Box renderOrder={0} mt={-2} width="100%" minHeight={height}>
+              <HomeScene />
+            </Box>
+            <Box renderOrder={1} width="100%">
+              <AboutScene />
+            </Box>
+            <Box renderOrder={2} width="100%">
+              <ProjectsScene />
+            </Box>
           </Box>
         </Box>
         <Effects />
