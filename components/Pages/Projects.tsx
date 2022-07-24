@@ -13,7 +13,7 @@ export const Projects = () => {
     x: 0,
     y: 0,
     delay: 0,
-    config: { mass: 5, tension: 5000, friction: 200 },
+    config: { mass: 5, tension: 2000, friction: 200 },
   }));
   const [ref, bounds] = useMeasure();
   const bind = useGesture({
@@ -26,14 +26,26 @@ export const Projects = () => {
   });
   return (
     <div id="projects" className={projectStyles.container}>
-      <p>
-        I've done my fair share of projects throughout the years. <br /> Here's
-        a{" "}
-        <b style={{ fontWeight: 900, color: parseColor(vars.colors.primary) }}>
-          {"<ul />"}
-        </b>{" "}
-        of my work history and some open source projects.
-      </p>
+      <Grid align="center" justify="between">
+        <Grid.Item size="6">
+          <p>
+            I've done my fair share of projects throughout the years. <br />{" "}
+            Here's a{" "}
+            <b
+              style={{
+                fontWeight: 900,
+                color: parseColor(vars.colors.primary),
+              }}
+            >
+              {"<ul />"}
+            </b>{" "}
+            of my work history and some open source projects.
+          </p>
+        </Grid.Item>
+        <Grid.Item>
+          <p>Swipe to view more</p>
+        </Grid.Item>
+      </Grid>
       <Spacing space="xl" />
       <animated.div
         style={{ ...scroll }}
@@ -47,7 +59,7 @@ export const Projects = () => {
               return (
                 <Grid.Item size="12" tabletSize="6" desktopSize="4">
                   <Card>
-                    <Card.Image src={element.image} />
+                    <Card.Image src={`/images${element.image}`} />
                     <Card.Content>
                       <Card.ContentTop>
                         <Card.Title>{element.name}</Card.Title>

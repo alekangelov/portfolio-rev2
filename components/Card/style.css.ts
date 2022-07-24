@@ -30,6 +30,7 @@ export const card = {
   }),
   imageWrapper: style({
     width: "100%",
+    overflow: "hidden",
     aspectRatio: "3 / 2",
     background: parseColor(vars.onColors.surface, 0.025),
     borderRadius: 8,
@@ -52,6 +53,8 @@ export const card = {
     justifySelf: "flex-end",
     background: "none",
     border: "none",
+    alignItems: "center",
+    gap: vars.spacing.lg,
     color: vars.onColors.surface,
   }),
   tag: style({
@@ -68,5 +71,57 @@ export const card = {
     rowGap: vars.spacing.sm,
     display: "flex",
     flexFlow: "row wrap",
+  }),
+};
+
+export const arrow = {
+  parent: style({
+    width: 24,
+    height: 16,
+    display: "flex",
+    alignItems: "center",
+    position: "relative",
+  }),
+  line: style({
+    width: 24,
+    height: 2,
+    background: parseColor(vars.onColors.surface, 1),
+    transform: "translateX(-2px)",
+  }),
+  top: style({
+    width: 8,
+    height: 2,
+    position: "absolute",
+    top: "50%",
+    right: 0,
+    transform: "translate(0%,-50%) rotate(0deg)",
+    transition: transition("opacity", "transform"),
+    background: parseColor(vars.onColors.surface, 1),
+    transformOrigin: "center right",
+    opacity: 0,
+    selectors: {
+      [`${card.link}:hover &`]: {
+        opacity: 1,
+        transform: "translate(0%,-50%) rotate(45deg)",
+      },
+    },
+  }),
+  bottom: style({
+    width: 8,
+    height: 2,
+    position: "absolute",
+    top: "50%",
+    right: 0,
+    transform: "translate(0%,-50%) rotate(0deg)",
+    transition: transition("opacity", "transform"),
+    background: parseColor(vars.onColors.surface, 1),
+    transformOrigin: "center right",
+    opacity: 0,
+    selectors: {
+      [`${card.link}:hover &`]: {
+        opacity: 1,
+        transform: "translate(0%,-50%) rotate(-45deg)",
+      },
+    },
   }),
 };

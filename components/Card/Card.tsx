@@ -1,7 +1,7 @@
 import clsx from "clsx";
 import { SafeImage } from "components";
 import { ComponentProps, PropsWithChildren } from "react";
-import { card } from "./style.css";
+import { card, arrow } from "./style.css";
 
 export const Card = ({
   ...props
@@ -12,6 +12,7 @@ Card.Image = ({ ...props }: ComponentProps<typeof SafeImage>) => (
   <div className={card.imageWrapper}>
     <SafeImage
       {...props}
+      draggable={false}
       className={clsx(card.image, props.className)}
       loading={<SafeImage.Loading />}
       fallback={<SafeImage.Fallback />}
@@ -37,10 +38,24 @@ Card.Description = ({
   <p {...props} className={clsx(card.description, props.className)} />
 );
 
+const Arrow = () => {
+  return (
+    <div className={arrow.parent}>
+      <div className={arrow.line}>
+        <div className={arrow.top} />
+        <div className={arrow.bottom} />
+      </div>
+    </div>
+  );
+};
+
 Card.Link = ({
   ...props
 }: PropsWithChildren<unknown> & JSX.IntrinsicElements["a"]) => (
-  <a {...props} className={clsx(card.link, props.className)} />
+  <a {...props} className={clsx(card.link, props.className)}>
+    {props.children}
+    <Arrow />
+  </a>
 );
 
 Card.Tag = ({

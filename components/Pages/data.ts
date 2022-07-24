@@ -159,7 +159,7 @@ export const projects: Project[] = [
     position: "Creator",
     description: `A combo aggregator for Tekken made with Electron and React. It can also overlay on top of the game so you can practice your combos.`,
     link: "https://github.com/alekangelov/zaibatsu-bud_app",
-    image: "/projects/zaibatsu-bud.png",
+    image: "/projects/zaibatsubud.jpeg",
     tags: ["open-source", "electron", "react"],
   },
   {
@@ -175,7 +175,7 @@ export const projects: Project[] = [
     position: "Creator",
     description: `React components for altering the default alert messages of the browser.`,
     link: "https://github.com/alekangelov/react-alert-async",
-    image: "/projects/react-alert-async.png",
+    image: "/projects/reactalertasync.jpeg",
     tags: ["open-source", "react"],
   },
   {
