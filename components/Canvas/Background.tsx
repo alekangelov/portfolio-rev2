@@ -73,7 +73,13 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         color="#0059ff"
         castShadow
       />
-      <ambientLight color="white" intensity={0.5} />
+      <pointLight
+        intensity={3}
+        position={[10, -5, 5]}
+        color="white"
+        castShadow
+      />
+      <ambientLight color="white" intensity={0.2} />
       <Flex
         size={[width, 0, 0]}
         position={[-width / 2, height / 2, 0]}
@@ -83,7 +89,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
           <Box dir="column" width="100%" height={10}>
             <Box renderOrder={0} mt={-2} width="100%" minHeight={height}>
               <Box centerAnchor width="100%" height={0}>
-                <Cloud speed={0.1} opacity={0.1} />
+                <Cloud color="#0077ff" speed={0.1} opacity={0.1} />
               </Box>
               <HomeScene />
             </Box>
@@ -107,8 +113,14 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
               </Box>
             </Box>
             <Box renderOrder={3} width="100%">
-              <Box centerAnchor height={5} width={"100%"}>
+              <Box centerAnchor height={10} width={"100%"}>
                 <BoxDebug />
+                <Physics>
+                  <group position={[0, 5, -5]}>
+                    <Clump />
+                    <Pointer />
+                  </group>
+                </Physics>
               </Box>
             </Box>
           </Box>

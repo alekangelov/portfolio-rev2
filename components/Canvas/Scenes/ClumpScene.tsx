@@ -1,15 +1,16 @@
 import { useSphere } from "@react-three/cannon";
 import { useTexture } from "@react-three/drei";
 import { useFrame, useThree } from "@react-three/fiber";
+import { useRef } from "react";
 import * as THREE from "three";
+import { useEventListener } from "usehooks-ts";
 
 const rfs = THREE.MathUtils.randFloatSpread;
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
 const baubleMaterial = new THREE.MeshStandardMaterial({
-  color: "white",
+  color: "#3d3d3d",
   roughness: 0,
   envMapIntensity: 1,
-  emissive: "#370037",
 });
 
 export function Clump({
@@ -26,7 +27,7 @@ export function Clump({
     position: [rfs(20), rfs(20), rfs(20)],
   }));
   useFrame((state) => {
-    for (let i = 0; i < 40; i++) {
+    for (let i = 0; i < 60; i++) {
       // Get current whereabouts of the instanced sphere
       (ref.current as any)?.getMatrixAt(i, mat);
       // Normalize the position and multiply by a negative force.
@@ -48,7 +49,7 @@ export function Clump({
       ref={ref as any}
       castShadow
       receiveShadow
-      args={[null, null, 40] as any}
+      args={[null, null, 60] as any}
       geometry={sphereGeometry}
       material={baubleMaterial}
       material-map={texture}
@@ -58,16 +59,17 @@ export function Clump({
 
 export function Pointer() {
   const viewport = useThree((state) => state.viewport);
-  const [, api] = useSphere(() => ({
+  const [ref, api] = useSphere(() => ({
     type: "Kinematic",
-    args: [3],
+    args: [6],
     position: [0, 0, 0],
   }));
-  return useFrame((state) =>
+  useFrame((state) => {
     api.position.set(
       (state.mouse.x * viewport.width) / 2,
       (state.mouse.y * viewport.height) / 2,
       0
-    )
-  );
+    );
+  });
+  return null;
 }
