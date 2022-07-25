@@ -4,13 +4,15 @@ import { useFrame, useThree } from "@react-three/fiber";
 import { useRef } from "react";
 import * as THREE from "three";
 import { useEventListener } from "usehooks-ts";
+import { PlasmaMaterial } from "../Materials/PlasmaMaterial";
 
 const rfs = THREE.MathUtils.randFloatSpread;
 const sphereGeometry = new THREE.SphereGeometry(1, 32, 32);
 const baubleMaterial = new THREE.MeshStandardMaterial({
   color: "#3d3d3d",
-  roughness: 0,
+  roughness: 0.5,
   envMapIntensity: 1,
+  bumpScale: 0.1,
 });
 
 export function Clump({
@@ -18,7 +20,12 @@ export function Clump({
   vec = new THREE.Vector3(),
   ...props
 }) {
-  const texture = useTexture("/cross.jpg");
+  const [texture, texture2, bump] = useTexture([
+    "/cross2.jpg",
+    "/cross.jpg",
+    "/cross_bump.jpg",
+  ]);
+  const getTexture = useRef(Math.random() > 0.5);
   const [ref, api] = useSphere(() => ({
     args: [1],
     mass: 1,
@@ -26,8 +33,9 @@ export function Clump({
     linearDamping: 0.65,
     position: [rfs(20), rfs(20), rfs(20)],
   }));
-  useFrame((state) => {
-    for (let i = 0; i < 60; i++) {
+
+  useFrame(() => {
+    for (let i = 0; i < 20; i++) {
       // Get current whereabouts of the instanced sphere
       (ref.current as any)?.getMatrixAt(i, mat);
       // Normalize the position and multiply by a negative force.
@@ -49,10 +57,14 @@ export function Clump({
       ref={ref as any}
       castShadow
       receiveShadow
-      args={[null, null, 60] as any}
+      args={[null, null, 20] as any}
       geometry={sphereGeometry}
+      onClick={(e) => {
+        getTexture.current = !getTexture.current;
+      }}
       material={baubleMaterial}
-      material-map={texture}
+      material-map={getTexture.current ? texture : texture2}
+      material-bumpMap={bump}
     />
   );
 }

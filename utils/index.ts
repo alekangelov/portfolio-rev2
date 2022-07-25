@@ -17,3 +17,9 @@ export const getCSSVarValue = (name: string) => {
   }
   return parseInt(styleCache.getPropertyValue(`${extractVariableName(name)}`));
 };
+
+export const getPageSize = (length = 1, colSize = "12") => {
+  const perPage = 12 / parseInt(colSize ?? "12");
+  const pageSize = Math.ceil(length / perPage);
+  return pageSize;
+};

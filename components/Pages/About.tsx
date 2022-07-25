@@ -124,11 +124,12 @@ export const About = () => {
           gap="md"
           wrap
           columns={{
-            base: 2,
+            base: 1,
+            tablet: 2,
           }}
         >
           {skills.map((skill, i) => (
-            <Grid.Item size="12" key={skill.name}>
+            <Grid.Item size="12" key={skill.name + i}>
               <ListItem {...skill} i={i} />
             </Grid.Item>
           ))}

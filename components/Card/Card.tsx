@@ -4,11 +4,11 @@ import { createRipple } from "components/Button/ripple";
 import { ComponentProps, PropsWithChildren, useEffect, useRef } from "react";
 import { card, arrow } from "./style.css";
 
-export const Card = ({
+export function Card({
   as = "div",
   ...props
 }: PropsWithChildren<unknown> &
-  JSX.IntrinsicElements["div"] & { as?: string }): JSX.Element => {
+  JSX.IntrinsicElements["div"] & { as?: string }): JSX.Element {
   const ref = useRef<HTMLDivElement>(null);
   const Component = as as any;
   useEffect(() => {
@@ -26,7 +26,7 @@ export const Card = ({
       className={clsx("ripple-target", card.wrapper, props.className)}
     />
   );
-};
+}
 Card.Image = ({ ...props }: ComponentProps<typeof SafeImage>) => (
   <div className={card.imageWrapper}>
     <SafeImage

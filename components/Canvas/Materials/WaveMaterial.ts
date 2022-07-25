@@ -38,6 +38,6 @@ const WaveMaterial = shaderMaterial(
       }`
 );
 
-extend({ WaveMaterial });
+// extend({ WaveMaterial });
 
 export { WaveMaterial };

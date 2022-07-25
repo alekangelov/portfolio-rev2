@@ -1,6 +1,11 @@
 import { useSpring, animated } from "@react-spring/web";
 import { parseColor, vars } from "@styles";
-import { getCSSVarValue, usePages, useResponsiveValue } from "@utils";
+import {
+  getCSSVarValue,
+  getPageSize,
+  usePages,
+  useResponsiveValue,
+} from "@utils";
 import { Grid, Card, Spacing, Modal, SafeImage } from "components";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import useMeasure from "react-use-measure";
@@ -68,9 +73,7 @@ export const Projects = () => {
     desktop: "4",
   });
   const gapWidth = getCSSVarValue(vars.spacing.md);
-  const { page, onBack, onNext } = usePages(
-    projects.length / parseInt(size ?? "1")
-  );
+  const { page, onBack, onNext } = usePages(getPageSize(projects.length, size));
   const scroll = useSpring({
     to: {
       transform: `translate(-${page * bounds.width + gapWidth * page}px, 0px)`,

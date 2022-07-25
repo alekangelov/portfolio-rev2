@@ -12,7 +12,7 @@ export const usePages = (maxPages = 0, initialValue = 0) => {
   };
   const onNext = () => {
     setPage((prevPage) => {
-      if (prevPage < Math.floor(maxPages)) {
+      if (prevPage < maxPages - 1) {
         return prevPage + 1;
       }
       return prevPage;

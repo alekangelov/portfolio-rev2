@@ -1,23 +1,21 @@
-import { memo, PropsWithChildren, Suspense } from "react";
-import { Canvas, useFrame, useThree } from "@react-three/fiber";
+import { memo, PropsWithChildren, Suspense, useEffect } from "react";
+import { Canvas } from "@react-three/fiber";
 import { Cloud, Environment, Sparkles } from "@react-three/drei";
 import { HomeScene } from "./Scenes/HomeScene";
 import Effects from "./Effects";
 import * as THREE from "three";
 import { Box, Flex, useReflow } from "@react-three/flex";
 import { useContainer } from "./hooks/useContainer";
-import { scroll } from "@stores";
 import { AboutScene } from "./Scenes/AboutScene";
-import { BoxDebug, FlexDebug } from "./Helpers/Debug";
-import { darkTheme } from "styles/themes.css";
+import { BoxDebug } from "./Helpers/Debug";
 import Color from "color";
 import { ProjectsScene } from "./Scenes/ProjectsScene";
 import { useEventListener } from "usehooks-ts";
 import { useScrollPosition } from "./hooks/useScroll";
 import { Clump, Pointer } from "./Scenes/ClumpScene";
 import { Physics } from "@react-three/cannon";
-import { parseColor } from "@styles";
 import { BlogScene } from "./Scenes/BlogScene";
+import { HeightReporter, useDomHeight } from "./Helpers/HeightReporter";
 
 const style = {
   width: "100%",
@@ -58,6 +56,10 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const { width, height } = useContainer();
   const ref = useScrollPosition();
   const reflow = useReflow();
+  const domHeight = useDomHeight();
+  useEffect(() => {
+    document.body.style.height = `${domHeight}px`;
+  }, [domHeight]);
   useEventListener("resize", reflow);
   return (
     <Suspense>
@@ -86,18 +88,24 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         position={[-width / 2, height / 2, 0]}
         dir="column"
       >
-        <Box ref={ref}>
-          <Box dir="column" width="100%" height={10}>
+        <Box ref={ref} width="100%" height={10}>
+          <BoxDebug />
+          <Box dir="column" width="100%" height="100%">
             <Box renderOrder={0} mt={-2} width="100%" minHeight={height}>
+              <HeightReporter i={0} />
               <Box centerAnchor width="100%" height={0}>
                 <Cloud color="#0077ff" speed={0.1} opacity={0.1} />
               </Box>
               <HomeScene />
             </Box>
             <Box renderOrder={1} width="100%">
+              <HeightReporter i={1} />
+
               <AboutScene />
             </Box>
             <Box renderOrder={2} width="100%">
+              <HeightReporter i={2} />
+
               <ProjectsScene />
               <Box centerAnchor width={"100%"} height={0}>
                 <group position={[0, 0, 0]}>
@@ -114,8 +122,9 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
               </Box>
             </Box>
             <Box renderOrder={3} width="100%">
+              <HeightReporter i={3} />
+
               <Box centerAnchor height={10} width={"100%"}>
-                <BoxDebug />
                 <Physics>
                   <group position={[0, 5, -5]}>
                     <Clump />
@@ -125,6 +134,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
               </Box>
             </Box>
             <Box renderOrder={4} width="100%">
+              <HeightReporter i={4} />
               <BlogScene />
             </Box>
           </Box>

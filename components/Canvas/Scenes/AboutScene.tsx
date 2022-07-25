@@ -6,28 +6,14 @@ import {
   useSyncGeometrySize,
 } from "@react-three/flex";
 import { useContainer } from "../Helpers/hooks";
-import {
-  Box as BBox,
-  Environment,
-  Text,
-  Plane,
-  Image,
-  Float,
-  Html,
-  ImageProps,
-  useHelper,
-} from "@react-three/drei";
-import { forwardRef, memo, useEffect, useRef } from "react";
+import { Text, Image } from "@react-three/drei";
+import { forwardRef, useRef } from "react";
 import { SceneProps } from "./types";
-import { BoxDebug } from "../Helpers/Debug";
 import { useFrame } from "@react-three/fiber";
-import * as THREE from "three";
 import { scroll } from "@stores";
 import { fontPaths } from "styles/fonts";
-import { columns } from "../Helpers/sizing";
 import { About } from "components/Pages";
-import { HeightReporter } from "../Helpers/HeightReporter";
-import { Group, PointLight, PointLightHelper, Vector3 } from "three";
+import { Group, Vector3 } from "three";
 import { FlexedHtml } from "../components/FlexedHtml";
 
 const id = (() => {
@@ -144,7 +130,6 @@ function ImageBox() {
 export const AboutScene = ({}: SceneProps) => {
   return (
     <Box width="100%" dir="column">
-      <HeightReporter name="about" />
       <Box
         mt={-2}
         dir="column"

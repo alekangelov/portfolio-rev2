@@ -49,9 +49,9 @@ function MasonryGrid({
   const colSize = `${12 / (responsiveColumns || 1)}` as any;
   return (
     <Grid {...{ ...props, gap, wrap: true, align, justify }}>
-      {masonryChildren.map((column) => {
+      {masonryChildren.map((column, i) => {
         return (
-          <Grid.Item size={colSize}>
+          <Grid.Item size={colSize} key={i}>
             <Grid wrap gap={gap}>
               {column.map((child) => {
                 return child;
