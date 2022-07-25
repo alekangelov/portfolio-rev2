@@ -1,5 +1,5 @@
 import type { MediumItem } from "@types";
-
+import { parse } from "rss-to-json";
 const RSS2JSON_URL = "https://api.rss2json.com/v1/api.json?rss_url=";
 const MEDIUM_URL = "https://medium.com/feed/@alekangelov";
 

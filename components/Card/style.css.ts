@@ -67,6 +67,7 @@ export const card = {
   }),
   title: style({
     paddingTop: 24,
+    color: "white",
   }),
   topContent: style({
     flex: 1,

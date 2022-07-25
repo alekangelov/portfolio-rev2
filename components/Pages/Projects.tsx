@@ -1,7 +1,6 @@
 import { useSpring, animated } from "@react-spring/web";
 import { parseColor, vars } from "@styles";
-import { useGesture } from "@use-gesture/react";
-import { usePages, useResponsiveValue } from "@utils";
+import { getCSSVarValue, usePages, useResponsiveValue } from "@utils";
 import { Grid, Card, Spacing, Modal, SafeImage } from "components";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import useMeasure from "react-use-measure";
@@ -59,20 +58,6 @@ const SingleProject = ({
       </Grid.Item>
     </>
   );
-};
-
-const extractVariableName = (str: string) => {
-  const [, name] = str.split("var(");
-  return name.substring(0, name.length - 1);
-};
-
-let styleCache: CSSStyleDeclaration | undefined;
-
-const getCSSVarValue = (name: string) => {
-  if (!styleCache) {
-    styleCache = window.getComputedStyle(document.body);
-  }
-  return parseInt(styleCache.getPropertyValue(`${extractVariableName(name)}`));
 };
 
 export const Projects = () => {

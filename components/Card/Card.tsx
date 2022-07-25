@@ -5,9 +5,12 @@ import { ComponentProps, PropsWithChildren, useEffect, useRef } from "react";
 import { card, arrow } from "./style.css";
 
 export const Card = ({
+  as = "div",
   ...props
-}: PropsWithChildren<unknown> & JSX.IntrinsicElements["div"]) => {
+}: PropsWithChildren<unknown> &
+  JSX.IntrinsicElements["div"] & { as?: string }): JSX.Element => {
   const ref = useRef<HTMLDivElement>(null);
+  const Component = as as any;
   useEffect(() => {
     const { listener, cleanup } = createRipple();
     ref.current?.addEventListener("click", listener);
@@ -17,7 +20,7 @@ export const Card = ({
     };
   }, []);
   return (
-    <div
+    <Component
       {...props}
       ref={ref}
       className={clsx("ripple-target", card.wrapper, props.className)}

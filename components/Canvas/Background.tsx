@@ -17,6 +17,7 @@ import { useScrollPosition } from "./hooks/useScroll";
 import { Clump, Pointer } from "./Scenes/ClumpScene";
 import { Physics } from "@react-three/cannon";
 import { parseColor } from "@styles";
+import { BlogScene } from "./Scenes/BlogScene";
 
 const style = {
   width: "100%",
@@ -122,6 +123,9 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
                   </group>
                 </Physics>
               </Box>
+            </Box>
+            <Box renderOrder={4} width="100%">
+              <BlogScene />
             </Box>
           </Box>
         </Box>
