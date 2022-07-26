@@ -26,7 +26,7 @@ export const loader = {
     left: 0,
     width: "100%",
     height: "100%",
-    background: "black",
+    // background: "black",
     zIndex: 500,
   }),
   inner: style({
@@ -53,6 +53,5 @@ export const loader = {
     height: "100%",
     width: "100%",
     background: makeGradient(gradients.secondaryTerciary),
-    transition: transition("width"),
   }),
 };

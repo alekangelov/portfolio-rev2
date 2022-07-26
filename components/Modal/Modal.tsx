@@ -62,7 +62,6 @@ export const Modal = ({ visible, title, onVisibilityChange, children }: P) => {
         <Mask onCancel={() => setIsVisible(false)} visible={isVisible}>
           <div
             onClick={(e) => {
-              e.preventDefault();
               e.stopPropagation();
             }}
             className={modal.container}

@@ -1,6 +1,12 @@
 import { useSpring, animated } from "@react-spring/web";
+import { useFrame } from "@react-three/fiber";
 import { vars } from "@styles";
-import { getCSSVarValue, usePages, useResponsiveValue } from "@utils";
+import {
+  getCSSVarValue,
+  getPageSize,
+  usePages,
+  useResponsiveValue,
+} from "@utils";
 import { getMediumPosts } from "api/medium";
 import { Card } from "components/Card";
 import { Grid } from "components/Grid";
@@ -20,9 +26,7 @@ const BlogPage = () => {
     desktop: "4",
   });
   const gapWidth = getCSSVarValue(vars.spacing.md);
-  const { page, onBack, onNext } = usePages(
-    data.length / parseInt(size ?? "1")
-  );
+  const { page, onBack, onNext } = usePages(getPageSize(data.length, size));
   const scroll = useSpring({
     to: {
       transform: `translate(-${page * bounds.width + gapWidth * page}px, 0px)`,
@@ -52,7 +56,7 @@ const BlogPage = () => {
               return (
                 <Grid.Item size={size} key={element.guid}>
                   {/* @ts-ignore */}
-                  <Card href={element.link} as="a">
+                  <Card target="_blank" href={element.link} as="a">
                     <Card.Image src={element.thumbnail} />
                     <Card.Content>
                       <Card.Title>{element.title}</Card.Title>

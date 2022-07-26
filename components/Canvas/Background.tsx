@@ -89,7 +89,6 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         dir="column"
       >
         <Box ref={ref} width="100%" height={10}>
-          <BoxDebug />
           <Box dir="column" width="100%" height="100%">
             <Box renderOrder={0} mt={-2} width="100%" minHeight={height}>
               <HeightReporter i={0} />
