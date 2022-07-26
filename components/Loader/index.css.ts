@@ -2,31 +2,26 @@ import { gradients, makeGradient, transition, vars } from "@styles";
 import { style } from "@vanilla-extract/css";
 
 export const loader = {
-  background: [
-    style({
+  background: {
+    base: style({
       position: "absolute",
+      width: "100%",
+      height: "50%",
+      background: "black",
+    }),
+    top: style({
       top: 0,
-      left: 0,
-      width: "100%",
-      height: "50%",
-      background: "black",
     }),
-    style({
-      position: "absolute",
-      left: 0,
+    bottom: style({
       bottom: 0,
-      width: "100%",
-      height: "50%",
-      background: "black",
     }),
-  ],
+  },
   wrapper: style({
     position: "fixed",
     top: 0,
     left: 0,
     width: "100%",
     height: "100%",
-    // background: "black",
     zIndex: 500,
   }),
   inner: style({
