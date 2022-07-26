@@ -40,7 +40,7 @@ export const BlogScene = () => {
           {/* <BoxDebug /> */}
           <TitleText />
         </Box>
-        <Box centerAnchor>
+        <Box mt={0.25} centerAnchor>
           {/* <BoxDebug /> */}
           <BottomText />
         </Box>

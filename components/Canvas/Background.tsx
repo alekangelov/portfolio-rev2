@@ -16,6 +16,7 @@ import { Clump, Pointer } from "./Scenes/ClumpScene";
 import { Physics } from "@react-three/cannon";
 import { BlogScene } from "./Scenes/BlogScene";
 import { HeightReporter, useDomHeight } from "./Helpers/HeightReporter";
+import { ContactScene } from "./Scenes/ContactScene";
 
 const style = {
   width: "100%",
@@ -135,6 +136,10 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
             <Box renderOrder={4} width="100%">
               <HeightReporter i={4} />
               <BlogScene />
+            </Box>
+            <Box renderOrder={5} width="100%">
+              <HeightReporter i={5} />
+              <ContactScene />
             </Box>
           </Box>
         </Box>
