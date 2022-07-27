@@ -29,6 +29,7 @@ export type Contract = {
     warning: string;
   };
   spacing: {
+    none: string;
     sm: string;
     md: string;
     lg: string;
@@ -82,6 +83,7 @@ export const contract: Contract = {
     warning: "c-warning-d",
   },
   spacing: {
+    none: "s-none",
     sm: "s-sm",
     md: "s-md",
     lg: "s-lg",
@@ -108,6 +110,7 @@ export const contract: Contract = {
 
 const defaults = {
   spacing: {
+    none: "0px",
     sm: "8px",
     md: "14px",
     lg: "24px",

@@ -28,27 +28,43 @@ const style = {
 };
 const dpr = [1, 1];
 
+const portal = document.querySelector("dom-content");
+
 const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   return (
-    <Canvas
-      style={style as any}
-      camera={{ position: [0, 0, 5], far: 500 }}
-      shadows
-      dpr={dpr as any}
-      flat
-      linear
-      gl={{
-        antialias: true,
-        outputEncoding: THREE.sRGBEncoding,
-        alpha: false,
-        toneMapping: THREE.ACESFilmicToneMapping,
-        autoClear: false,
-        logarithmicDepthBuffer: true,
-      }}
-    >
-      <color attach="background" args={[Color(`#343434`).hex()]} />
-      {children}
-    </Canvas>
+    <>
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          width: "100%",
+          height: "100%",
+          overflow: "hidden",
+        }}
+        id="dom-content"
+      />
+
+      <Canvas
+        style={style as any}
+        camera={{ position: [0, 0, 5], far: 500 }}
+        shadows
+        dpr={dpr as any}
+        flat
+        linear
+        gl={{
+          antialias: true,
+          outputEncoding: THREE.sRGBEncoding,
+          alpha: false,
+          toneMapping: THREE.ACESFilmicToneMapping,
+          autoClear: false,
+          logarithmicDepthBuffer: true,
+        }}
+      >
+        <color attach="background" args={[Color(`#343434`).hex()]} />
+        {children}
+      </Canvas>
+    </>
   );
 };
 
