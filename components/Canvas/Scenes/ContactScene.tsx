@@ -11,7 +11,7 @@ function Title() {
       letterSpacing={-0.1}
       fontSize={0.7}
       lineHeight={1}
-      font={fontPaths.manofa.regular}
+      font={fontPaths.manofa.bold}
       color="white"
     >{`LET'S GET IN TOUCH`}</Text>
   );
@@ -42,13 +42,13 @@ export const ContactScene = () => {
         align="flex-start"
         justify="flex-start"
       >
-        <BoxDebug />
+        {/* <BoxDebug /> */}
         <Box centerAnchor align="flex-start" justify="flex-start">
-          <BoxDebug />
+          {/* <BoxDebug /> */}
           <Title />
         </Box>
         <Box mt={0.25} centerAnchor align="flex-start" justify="flex-start">
-          <BoxDebug />
+          {/* <BoxDebug /> */}
           <SubTitle />
         </Box>
       </Box>

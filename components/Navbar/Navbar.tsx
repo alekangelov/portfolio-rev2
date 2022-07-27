@@ -4,6 +4,11 @@ import { navbar } from "./style.css";
 import { scroll, ThemeStore } from "@stores";
 import clsx from "clsx";
 import { useEventListener } from "usehooks-ts";
+import {
+  AiFillGithub,
+  AiFillLinkedin,
+  AiFillTwitterCircle,
+} from "react-icons/ai";
 
 type M = {
   href: string;
@@ -78,16 +83,40 @@ const selector = (store: ThemeStore) => {
 //   );
 // };
 
+type P = {
+  icon: JSX.Element;
+  href: string;
+};
+
+const links: P[] = [
+  {
+    icon: <AiFillLinkedin />,
+    href: "https://linkedin.com/in/alekangelov",
+  },
+  {
+    icon: <AiFillGithub />,
+    href: "https://github.com/alekangelov",
+  },
+  {
+    icon: <AiFillTwitterCircle />,
+    href: "https://twitter.com/goukistrife",
+  },
+];
+
+const SingleLink = (props: P) => {
+  return (
+    <a href={props.href} className={navbar.nav.button}>
+      {props.icon}
+    </a>
+  );
+};
+
 export const Navbar = () => {
-  const [scroll, setScroll] = useState(0);
-  useEventListener("scroll", () => {
-    setScroll(window.scrollY);
-  });
   return (
     <nav
       className={clsx({
         [navbar.wrapper]: true,
-        [navbar.scrolled]: scroll > 100,
+        // [navbar.scrolled]: scroll > 100,
       })}
     >
       <div className={navbar.container}>
@@ -100,7 +129,11 @@ export const Navbar = () => {
           </span>
           ALKNGLV
         </span>
-        {/* <Menu /> */}
+        <div className={navbar.nav.wrapper}>
+          {links.map((link) => (
+            <SingleLink key={link.href} {...link} />
+          ))}
+        </div>
       </div>
     </nav>
   );

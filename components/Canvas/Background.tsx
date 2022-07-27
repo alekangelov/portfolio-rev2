@@ -17,6 +17,7 @@ import { Physics } from "@react-three/cannon";
 import { BlogScene } from "./Scenes/BlogScene";
 import { HeightReporter, useDomHeight } from "./Helpers/HeightReporter";
 import { ContactScene } from "./Scenes/ContactScene";
+import { LaptopScene } from "./Scenes/LaptopScene";
 
 const style = {
   width: "100%",
@@ -31,7 +32,7 @@ const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <Canvas
       style={style as any}
-      camera={{ position: [0, 0, 5], far: 1000 }}
+      camera={{ position: [0, 0, 5], far: 500 }}
       shadows
       dpr={dpr as any}
       flat
@@ -65,25 +66,6 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <Suspense>
       <Environment files="studio.hdr" encoding={THREE.LinearEncoding} />
-      <pointLight
-        intensity={0.5}
-        position={[0, 5, 3]}
-        color="#e92fab"
-        castShadow
-      />
-      <pointLight
-        intensity={5}
-        position={[10, 10, -5]}
-        color="#0059ff"
-        castShadow
-      />
-      <pointLight
-        intensity={3}
-        position={[10, -5, 5]}
-        color="white"
-        castShadow
-      />
-      <ambientLight color="white" intensity={0.2} />
       <Flex
         size={[width, 0, 0]}
         position={[-width / 2, height / 2, 0]}
@@ -92,9 +74,10 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         <Box ref={ref} width="100%" height={10}>
           <Box dir="column" width="100%" height="100%">
             <Box renderOrder={0} mt={-2} width="100%" minHeight={height}>
+              <ambientLight color="white" intensity={0.2} />
               <HeightReporter i={0} />
               <Box centerAnchor width="100%" height={0}>
-                <Cloud color="#0077ff" speed={0.1} opacity={0.1} />
+                <Cloud color="#0077ff" speed={0.5} opacity={0.1} />
               </Box>
               <HomeScene />
             </Box>
@@ -123,15 +106,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
             </Box>
             <Box renderOrder={3} width="100%">
               <HeightReporter i={3} />
-
-              <Box centerAnchor height={10} width={"100%"}>
-                <Physics>
-                  <group position={[0, 5, -5]}>
-                    <Clump />
-                    <Pointer />
-                  </group>
-                </Physics>
-              </Box>
+              <LaptopScene />
             </Box>
             <Box renderOrder={4} width="100%">
               <HeightReporter i={4} />

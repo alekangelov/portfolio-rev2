@@ -14,7 +14,7 @@ export const navbar = {
     color: parseColor(vars.onColors.surface),
     // border: `1px solid ${parseColor(vars.onColors.surface, 0.2)}`,
     // backdropFilter: "blur(24px)",
-    position: "fixed",
+    position: "absolute",
     padding: `${vars.spacing.md} 5%`,
     left: "50%",
     transform: "translateX(-50%)",
@@ -50,7 +50,7 @@ export const navbar = {
     wrapper: style({
       display: "flex",
       alignItems: "center",
-      gap: vars.spacing.xl,
+      gap: vars.spacing.md,
       zIndex: 1,
     }),
     item: style({
@@ -101,6 +101,7 @@ export const navbar = {
       justifyContent: "center",
       cursor: "pointer",
       transition: transition("color", "background"),
+      fontSize: vars.font.size.md,
       selectors: {
         "&:hover": {
           background: parseColor(vars.onColors.surface, 1),
