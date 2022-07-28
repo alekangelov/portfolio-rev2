@@ -40,7 +40,7 @@ export const FooterScene = () => {
     text.current.position.z = MathUtils.lerp(
       text.current.position.z,
       h ? 1.5 : 0,
-      h ? 0.05 : 0.1
+      h ? 0.1 : 0.01
     );
     rose.current.iTime += delta;
   });
