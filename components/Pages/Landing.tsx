@@ -3,6 +3,7 @@ import { landing } from "./style.css";
 import { useSpring, a, useTrail } from "@react-spring/web";
 import { useBoolean, useTimeout } from "usehooks-ts";
 import { memo, useEffect } from "react";
+import { generateClick } from "@utils";
 const HiddenOnHover = ({ active }: { active?: boolean }) => {
   const style = useTrail(2, {
     transform: !active ? "translate(0%, 0%)" : "translate(0%, -100%)",
@@ -65,12 +66,26 @@ export const Landing = () => {
       <Grid>
         <Grid.Item>
           <a.div style={spring[1]}>
-            <Button radius={"sm"}>Find out more</Button>
+            <Button
+              onClick={() =>
+                window.scrollTo({
+                  top: window.innerHeight - 200,
+                  behavior: "smooth",
+                })
+              }
+              radius={"sm"}
+            >
+              Find out more
+            </Button>
           </a.div>
         </Grid.Item>
         <Grid.Item>
           <a.div style={spring[2]}>
-            <Button radius={"sm"} color="transparent">
+            <Button
+              radius={"sm"}
+              onClick={generateClick("mailto:alekangelov@icloud.com")}
+              color="transparent"
+            >
               Contact me
             </Button>
           </a.div>

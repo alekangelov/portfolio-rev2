@@ -35,7 +35,7 @@ const contactData = [
 export const Contact = () => {
   return (
     <div className={contact.container}>
-      <Grid gap="md" wrap>
+      <Grid gap="lg" wrap>
         <Grid.Item size="12">
           <Grid>
             <Grid.Item size="12" tabletSize="6" desktopSize="4">
