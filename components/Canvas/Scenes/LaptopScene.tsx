@@ -11,9 +11,9 @@ export const LaptopScene = () => {
   return (
     <Box width="100%" height={10} align="center" justify="center">
       {/* <BoxDebug /> */}
-      <Box centerAnchor mt={2} mb={-2}>
+      <Box centerAnchor mt={1} mb={-4}>
         {/* <BoxDebug /> */}
-        <group scale={[1.5, 1.5, 1.5]}>
+        <group scale={[2, 2, 2]}>
           <Phone />
         </group>
       </Box>

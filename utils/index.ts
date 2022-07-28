@@ -23,3 +23,19 @@ export const getPageSize = (length = 1, colSize = "12") => {
   const pageSize = Math.ceil(length / perPage);
   return pageSize;
 };
+
+type X = (e: any) => void;
+
+const clickCache = new Map<string, X>();
+
+export const generateClick = (url: string): X => {
+  if (clickCache.has(url)) {
+    return clickCache.get(url) as X;
+  }
+  const click = (e: any) => {
+    e.preventDefault();
+    window.open(url, "_blank");
+  };
+  clickCache.set(url, click);
+  return click;
+};

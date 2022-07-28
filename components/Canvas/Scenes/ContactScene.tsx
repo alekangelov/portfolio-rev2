@@ -1,6 +1,8 @@
 import { Text } from "@react-three/drei";
 import { Box, useSyncGeometrySize } from "@react-three/flex";
+import { Contact } from "components/Pages/Contact";
 import { fontPaths } from "styles/fonts";
+import { FlexedHtml } from "../components/FlexedHtml";
 import { BoxDebug } from "../Helpers/Debug";
 
 function Title() {
@@ -50,6 +52,11 @@ export const ContactScene = () => {
         <Box mt={0.25} centerAnchor align="flex-start" justify="flex-start">
           {/* <BoxDebug /> */}
           <SubTitle />
+        </Box>
+        <Box width="100%">
+          <FlexedHtml mt={0.5} width={"100%"} centerAnchor>
+            <Contact />
+          </FlexedHtml>
         </Box>
       </Box>
     </Box>

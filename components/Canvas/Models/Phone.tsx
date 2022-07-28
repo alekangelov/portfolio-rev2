@@ -149,7 +149,7 @@ export default function Phone({ ...props }) {
             >
               <Html
                 position={[0.175, -0.23, 0.01]}
-                scale={0.24}
+                scale={0.243}
                 center
                 transform
               >

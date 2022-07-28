@@ -9,6 +9,7 @@ import {
   AiFillLinkedin,
   AiFillTwitterCircle,
 } from "react-icons/ai";
+import { generateClick } from "@utils";
 
 type M = {
   href: string;
@@ -99,13 +100,13 @@ const links: P[] = [
   },
   {
     icon: <AiFillTwitterCircle />,
-    href: "https://twitter.com/goukistrife",
+    href: "https://twitter.com/goukistrife/",
   },
 ];
 
 const SingleLink = (props: P) => {
   return (
-    <a href={props.href} className={navbar.nav.button}>
+    <a onClick={generateClick(props.href)} className={navbar.nav.button}>
       {props.icon}
     </a>
   );

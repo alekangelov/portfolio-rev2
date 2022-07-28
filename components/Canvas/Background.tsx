@@ -28,8 +28,6 @@ const style = {
 };
 const dpr = [1, 1];
 
-const portal = document.querySelector("dom-content");
-
 const Wrapper = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <>

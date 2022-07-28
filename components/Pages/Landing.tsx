@@ -1,7 +1,7 @@
 import { Grid, Button, FullScreen } from "@components";
 import { landing } from "./style.css";
 import { useSpring, a, useTrail } from "@react-spring/web";
-import { useBoolean } from "usehooks-ts";
+import { useBoolean, useTimeout } from "usehooks-ts";
 import { memo, useEffect } from "react";
 const HiddenOnHover = ({ active }: { active?: boolean }) => {
   const style = useTrail(2, {
@@ -45,17 +45,14 @@ export const Landing = () => {
     opacity: 0,
     delay: 0.1,
   }));
-  useEffect(() => {
-    api.start({
-      transform: `translateY(0px)`,
-      opacity: 1,
-    });
+  useTimeout(
     () =>
-      api.set({
-        transform: `translateY(25px)`,
-        opacity: 0,
-      });
-  }, []);
+      api.start({
+        transform: `translateY(0px)`,
+        opacity: 1,
+      }),
+    1000
+  );
   return (
     <div id="landing" className={landing.container}>
       <a.hgroup
@@ -68,12 +65,14 @@ export const Landing = () => {
       <Grid>
         <Grid.Item>
           <a.div style={spring[1]}>
-            <Button>Find out more</Button>
+            <Button radius={"sm"}>Find out more</Button>
           </a.div>
         </Grid.Item>
         <Grid.Item>
           <a.div style={spring[2]}>
-            <Button color="transparent">Contact me</Button>
+            <Button radius={"sm"} color="transparent">
+              Contact me
+            </Button>
           </a.div>
         </Grid.Item>
       </Grid>

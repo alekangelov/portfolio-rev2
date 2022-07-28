@@ -12,7 +12,6 @@ export const button = recipe({
     textTransform: "uppercase",
     fontSize: vars.font.size.md,
     letterSpacing: calc.multiply(vars.font.size.md, -0.05),
-    borderRadius: 24,
     background: parseColor(vars.onColors.surface),
     border: "none",
     color: parseColor(vars.colors.surface),
@@ -71,6 +70,23 @@ export const button = recipe({
         padding: `${vars.spacing[key]} ${vars.spacing[getBigger(key)]}`,
       })),
     },
+    radius: {
+      ...createVariation(
+        {
+          none: 0,
+          sm: 4,
+          md: 8,
+          lg: 12,
+          round: 24,
+        } as const,
+        (value, key) => ({
+          borderRadius: value,
+        })
+      ),
+    },
+  },
+  defaultVariants: {
+    radius: "sm",
   },
 });
 

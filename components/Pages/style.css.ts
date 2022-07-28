@@ -159,3 +159,41 @@ export const arrowButton = style({
     },
   },
 });
+
+export const contact = {
+  container: style({
+    maxWidth: "90vw",
+    margin: "0 auto",
+    width: "90vw",
+  }),
+  button: style({
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
+    backdropFilter: "blur(10px)",
+    padding: `${vars.spacing.md} ${vars.spacing.lg}`,
+    background: parseColor(vars.onColors.surface, 0.05),
+    borderRadius: 8,
+    border: `1px solid ${parseColor(vars.onColors.surface, 0.05)}`,
+    transition: transition("background", "transform"),
+    color: parseColor(vars.onColors.surface),
+    gap: vars.spacing.md,
+    cursor: "pointer",
+    fontWeight: 900,
+
+    selectors: {
+      "&:hover": {
+        background: parseColor(vars.onColors.surface, 0.1),
+        transform: "translate(0, -2px)",
+      },
+      "&:active": {
+        background: parseColor(vars.onColors.surface, 0.2),
+        transform: "scale(0.95)",
+        transition: "none",
+      },
+    },
+  }),
+  text: style({
+    fontWeight: 600,
+  }),
+};
