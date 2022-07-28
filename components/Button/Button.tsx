@@ -11,6 +11,7 @@ export const Button = forwardRef(
     {
       size,
       color,
+      radius,
       as = "button",
       ...props
     }: ButtonProps & {
@@ -33,7 +34,7 @@ export const Button = forwardRef(
       ...props,
       ref: mergeRefs([ref, outerRef]),
       className: clsx(
-        button({ size, color }),
+        button({ size, color, radius }),
         "ripple-target",
         props.className
       ),

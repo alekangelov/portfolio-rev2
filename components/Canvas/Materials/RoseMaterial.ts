@@ -8,6 +8,9 @@ const fragmentShader = `
  
 uniform vec3 iResolution;
 uniform float iTime;
+uniform float redFactor;
+uniform float greenFactor;
+uniform float blueFactor;
 varying vec2 vUv;
 
 float colormap_red(float x) {
@@ -47,22 +50,8 @@ float colormap_blue(float x) {
 }
 
 vec4 colormap(float x) {
-    return vec4(colormap_red(x), colormap_green(x), colormap_blue(x), 1.0);
+    return vec4(colormap_red(x)  * redFactor, colormap_green(x)  * greenFactor, colormap_blue(x)  * blueFactor, 1.0);
 }
-
-// https://iquilezles.org/articles/warp
-/*float noise( in vec2 x )
-{
-    vec2 p = floor(x);
-    vec2 f = fract(x);
-    f = f*f*(3.0-2.0*f);
-    float a = textureLod(iChannel0,(p+vec2(0.5,0.5))/256.0,0.0).x;
-	float b = textureLod(iChannel0,(p+vec2(1.5,0.5))/256.0,0.0).x;
-	float c = textureLod(iChannel0,(p+vec2(0.5,1.5))/256.0,0.0).x;
-	float d = textureLod(iChannel0,(p+vec2(1.5,1.5))/256.0,0.0).x;
-    return mix(mix( a, b,f.x), mix( c, d,f.x),f.y);
-}*/
-
 
 float rand(vec2 n) { 
     return fract(sin(dot(n, vec2(12.9898, 4.1414))) * 43758.5453);
@@ -103,8 +92,8 @@ float pattern( in vec2 p )
 void mainImage( out vec4 fragColor, in vec2 fragCoord )
 {
     vec2 uv = fragCoord/iResolution.x;
-	float shade = pattern(uv);
-    fragColor = vec4(colormap(shade).rgb, shade);
+	  float shade = pattern(uv);
+    fragColor = vec4(colormap(shade).rgb, 1.0);
 }
 
 void main() {
@@ -116,6 +105,9 @@ export const RoseMatterMaterial = shaderMaterial(
   {
     iTime: 0,
     iResolution: new THREE.Vector3(),
+    redFactor: 1,
+    greenFactor: 1,
+    blueFactor: 1,
   },
   vertexShader,
   fragmentShader

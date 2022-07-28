@@ -81,7 +81,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   useEventListener("resize", reflow);
   return (
     <Suspense>
-      <Environment files="studio.hdr" encoding={THREE.LinearEncoding} />
+      <Environment files="/studio.hdr" encoding={THREE.LinearEncoding} />
       <Flex
         size={[width, 0, 0]}
         position={[-width / 2, height / 2, 0]}
@@ -131,6 +131,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
               <ContactScene />
             </Box>
             <Box renderOrder={6}>
+              <HeightReporter i={6} factor={1} />
               <FooterScene />
             </Box>
           </Box>

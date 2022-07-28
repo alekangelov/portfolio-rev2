@@ -4,14 +4,20 @@ import { scroll } from "@stores";
 import { useEffect, useState } from "react";
 import { lerp } from "utils/lerp";
 
-export const HeightReporter = ({ i }: { i: number }) => {
+export const HeightReporter = ({
+  i,
+  factor = 1,
+}: {
+  i: number;
+  factor?: number;
+}) => {
   const [_, height] = useFlexSize();
   console.log({ height });
   useEffect(() => {
     console.log(scroll);
     scroll.height.set((prev) => {
       const x = [...prev];
-      x[i] = height;
+      x[i] = height * factor;
       return x;
     });
   }, [height]);
