@@ -18,6 +18,7 @@ import { BlogScene } from "./Scenes/BlogScene";
 import { HeightReporter, useDomHeight } from "./Helpers/HeightReporter";
 import { ContactScene } from "./Scenes/ContactScene";
 import { LaptopScene } from "./Scenes/LaptopScene";
+import { FooterScene } from "./Scenes/FooterScene";
 
 const style = {
   width: "100%",
@@ -74,6 +75,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const reflow = useReflow();
   const domHeight = useDomHeight();
   useEffect(() => {
+    console.log({ domHeight });
     document.body.style.height = `${domHeight}px`;
   }, [domHeight]);
   useEventListener("resize", reflow);
@@ -85,10 +87,10 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
         position={[-width / 2, height / 2, 0]}
         dir="column"
       >
-        <Box ref={ref} width="100%" height={10}>
+        <Box ref={ref} width="100%" height={height}>
           <Box dir="column" width="100%" height="100%">
-            <Box renderOrder={0} mt={-2} width="100%" minHeight={height}>
-              <ambientLight color="white" intensity={0.2} />
+            <Box renderOrder={0} width="100%" minHeight={height}>
+              {/* <ambientLight color="white" intensity={0.2} /> */}
               <HeightReporter i={0} />
               <Box centerAnchor width="100%" height={0}>
                 <Cloud color="#0077ff" speed={0.5} opacity={0.1} />
@@ -97,12 +99,10 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
             </Box>
             <Box renderOrder={1} width="100%">
               <HeightReporter i={1} />
-
               <AboutScene />
             </Box>
             <Box renderOrder={2} width="100%">
               <HeightReporter i={2} />
-
               <ProjectsScene />
               <Box centerAnchor width={"100%"} height={0}>
                 <group position={[0, 0, 0]}>
@@ -129,6 +129,9 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
             <Box renderOrder={5} width="100%">
               <HeightReporter i={5} />
               <ContactScene />
+            </Box>
+            <Box renderOrder={6}>
+              <FooterScene />
             </Box>
           </Box>
         </Box>

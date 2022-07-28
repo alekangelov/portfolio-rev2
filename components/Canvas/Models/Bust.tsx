@@ -163,7 +163,6 @@ function Model({ ...props }: GroupProps, ref: Ref<Group>) {
   const [active, setActive] = React.useState(false);
   const meshes = useMeshes(active);
   useTimeout(() => setActive(true), 1000);
-  console.log(active);
   const transition = useTransition(meshes, {
     from: {
       scale: 0,

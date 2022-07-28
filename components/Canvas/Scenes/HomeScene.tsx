@@ -11,6 +11,7 @@ import { Box, useFlexSize } from "@react-three/flex";
 import { Landing } from "components/Pages";
 import { calculateColumnWidth, columns } from "styles";
 import { MeshProps } from "@react-three/fiber";
+import { BoxDebug } from "../Helpers/Debug";
 
 const colors = [
   ["#FF00C7", "#0066FF"],

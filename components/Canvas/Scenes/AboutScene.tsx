@@ -15,6 +15,7 @@ import { fontPaths } from "styles/fonts";
 import { About } from "components/Pages";
 import { Group, Vector3 } from "three";
 import { FlexedHtml } from "../components/FlexedHtml";
+import { BoxDebug } from "../Helpers/Debug";
 
 const id = (() => {
   let i = 0;
@@ -57,7 +58,7 @@ function TextBox() {
   const [width] = useFlexSize();
 
   return (
-    <Box width="100%" height={2} mb={-1}>
+    <Box width="100%">
       <Box
         centerAnchor
         mt={-0.5}
@@ -130,12 +131,7 @@ function ImageBox() {
 export const AboutScene = ({}: SceneProps) => {
   return (
     <Box width="100%" dir="column">
-      <Box
-        mt={-2}
-        dir="column"
-        alignItems="flex-start"
-        justifyContent="flex-start"
-      >
+      <Box dir="column" alignItems="flex-start" justifyContent="flex-start">
         <Box width="100%">
           <TextBox />
         </Box>
@@ -144,7 +140,7 @@ export const AboutScene = ({}: SceneProps) => {
         </Box>
       </Box>
       <Box centerAnchor>
-        <Box mt={0.5} mb={1} width="100%" justify="center">
+        <Box mt={0.5} mb={2} width="100%" justify="center">
           <FlexedHtml>
             <About />
           </FlexedHtml>
