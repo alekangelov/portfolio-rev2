@@ -54,7 +54,7 @@ const BlogPage = () => {
           <Grid wrap={false} gap="md">
             {data.map((element) => {
               return (
-                <Grid.Item size={size} key={element.guid}>
+                <Grid.Item size={size as any} key={element.guid}>
                   {/* @ts-ignore */}
                   <Card target="_blank" href={element.link} as="a">
                     <Card.Image src={element.thumbnail} />

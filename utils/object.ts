@@ -35,7 +35,8 @@ export const createVariation = <X, T extends ComplexStyleRule>(
 };
 
 const smallerMap = {
-  sm: "sm",
+  none: "none",
+  sm: "none",
   md: "sm",
   lg: "md",
   xl: "lg",
@@ -43,6 +44,7 @@ const smallerMap = {
 };
 
 const biggerMap = {
+  none: "sm",
   sm: "md",
   md: "lg",
   lg: "xl",
