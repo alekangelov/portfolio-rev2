@@ -20,16 +20,19 @@ type ResponsiveValue<T> = {
   desktop?: T;
 };
 
-export const useResponsiveValue = <T extends number | string>(
+export const useResponsiveValue = <T extends any>(
   value?: ResponsiveValue<T>
 ) => {
   const { tablet, desktop } = useResponsive();
   if (!value) return;
-  if (desktop && value.desktop) {
+  if (desktop && typeof value.desktop !== "undefined") {
+    console.log("1");
     return value.desktop;
   }
-  if (tablet && value.tablet) {
+  if (tablet && typeof value.tablet !== "undefined") {
+    console.log("2");
     return value.tablet;
   }
+  console.log("3", value);
   return value.base || value.tablet || value.desktop;
 };

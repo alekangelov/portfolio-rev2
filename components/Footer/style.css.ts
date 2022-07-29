@@ -1,4 +1,4 @@
-import { vars } from "@styles";
+import { media, vars } from "@styles";
 import { style } from "@vanilla-extract/css";
 
 export const footer = style({
@@ -11,8 +11,13 @@ export const footer = style({
   textAlign: "center",
   display: "flex",
   alignItems: "center",
-  justifyContent: "space-between",
+  justifyContent: "center",
   gap: vars.spacing.sm,
   width: "90%",
   maxWidth: vars.size.container,
+  "@media": {
+    [`${media.tablet}`]: {
+      justifyContent: "space-between",
+    },
+  },
 });

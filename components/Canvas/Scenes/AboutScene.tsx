@@ -16,6 +16,7 @@ import { About } from "components/Pages";
 import { Group, Vector3 } from "three";
 import { FlexedHtml } from "../components/FlexedHtml";
 import { BoxDebug } from "../Helpers/Debug";
+import { useResponsiveValue } from "@utils";
 
 const id = (() => {
   let i = 0;
@@ -28,11 +29,16 @@ const HoverableImage: typeof Image = forwardRef((props, ref) => {
 
 function TopText() {
   const onSync = useSyncGeometrySize();
+  const size = useResponsiveValue({
+    base: 0.25,
+    tablet: 0.33,
+    desktop: 0.5,
+  });
   return (
     <Text
       onSync={onSync}
       letterSpacing={-0.1}
-      fontSize={0.5}
+      fontSize={size}
       lineHeight={1}
       font={fontPaths.manofa.regular}
       color="white"
@@ -42,11 +48,16 @@ function TopText() {
 
 function BottomText() {
   const onSync = useSyncGeometrySize();
+  const size = useResponsiveValue({
+    base: 0.5,
+    tablet: 0.7,
+    desktop: 1.25,
+  });
   return (
     <Text
       onSync={onSync}
       letterSpacing={-0.1}
-      fontSize={1.25}
+      fontSize={size}
       lineHeight={1}
       font={fontPaths.manofa.bold}
       color="white"
@@ -55,18 +66,9 @@ function BottomText() {
 }
 
 function TextBox() {
-  const [width] = useFlexSize();
-
   return (
     <Box width="100%">
-      <Box
-        centerAnchor
-        mt={-0.5}
-        height={2}
-        alignSelf="flex-end"
-        alignItems={"flex-end"}
-        dir="column"
-      >
+      <Box width="100%" centerAnchor mt={-0.5} height={2} dir="column">
         <Box mb={-0.2}>
           <TopText />
         </Box>

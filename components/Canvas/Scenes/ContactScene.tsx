@@ -1,5 +1,6 @@
 import { Text } from "@react-three/drei";
 import { Box, useSyncGeometrySize } from "@react-three/flex";
+import { useResponsiveValue } from "@utils";
 import { Contact } from "components/Pages/Contact";
 import { fontPaths } from "styles/fonts";
 import { FlexedHtml } from "../components/FlexedHtml";
@@ -7,25 +8,41 @@ import { BoxDebug } from "../Helpers/Debug";
 
 function Title() {
   const onSync = useSyncGeometrySize();
+  const child = useResponsiveValue({
+    base: `LET'S GET\nIN TOUCH`,
+    tablet: `LET'S GET\nIN TOUCH`,
+    desktop: `LET'S GET IN TOUCH`,
+  });
+  const size = useResponsiveValue({
+    base: 0.5,
+    tablet: 0.6,
+    desktop: 0.7,
+  });
   return (
     <Text
       onSync={onSync}
       letterSpacing={-0.1}
-      fontSize={0.7}
+      fontSize={size}
       lineHeight={1}
       font={fontPaths.manofa.bold}
       color="white"
-    >{`LET'S GET IN TOUCH`}</Text>
+    >
+      {child}
+    </Text>
   );
 }
 
 function SubTitle() {
   const onSync = useSyncGeometrySize();
+  const size = useResponsiveValue({
+    base: 0.15,
+    tablet: 0.25,
+  });
   return (
     <Text
       onSync={onSync}
       letterSpacing={-0.1}
-      fontSize={0.25}
+      fontSize={size}
       lineHeight={1}
       font={fontPaths.inter}
       color="white"

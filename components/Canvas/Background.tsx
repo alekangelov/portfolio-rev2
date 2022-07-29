@@ -75,7 +75,6 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const reflow = useReflow();
   const domHeight = useDomHeight();
   useEffect(() => {
-    console.log({ domHeight });
     document.body.style.height = `${domHeight}px`;
   }, [domHeight]);
   useEventListener("resize", reflow);

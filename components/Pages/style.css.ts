@@ -7,6 +7,7 @@ import {
   makeGradient,
   gradients,
   transition,
+  media,
 } from "@styles";
 
 export const landing = {
@@ -20,18 +21,26 @@ export const landing = {
     },
   ]),
   title: style({
-    fontSize: "48px",
     fontFamily: "Manofa",
     lineHeight: 1.2,
     marginBottom: vars.spacing.lg,
     opacity: "1 !important",
+    fontSize: 22,
+    "@media": {
+      [`${media.tablet}`]: { fontSize: 36 },
+      [`${media.desktop}`]: { fontSize: 48 },
+    },
   }),
   titleMain: style({
-    fontSize: "128px",
     fontWeight: 900,
     overflow: "hidden",
     position: "relative",
     display: "block",
+    fontSize: 48,
+    "@media": {
+      [`${media.tablet}`]: { fontSize: 86 },
+      [`${media.desktop}`]: { fontSize: 128 },
+    },
   }),
   firstTitle: style({
     position: "relative",
@@ -48,10 +57,16 @@ export const landing = {
   }),
   sub: style({
     fontWeight: 100,
-    fontSize: vars.font.size.lg,
     marginBottom: vars.spacing.xl,
-    letterSpacing: calc.multiply(vars.font.size.lg, 0.5),
     textTransform: "uppercase",
+    fontSize: vars.font.size.sm,
+    letterSpacing: calc.multiply(vars.font.size.sm, 0.5),
+    "@media": {
+      [`${media.tablet}`]: {
+        fontSize: vars.font.size.lg,
+        letterSpacing: calc.multiply(vars.font.size.lg, 0.5),
+      },
+    },
   }),
 };
 

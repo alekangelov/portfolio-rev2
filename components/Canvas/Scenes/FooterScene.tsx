@@ -10,6 +10,7 @@ import {
 } from "@react-three/drei";
 import { useFrame } from "@react-three/fiber";
 import { Box } from "@react-three/flex";
+import { useResponsiveValue } from "@utils";
 import { useRef } from "react";
 import { fontPaths } from "styles/fonts";
 import {
@@ -50,12 +51,12 @@ export const FooterScene = () => {
     const h = hovered.current;
     ref.current.distort = MathUtils.lerp(
       ref.current.distort,
-      h ? 1 : 0,
+      !h ? 1 : 0,
       h ? 0.05 : 0.01
     );
     ref.current.bumpScale = MathUtils.lerp(
       ref.current.bumpScale,
-      h ? 0.01 : 0,
+      !h ? 0.01 : 0,
       h ? 0.05 : 0.01
     );
     text.current.position.z = MathUtils.lerp(
@@ -67,9 +68,34 @@ export const FooterScene = () => {
     // roseText.current.iTime += delta / 10;
   });
   useHelper(light, PointLightHelper, 1, "white");
+  const sphereSize = useResponsiveValue({
+    base: 1,
+    tablet: 1,
+    desktop: 1.5,
+  });
+  const fontSize = useResponsiveValue({
+    base: 0.3,
+    tablet: 0.35,
+    desktop: 0.7,
+  });
+  const bgSize = useResponsiveValue({
+    base: [3, 6],
+    tablet: [5, 6],
+    desktop: [10, 10],
+  } as const);
+  const resolution = useResponsiveValue({
+    base: [3, 6, 10],
+    tablet: [5, 6, 10],
+    desktop: [10, 10, 10],
+  });
+  const position = useResponsiveValue({
+    base: [0, -5, 0],
+    tablet: [0, -10, 0],
+    desktop: [0, -10, 0],
+  } as const);
   return (
-    <Box centerAnchor width="100%" height={10}>
-      <group position={[0, -10, 0]}>
+    <Box centerAnchor width="100%">
+      <group position={position as any}>
         <pointLight
           distance={10}
           ref={light}
@@ -96,7 +122,9 @@ export const FooterScene = () => {
               <Sphere
                 onPointerEnter={() => (hovered.current = true)}
                 onPointerLeave={() => (hovered.current = false)}
-                args={[1.5, 50, 50]}
+                onPointerDown={() => (hovered.current = true)}
+                onPointerUp={() => (hovered.current = false)}
+                args={[sphereSize, 50, 50]}
               >
                 <MeshDistortMaterial
                   ref={ref}
@@ -112,7 +140,7 @@ export const FooterScene = () => {
             <Text
               ref={text}
               position={[0, 0, 0]}
-              fontSize={0.7}
+              fontSize={fontSize}
               font={fontPaths.manofa.bold}
               color="black"
             >
@@ -124,10 +152,10 @@ export const FooterScene = () => {
               {`NITIMUR\nIN\nVETITUM`}
             </Text>
             {/* <Float speed={2} floatIntensity={2}> */}
-            <Plane args={[10, 10, 1, 1]} position={[0, 0, -2]}>
+            <Plane args={[...(bgSize || [2, 2]), 1, 1]} position={[0, 0, -2]}>
               {/* @ts-ignore */}
               <roseMatterMaterial
-                iResolution={new Vector3(50, 50, 50)}
+                iResolution={new Vector3(...(resolution as any))}
                 key={RoseMatterMaterial.key}
                 ref={rose}
               />
