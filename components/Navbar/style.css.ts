@@ -7,13 +7,16 @@ import { vars } from "../../styles/vars.css";
 export const navbar = {
   scrolled: style({
     backdropFilter: "blur(10px)",
-    background: parseColor(vars.colors.surface, 0.9),
+    background: parseColor(vars.colors.surface, 0.8),
   }),
   wrapper: style({
     // background: parseColor(vars.colors.surface, 0.5),
+    top: 0,
     color: parseColor(vars.onColors.surface),
     // border: `1px solid ${parseColor(vars.onColors.surface, 0.2)}`,
     // backdropFilter: "blur(24px)",
+    borderBottomLeftRadius: 4,
+    borderBottomRightRadius: 4,
     position: "absolute",
     padding: `${vars.spacing.md} 5%`,
     left: "50%",

@@ -1,3 +1,5 @@
+import { useEffect, useState } from "react";
+
 type Observer<T> = (value: T) => void;
 type Setter<T> = (value: T) => T;
 type Observable<T> = {
@@ -32,7 +34,7 @@ function createObservable<T>(initialValue: T): Observable<T> {
 }
 
 type ScrollStore = {
-  top: number;
+  top: Observable<number>;
   height: Observable<number[]>;
   position: {
     landing: number;
@@ -44,7 +46,7 @@ type ScrollStore = {
 };
 
 export const scroll: ScrollStore = {
-  top: 0,
+  top: createObservable(0),
   height: createObservable([]),
   position: {
     landing: 0,
@@ -53,4 +55,17 @@ export const scroll: ScrollStore = {
     blog: 0,
     contact: 0,
   },
+};
+
+export const useObservable = <T extends Observable<any>>(obs: T) => {
+  const [value, setValue] = useState(obs.getValue());
+  useEffect(() => {
+    const unsubscribe = obs.subscribe((e) => {
+      setValue(e);
+    });
+    return () => {
+      unsubscribe();
+    };
+  }, [obs]);
+  return [value, obs.set];
 };

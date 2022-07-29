@@ -66,7 +66,6 @@ export const HomeScene = ({}: SceneProps) => {
     tablet: true,
     desktop: false,
   } as const);
-  console.log(isMobile);
   if (isMobile) {
     return (
       <Box

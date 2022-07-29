@@ -84,7 +84,10 @@ const vx = new Vector3();
 function ImageBox() {
   const ref = useRef<Group>(null);
   useFrame(() => {
-    ref.current?.position.lerp(vx.set(-(scroll.top - 700) / 100, 0, 0), 0.1);
+    ref.current?.position.lerp(
+      vx.set(-(scroll.top.getValue() - 700) / 100, 0, 0),
+      0.1
+    );
   });
   return (
     <Box

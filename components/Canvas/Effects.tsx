@@ -13,9 +13,10 @@ import {
 import { useRef } from "react";
 import { EffectPass } from "./Helpers/EffectPass";
 import { WaterPass } from "./Helpers/WaterPass";
-import { scroll } from "@stores";
-import { Effects as EffectsComposer } from "@react-three/drei";
+import { scroll, useObservable } from "@stores";
+import { Effects as EffectsComposer, useDetectGPU } from "@react-three/drei";
 import * as THREE from "three";
+import { useResponsiveValue } from "@utils";
 
 extend({
   BloomPass,
@@ -41,10 +42,13 @@ export default function Effects() {
   const effect = useRef<any>(null);
   const water = useRef<any>(null);
   const bloom = useRef<any>(null);
-  let last = scroll.top;
+  const gpu = useDetectGPU();
+  let last = scroll.top.getValue();
   // return null;
   useFrame(() => {
-    const { top } = scroll;
+    if (gpu.tier <= 2 || gpu.isMobile) return;
+
+    const top = scroll.top.getValue();
     if (!effect.current || !water.current || !bloom.current) return;
     effect.current.factor = THREE.MathUtils.lerp(
       effect.current.factor,
@@ -65,6 +69,19 @@ export default function Effects() {
     // gl.autoClear = true;
     // composer.current.render();
   }, 1);
+  if (gpu.tier <= 2 || gpu.isMobile)
+    return (
+      <EffectsComposer ref={composer}>
+        <renderPass
+          {...{ attachArray: "passes" }}
+          ref={b}
+          clear
+          clearAlpha={1}
+          scene={scene}
+          camera={camera}
+        />
+      </EffectsComposer>
+    );
   return (
     <EffectsComposer ref={composer}>
       <renderPass
@@ -82,11 +99,11 @@ export default function Effects() {
         kernelRadius={0.1}
         maxDistance={0.4}
       /> */}
-      <shaderPass
+      {/* <shaderPass
         {...{ attachArray: "passes" }}
         args={[FXAAShader]}
         material-uniforms-resolution-value={[1 / size.width, 1 / size.height]}
-      />
+      /> */}
       {/* @ts-ignore */}
       <filmPass attachArray="passes" args={[0.3, 0, 0, 0]} />
       {/* @ts-ignore */}

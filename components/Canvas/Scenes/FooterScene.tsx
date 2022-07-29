@@ -89,12 +89,12 @@ export const FooterScene = () => {
     desktop: [10, 10, 10],
   });
   const position = useResponsiveValue({
-    base: [0, -5, 0],
-    tablet: [0, -10, 0],
-    desktop: [0, -10, 0],
+    base: [0, 0, 0],
+    tablet: [0, 0, 0],
+    desktop: [0, 0, 0],
   } as const);
   return (
-    <Box centerAnchor width="100%">
+    <Box centerAnchor width="100%" height={30}>
       <group position={position as any}>
         <pointLight
           distance={10}

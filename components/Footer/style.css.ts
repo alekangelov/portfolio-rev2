@@ -15,6 +15,7 @@ export const footer = style({
   gap: vars.spacing.sm,
   width: "90%",
   maxWidth: vars.size.container,
+  zIndex: 1,
   "@media": {
     [`${media.tablet}`]: {
       justifyContent: "space-between",

@@ -69,7 +69,7 @@ export const Landing = () => {
             <Button
               onClick={() =>
                 window.scrollTo({
-                  top: window.innerHeight - 200,
+                  top: document.documentElement.clientHeight - 200,
                   behavior: "smooth",
                 })
               }

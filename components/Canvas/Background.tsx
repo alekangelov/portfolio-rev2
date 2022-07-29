@@ -22,7 +22,7 @@ import { FooterScene } from "./Scenes/FooterScene";
 
 const style = {
   width: "100%",
-  height: "100vh",
+  height: document.documentElement.clientHeight,
   position: "fixed",
   top: 0,
   left: 0,
@@ -72,12 +72,12 @@ const v = new THREE.Vector3();
 const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const { width, height } = useContainer();
   const ref = useScrollPosition();
-  const reflow = useReflow();
   const domHeight = useDomHeight();
   useEffect(() => {
-    document.body.style.height = `${domHeight}px`;
+    (
+      document.querySelector("#scrollbody") as HTMLElement
+    ).style.height = `${domHeight}px`;
   }, [domHeight]);
-  useEventListener("resize", reflow);
   return (
     <Suspense>
       <Environment files="/studio.hdr" encoding={THREE.LinearEncoding} />
@@ -103,19 +103,6 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
             <Box renderOrder={2} width="100%">
               <HeightReporter i={2} />
               <ProjectsScene />
-              <Box centerAnchor width={"100%"} height={0}>
-                <group position={[0, 0, 0]}>
-                  <Sparkles
-                    speed={2}
-                    noise={50}
-                    count={1000}
-                    scale={[50, 70, 10]}
-                    color={"white"}
-                    size={1}
-                    opacity={1}
-                  />
-                </group>
-              </Box>
             </Box>
             <Box renderOrder={3} width="100%">
               <HeightReporter i={3} />

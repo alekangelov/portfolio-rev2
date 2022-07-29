@@ -1,7 +1,7 @@
 import { Logo } from "@components";
 import { ForwardedRef, forwardRef, PropsWithChildren, useState } from "react";
 import { navbar } from "./style.css";
-import { scroll, ThemeStore } from "@stores";
+import { scroll, ThemeStore, useObservable } from "@stores";
 import clsx from "clsx";
 import { useEventListener } from "usehooks-ts";
 import {
@@ -113,11 +113,12 @@ const SingleLink = (props: P) => {
 };
 
 export const Navbar = () => {
+  const [scrollY] = useObservable(scroll.top);
   return (
     <nav
       className={clsx({
         [navbar.wrapper]: true,
-        // [navbar.scrolled]: scroll > 100,
+        [navbar.scrolled]: scrollY > 100,
       })}
     >
       <div className={navbar.container}>
