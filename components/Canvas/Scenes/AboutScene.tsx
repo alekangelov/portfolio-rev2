@@ -143,7 +143,7 @@ export const AboutScene = ({}: SceneProps) => {
     viewport: { height },
   } = useContainer();
   const textSize = useResponsiveValue({
-    base: height * 4,
+    base: height * 5,
     tablet: height * 3,
   });
 

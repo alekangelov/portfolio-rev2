@@ -50,7 +50,7 @@ const Page = ({
 
 export const HtmlPages = () => {
   const aboutFactor = useResponsiveValue({
-    base: 4,
+    base: 5,
     tablet: 3,
   });
   return (
