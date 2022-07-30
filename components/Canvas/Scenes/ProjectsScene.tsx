@@ -4,6 +4,7 @@ import { useResponsiveValue } from "@utils";
 import { Projects } from "components";
 import { fontPaths } from "styles/fonts";
 import { FlexedHtml } from "../components/FlexedHtml";
+import { useContainer } from "../Helpers/hooks";
 
 const Title = () => {
   const onSync = useSyncGeometrySize();
@@ -22,8 +23,17 @@ const Title = () => {
 };
 
 export const ProjectsScene = () => {
+  const {
+    viewport: { height },
+  } = useContainer();
   return (
-    <Box width="100%" dir="column" align="flex-start" justify="center">
+    <Box
+      width="100%"
+      dir="column"
+      align="flex-start"
+      justify="center"
+      height={height}
+    >
       <Box width="100%" align="flex-start">
         <Title />
       </Box>

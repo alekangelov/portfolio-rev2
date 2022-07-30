@@ -1,4 +1,4 @@
-import { style } from "@vanilla-extract/css";
+import { createVar, style } from "@vanilla-extract/css";
 import { calc } from "@vanilla-extract/css-utils";
 import {
   textGradient,
@@ -18,9 +18,7 @@ export const landing = {
       alignItems: "flex-start",
       justifyContent: "center",
       flexDirection: "column",
-      width: "90vw",
       height: "100vh",
-      marginLeft: "5vw",
     },
   ]),
   title: style({
@@ -78,15 +76,6 @@ export const about = {
     maxWidth: "100%",
     margin: "0 auto",
     width: 640,
-    marginTop: "120vh",
-    "@media": {
-      [`${media.tablet}`]: {
-        marginTop: "90vh",
-      },
-      [`${media.desktop}`]: {
-        marginTop: "90vh",
-      },
-    },
   }),
 
   title: style({
@@ -141,13 +130,6 @@ export const projectStyles = {
   container: style({
     margin: "0 auto",
     width: "90vw",
-    marginTop: "50vh",
-    marginLeft: "5vw",
-    "@media": {
-      [`${media.tablet}`]: {
-        marginTop: "60vh",
-      },
-    },
   }),
 };
 
@@ -200,18 +182,7 @@ export const arrowButton = style({
 });
 
 export const contact = {
-  container: style({
-    maxWidth: "90vw",
-    margin: "0 auto",
-    width: "90vw",
-    marginLeft: "5vw",
-    marginTop: "100vh",
-    "@media": {
-      [`${media.tablet}`]: {
-        marginTop: "60vh",
-      },
-    },
-  }),
+  container: style({}),
   button: style({
     display: "flex",
     alignItems: "center",
@@ -246,15 +217,22 @@ export const contact = {
 
 export const blogStyles = {
   wrapper: style({
-    maxWidth: "90vw",
-    margin: "0 auto",
     width: "90vw",
-    marginTop: "150vh",
-    marginLeft: "5vw",
-    "@media": {
-      [`${media.tablet}`]: {
-        marginTop: "140vh",
-      },
-    },
   }),
 };
+
+export const factor = createVar("factor");
+
+export const threeSpacing = style({
+  height: `calc(100vh * ${factor})`,
+});
+
+export const threePage = style({
+  height: `calc(100vh * ${factor})`,
+  width: "90vw",
+  marginLeft: "5vw",
+});
+
+export const debug = style({
+  border: "1px solid red",
+});

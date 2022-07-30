@@ -49,7 +49,4 @@ export const gradients = {
   ],
 };
 
-export const threeContainer = style({
-  width: "90vw",
-  marginLeft: "5vw",
-});
+export const threeContainer = style({});

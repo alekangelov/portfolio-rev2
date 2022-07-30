@@ -80,7 +80,6 @@ const v = new THREE.Vector3();
 const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   const { width, height } = useContainer();
   const [scrollPages, setScrollPages] = useState(1);
-
   function handleReflow(_: number, flexHeight: number) {
     setScrollPages(Math.ceil(flexHeight / height));
   }

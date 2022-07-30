@@ -139,13 +139,24 @@ function ImageBox() {
 }
 
 export const AboutScene = ({}: SceneProps) => {
-  const size = useResponsiveValue({
-    base: 23,
-    tablet: 10,
+  const {
+    viewport: { height },
+  } = useContainer();
+  const textSize = useResponsiveValue({
+    base: height * 4,
+    tablet: height * 3,
   });
+
+  const boxHeight = textSize || 1 + height;
+
   return (
-    <Box width="100%" dir="column">
-      <Box dir="column" alignItems="flex-start" justifyContent="flex-start">
+    <Box width="100%" dir="column" height={boxHeight}>
+      <Box
+        dir="column"
+        alignItems="flex-start"
+        height={height * 1}
+        justifyContent="flex-start"
+      >
         <Box width="100%">
           <TextBox />
         </Box>
@@ -153,8 +164,8 @@ export const AboutScene = ({}: SceneProps) => {
           <ImageBox />
         </Box>
       </Box>
-      <Box centerAnchor>
-        <Box mt={0.5} mb={2} height={size} width="100%" justify="center">
+      <Box centerAnchor height={textSize}>
+        <Box mt={0.5} mb={2} width="100%" justify="center">
           <mesh />
         </Box>
       </Box>

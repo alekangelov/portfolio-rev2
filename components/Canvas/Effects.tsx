@@ -51,8 +51,6 @@ export default function Effects() {
 
   // return null;
   useFrame(() => {
-    console.log(delta);
-
     if (gpu.tier <= 2 || gpu.isMobile) return;
 
     if (!effect.current || !water.current || !bloom.current) return;
