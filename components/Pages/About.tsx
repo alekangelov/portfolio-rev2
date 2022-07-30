@@ -1,5 +1,5 @@
 import { useSpring, a } from "@react-spring/web";
-import { textGradient } from "@styles";
+import { textGradient, threeContainer } from "@styles";
 import { Grid, HR } from "components";
 import { skills, P } from "./data";
 import { about, li } from "./style.css";
@@ -46,9 +46,6 @@ const ListItem = ({
             <Grid.Item>
               <h4 className={li.name}>{name}</h4>
             </Grid.Item>
-            <Grid.Item>
-              <h4 className={li.amount}>{years} years</h4>
-            </Grid.Item>
           </Grid>
         </Grid.Item>
         <Grid.Item size="12">
@@ -62,7 +59,9 @@ const ListItem = ({
                 width: spring.width.to((e) => `${e}%`),
               }}
             >
-              <div className={li.thumb} />
+              <div className={li.thumb}>
+                <h4 className={li.amount}>{years}</h4>
+              </div>
             </a.div>
           </div>
         </Grid.Item>
@@ -72,20 +71,9 @@ const ListItem = ({
 };
 
 export const About = () => {
-  const [inProps, inApi] = useSpring(() => ({
-    opacity: 0,
-    transform: "translateY(24px)",
-  }));
   return (
-    <Waypoint
-      onEnter={() => {
-        inApi.start({
-          opacity: 1,
-          transform: "translateY(0px)",
-        });
-      }}
-    >
-      <a.div id="about" style={inProps} className={about.container}>
+    <div className={threeContainer}>
+      <a.div id="about" className={about.container}>
         <h1 className={about.title}>
           Hey there, I'm{" "}
           <span className={textGradient.primaryTerciary}>Alek</span>.{" "}
@@ -118,7 +106,7 @@ export const About = () => {
         <HR />
         <hgroup>
           <h2>What I've been doing</h2>
-          <h3>and for how long and stuff</h3>
+          <h3>and for how long and stuff (in years)</h3>
         </hgroup>
         <Grid.Masonry
           gap="md"
@@ -135,6 +123,6 @@ export const About = () => {
           ))}
         </Grid.Masonry>
       </a.div>
-    </Waypoint>
+    </div>
   );
 };

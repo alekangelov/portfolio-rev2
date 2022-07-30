@@ -15,7 +15,12 @@ import { Suspense } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import useMeasure from "react-use-measure";
 import { suspend } from "suspend-react";
-import { arrowButton, draggable, draggableInner } from "./style.css";
+import {
+  arrowButton,
+  blogStyles,
+  draggable,
+  draggableInner,
+} from "./style.css";
 
 const BlogPage = () => {
   const [ref, bounds] = useMeasure();
@@ -35,7 +40,7 @@ const BlogPage = () => {
     config: { mass: 5, tension: 2000, friction: 200 },
   });
   return (
-    <div>
+    <div className={blogStyles.wrapper}>
       <Grid>
         <Grid.Item>
           <button className={arrowButton} onClick={onBack}>

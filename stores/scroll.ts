@@ -36,6 +36,7 @@ function createObservable<T>(initialValue: T): Observable<T> {
 type ScrollStore = {
   top: Observable<number>;
   height: Observable<number[]>;
+  maxHeight: number;
   position: {
     landing: number;
     about: number;
@@ -47,6 +48,7 @@ type ScrollStore = {
 
 export const scroll: ScrollStore = {
   top: createObservable(0),
+  maxHeight: 0,
   height: createObservable([]),
   position: {
     landing: 0,

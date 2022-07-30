@@ -67,12 +67,7 @@ export const Landing = () => {
         <Grid.Item>
           <a.div style={spring[1]}>
             <Button
-              onClick={() =>
-                window.scrollTo({
-                  top: document.documentElement.clientHeight - 200,
-                  behavior: "smooth",
-                })
-              }
+              onClick={generateClick("https://github.com/alekangelov")}
               radius={"sm"}
             >
               Find out more

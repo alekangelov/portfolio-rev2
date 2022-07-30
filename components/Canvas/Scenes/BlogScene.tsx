@@ -73,10 +73,8 @@ export const BlogScene = () => {
           <BottomText />
         </Box>
       </Box>
-      <Box centerAnchor width="100%">
-        <FlexedHtml>
-          <Blog />
-        </FlexedHtml>
+      <Box width="100%" height={6}>
+        <mesh />
       </Box>
     </Box>
   );

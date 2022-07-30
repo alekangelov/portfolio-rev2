@@ -2,6 +2,7 @@ import { useThree } from "@react-three/fiber";
 import { useFlexSize } from "@react-three/flex";
 import { scroll } from "@stores";
 import { useEffect, useMemo, useRef, useState } from "react";
+import { useEventListener } from "usehooks-ts";
 import { lerp } from "utils/lerp";
 
 export const HeightReporter = ({
@@ -12,7 +13,6 @@ export const HeightReporter = ({
   factor?: number;
 }) => {
   const [_, height] = useFlexSize();
-  console.log(height);
   useEffect(() => {
     scroll.height.set((prev) => {
       const x = [...prev];
@@ -23,11 +23,22 @@ export const HeightReporter = ({
   return null;
 };
 
+const useWindowSize = () => {
+  const [size] = useState(window.innerHeight);
+  return size;
+};
+const useHeight = () => {
+  const x = useThree((state) => state.viewport.height);
+  const [height] = useState(x);
+  return height;
+};
+
 export const useDomHeight = () => {
   const [canvasHeight, setCanvasHeight] = useState(0);
-  const { clientHeight } = document.documentElement;
-  const height = useThree((state) => state.viewport.height);
+  const height = useHeight();
+  const clientHeight = useWindowSize();
   const actualDomHeight = useMemo(() => {
+    console.log({ canvasHeight, height, clientHeight });
     return lerp(canvasHeight, 0, height, 0, clientHeight);
   }, [canvasHeight, height, clientHeight]);
   useEffect(() => {
@@ -38,5 +49,9 @@ export const useDomHeight = () => {
       unsubscribe();
     };
   }, []);
-  return actualDomHeight;
+  useEffect(() => {
+    console.log("TRIGGERED:", actualDomHeight);
+    document.body.style.height = `${actualDomHeight}px`;
+    // scroll.maxHeight = actualDomHeight;
+  }, [actualDomHeight]);
 };

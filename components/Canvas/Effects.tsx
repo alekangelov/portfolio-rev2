@@ -14,7 +14,11 @@ import { useRef } from "react";
 import { EffectPass } from "./Helpers/EffectPass";
 import { WaterPass } from "./Helpers/WaterPass";
 import { scroll, useObservable } from "@stores";
-import { Effects as EffectsComposer, useDetectGPU } from "@react-three/drei";
+import {
+  Effects as EffectsComposer,
+  useDetectGPU,
+  useScroll,
+} from "@react-three/drei";
 import * as THREE from "three";
 import { useResponsiveValue } from "@utils";
 
@@ -43,29 +47,30 @@ export default function Effects() {
   const water = useRef<any>(null);
   const bloom = useRef<any>(null);
   const gpu = useDetectGPU();
-  let last = scroll.top.getValue();
+  const { delta } = useScroll();
+
   // return null;
   useFrame(() => {
+    console.log(delta);
+
     if (gpu.tier <= 2 || gpu.isMobile) return;
 
-    const top = scroll.top.getValue();
     if (!effect.current || !water.current || !bloom.current) return;
     effect.current.factor = THREE.MathUtils.lerp(
       effect.current.factor,
-      (top - last) / -100,
+      delta,
       0.1
     );
     bloom.current.strength = THREE.MathUtils.lerp(
       bloom.current.strength,
-      Math.abs((top - last) / 100) + 0.15,
+      Math.abs(delta) + 0.15,
       0.1
     );
     water.current.factor = THREE.MathUtils.lerp(
       water.current.factor,
-      Math.abs((top - last) / 50),
+      Math.abs(delta),
       0.1
     );
-    last = top;
     // gl.autoClear = true;
     // composer.current.render();
   }, 1);

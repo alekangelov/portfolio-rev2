@@ -18,6 +18,9 @@ export const landing = {
       alignItems: "flex-start",
       justifyContent: "center",
       flexDirection: "column",
+      width: "90vw",
+      height: "100vh",
+      marginLeft: "5vw",
     },
   ]),
   title: style({
@@ -72,9 +75,20 @@ export const landing = {
 
 export const about = {
   container: style({
-    maxWidth: "90vw",
+    maxWidth: "100%",
+    margin: "0 auto",
     width: 640,
+    marginTop: "120vh",
+    "@media": {
+      [`${media.tablet}`]: {
+        marginTop: "90vh",
+      },
+      [`${media.desktop}`]: {
+        marginTop: "90vh",
+      },
+    },
   }),
+
   title: style({
     fontSize: "48px",
     lineHeight: 1.2,
@@ -90,7 +104,7 @@ export const li = {
     fontWeight: 900,
   }),
   amount: style({
-    color: parseColor(vars.colors.secondary),
+    color: parseColor(vars.onColors.surface),
     fontWeight: 900,
   }),
   description: style({
@@ -98,8 +112,8 @@ export const li = {
   }),
   parent: style({}),
   track: style({
-    width: "100%",
-    height: 12,
+    height: 24,
+    minWidth: 256,
   }),
   fill: style({
     borderRadius: 24,
@@ -107,23 +121,33 @@ export const li = {
     width: "100%",
     height: "100%",
     position: "relative",
+    minWidth: 48,
   }),
   thumb: style({
     height: "100%",
-    aspectRatio: "1 / 1",
-    background: parseColor(vars.onColors.surface),
+    maxWidth: "100%",
+    padding: 8,
+    background: parseColor(vars.onColors.surface, 0.2),
     borderRadius: 24,
     position: "absolute",
+    display: "flex",
+    alignItems: "center",
+    justifyContent: "center",
     right: 0,
-    opacity: 0.5,
   }),
 };
 
 export const projectStyles = {
   container: style({
-    maxWidth: "90vw",
     margin: "0 auto",
     width: "90vw",
+    marginTop: "50vh",
+    marginLeft: "5vw",
+    "@media": {
+      [`${media.tablet}`]: {
+        marginTop: "60vh",
+      },
+    },
   }),
 };
 
@@ -180,6 +204,13 @@ export const contact = {
     maxWidth: "90vw",
     margin: "0 auto",
     width: "90vw",
+    marginLeft: "5vw",
+    marginTop: "100vh",
+    "@media": {
+      [`${media.tablet}`]: {
+        marginTop: "60vh",
+      },
+    },
   }),
   button: style({
     display: "flex",
@@ -210,5 +241,20 @@ export const contact = {
   }),
   text: style({
     fontWeight: 600,
+  }),
+};
+
+export const blogStyles = {
+  wrapper: style({
+    maxWidth: "90vw",
+    margin: "0 auto",
+    width: "90vw",
+    marginTop: "150vh",
+    marginLeft: "5vw",
+    "@media": {
+      [`${media.tablet}`]: {
+        marginTop: "140vh",
+      },
+    },
   }),
 };

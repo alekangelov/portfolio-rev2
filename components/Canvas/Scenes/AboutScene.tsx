@@ -6,7 +6,7 @@ import {
   useSyncGeometrySize,
 } from "@react-three/flex";
 import { useContainer } from "../Helpers/hooks";
-import { Text, Image } from "@react-three/drei";
+import { Text, Image, useScroll, Scroll } from "@react-three/drei";
 import { forwardRef, useRef } from "react";
 import { SceneProps } from "./types";
 import { useFrame } from "@react-three/fiber";
@@ -16,7 +16,7 @@ import { About } from "components/Pages";
 import { Group, Vector3 } from "three";
 import { FlexedHtml } from "../components/FlexedHtml";
 import { BoxDebug } from "../Helpers/Debug";
-import { useResponsiveValue } from "@utils";
+import { mergeRefs, useResponsiveValue } from "@utils";
 
 const id = (() => {
   let i = 0;
@@ -24,7 +24,14 @@ const id = (() => {
 })();
 
 const HoverableImage: typeof Image = forwardRef((props, ref) => {
-  return <Image {...(props as any)} ref={ref} />;
+  const random = useRef(Math.random());
+  const x = useRef<any>();
+  const data = useScroll();
+  useFrame(() => {
+    if (!x.current) return;
+    x.current.material.zoom = 1 + data.range(0, 1 / 3) * random.current * 2;
+  });
+  return <Image {...(props as any)} ref={mergeRefs([ref, x])} />;
 });
 
 function TopText() {
@@ -83,11 +90,9 @@ const vx = new Vector3();
 
 function ImageBox() {
   const ref = useRef<Group>(null);
+  const data = useScroll();
   useFrame(() => {
-    ref.current?.position.lerp(
-      vx.set(-(scroll.top.getValue() - 700) / 100, 0, 0),
-      0.1
-    );
+    ref.current?.position.set(-data.range(0, 1) * 100 + 10, 0, 0);
   });
   return (
     <Box
@@ -134,6 +139,10 @@ function ImageBox() {
 }
 
 export const AboutScene = ({}: SceneProps) => {
+  const size = useResponsiveValue({
+    base: 23,
+    tablet: 10,
+  });
   return (
     <Box width="100%" dir="column">
       <Box dir="column" alignItems="flex-start" justifyContent="flex-start">
@@ -145,10 +154,8 @@ export const AboutScene = ({}: SceneProps) => {
         </Box>
       </Box>
       <Box centerAnchor>
-        <Box mt={0.5} mb={2} width="100%" justify="center">
-          <FlexedHtml>
-            <About />
-          </FlexedHtml>
+        <Box mt={0.5} mb={2} height={size} width="100%" justify="center">
+          <mesh />
         </Box>
       </Box>
     </Box>

@@ -4,6 +4,7 @@ import {
   GradientTexture,
   Html,
   Float,
+  Scroll,
 } from "@react-three/drei";
 import { SceneProps } from "./types";
 import Bust from "../Models/Bust";
@@ -74,14 +75,7 @@ export const HomeScene = ({}: SceneProps) => {
         height="100%"
         flexDirection="row"
       >
-        <Html
-          center
-          style={{
-            width: "90vw",
-          }}
-        >
-          <Landing />
-        </Html>
+        <mesh />
         <Main />
       </Box>
     );
@@ -94,14 +88,7 @@ export const HomeScene = ({}: SceneProps) => {
         centerAnchor
         width={`${columns[firstColumn || "12"]}%`}
       >
-        <Html
-          center
-          style={{
-            width: calculateColumnWidth(firstColumn || "12"),
-          }}
-        >
-          <Landing />
-        </Html>
+        <mesh />
       </Box>
       <Box
         centerAnchor

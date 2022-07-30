@@ -141,4 +141,10 @@ export const globals = [
   globalStyle("body", {
     overflow: "overlay",
   }),
+  globalStyle("html, body, #root", {
+    width: "100%",
+    height: "100%",
+    WebkitOverflowScrolling: "touch",
+    overscrollBehaviorY: "none",
+  }),
 ];

@@ -10,27 +10,27 @@ export type P = {
 export const skills: P[] = [
   {
     name: "Typescript",
-    amount: 10,
+    amount: 4,
     years: 4,
     description:
       "I love typescript, it's slow but it has the best type system ever (in my oppinion, ofcourse).",
   },
   {
     name: "Javascript",
-    amount: 10,
+    amount: 6,
     years: 6,
     description:
       "Typescript solves JavaScript's issues, but I started out with it. Has sentimental value.",
   },
   {
     name: "React (Native)",
-    amount: 10,
+    amount: 4,
     years: 4,
     description: "Good UI library, maybe the best?",
   },
   {
     name: "Solid",
-    amount: 4,
+    amount: 1,
     years: 0.5,
     description:
       "Insane UI library, will maybe overtake React if it continues to grow",
@@ -44,54 +44,54 @@ export const skills: P[] = [
   },
   {
     name: "Node",
-    amount: 10,
+    amount: 4,
     years: 4,
     description:
       "When I want to do anything backend, Node is my safe and comfortable choice.",
   },
   {
     name: "Databases",
-    amount: 10,
+    amount: 5,
     years: 5,
     description:
       "I like both Document and SQL databases. Mainly worked with Maria/MySql, Postgres and Mongo.",
   },
   {
     name: "GraphQL",
-    amount: 10,
+    amount: 4,
     years: 4,
     description:
       "Better than REST sometimes, have experience in the front and back end of the tech.",
   },
   {
     name: "Flutter/Dart",
-    amount: 6,
+    amount: 1,
     years: 1,
     description:
       "Writing apps in Flutter is fun, but the general architecture of Flutter is convoluted.",
   },
   {
     name: "Rust",
-    amount: 3,
+    amount: 1,
     years: 0.5,
     description:
       "Amazing, intuitive and fast language that is taking the world by storm.",
   },
   {
     name: "Scrum",
-    amount: 7,
+    amount: 3,
     years: 3,
     description: "A neccesary evil.",
   },
   {
     name: "Mgmt",
-    amount: 5,
+    amount: 4,
     years: "1+",
     description: "Like the band, but not really.",
   },
   {
     name: "Mentorship",
-    amount: 10,
+    amount: 4,
     years: "3+",
     description:
       "I love to help people grow and develop. Been doing it for a while now.",

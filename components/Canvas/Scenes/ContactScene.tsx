@@ -70,10 +70,8 @@ export const ContactScene = () => {
           {/* <BoxDebug /> */}
           <SubTitle />
         </Box>
-        <Box width="100%">
-          <FlexedHtml mt={0.5} width={"100%"} centerAnchor>
-            <Contact />
-          </FlexedHtml>
+        <Box width="100%" height={6}>
+          <mesh />
         </Box>
       </Box>
     </Box>

@@ -48,3 +48,8 @@ export const gradients = {
     parseColor(vars.colors.terciary),
   ],
 };
+
+export const threeContainer = style({
+  width: "90vw",
+  marginLeft: "5vw",
+});
