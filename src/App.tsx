@@ -1,13 +1,10 @@
-import { About, Landing, Layout, Loader } from "@components";
+import { Layout, Loader } from "@components";
 
 function App() {
   return (
     <>
       <Loader />
-      <Layout>
-        <Landing />
-        <About />
-      </Layout>
+      <Layout />
     </>
   );
 }
