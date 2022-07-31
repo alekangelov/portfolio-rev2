@@ -5,6 +5,7 @@ import { Projects } from "components";
 import { fontPaths } from "styles/fonts";
 import { FlexedHtml } from "../components/FlexedHtml";
 import { useContainer } from "../Helpers/hooks";
+import { useDomNodeThreeHeight } from "../hooks/useDomNodeHeight";
 
 const Title = () => {
   const onSync = useSyncGeometrySize();
@@ -26,6 +27,7 @@ export const ProjectsScene = () => {
   const {
     viewport: { height },
   } = useContainer();
+  const htmlSize = useDomNodeThreeHeight("projects");
   return (
     <Box
       width="100%"
@@ -37,7 +39,7 @@ export const ProjectsScene = () => {
       <Box width="100%" align="flex-start">
         <Title />
       </Box>
-      <Box centerAnchor width="100%">
+      <Box centerAnchor width="100%" height={htmlSize}>
         <Box width="100%" height={6}>
           <mesh />
         </Box>

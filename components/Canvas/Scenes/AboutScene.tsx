@@ -6,17 +6,14 @@ import {
   useSyncGeometrySize,
 } from "@react-three/flex";
 import { useContainer } from "../Helpers/hooks";
-import { Text, Image, useScroll, Scroll } from "@react-three/drei";
+import { Text, Image, useScroll } from "@react-three/drei";
 import { forwardRef, useRef } from "react";
 import { SceneProps } from "./types";
 import { useFrame } from "@react-three/fiber";
-import { scroll } from "@stores";
 import { fontPaths } from "styles/fonts";
-import { About } from "components/Pages";
 import { Group, Vector3 } from "three";
-import { FlexedHtml } from "../components/FlexedHtml";
-import { BoxDebug } from "../Helpers/Debug";
 import { mergeRefs, useResponsiveValue } from "@utils";
+import { useDomNodeThreeHeight } from "../hooks/useDomNodeHeight";
 
 const id = (() => {
   let i = 0;
@@ -92,7 +89,7 @@ function ImageBox() {
   const ref = useRef<Group>(null);
   const data = useScroll();
   useFrame(() => {
-    ref.current?.position.set(-data.range(0, 1) * 100 + 10, 0, 0);
+    ref.current?.position.set(-data.range(0.05, 1 / 3) * 100 + 10, 0, 0);
   });
   return (
     <Box
@@ -142,19 +139,14 @@ export const AboutScene = ({}: SceneProps) => {
   const {
     viewport: { height },
   } = useContainer();
-  const textSize = useResponsiveValue({
-    base: height * 5,
-    tablet: height * 3,
-  });
-
-  const boxHeight = textSize || 1 + height;
-
+  const textSize = useDomNodeThreeHeight("about");
+  console.log(textSize);
   return (
-    <Box width="100%" dir="column" height={boxHeight}>
+    <Box width="100%" dir="column">
       <Box
         dir="column"
         alignItems="flex-start"
-        height={height * 1}
+        height={height}
         justifyContent="flex-start"
       >
         <Box width="100%">

@@ -1,7 +1,9 @@
+import { scrollHeights, useObservable } from "@stores";
 import { useResponsiveValue } from "@utils";
 import { assignInlineVars } from "@vanilla-extract/dynamic";
 import clsx from "clsx";
-import { PropsWithChildren } from "react";
+import { PropsWithChildren, useEffect, useLayoutEffect, useRef } from "react";
+import useMeasure from "react-use-measure";
 import { About } from "./About";
 import { Blog } from "./Blog";
 import { Contact } from "./Contact";
@@ -30,10 +32,15 @@ const Spacing = ({
 );
 
 const Page = ({
-  factor: xFactor = 1,
+  factor: xFactor,
   debug: xDebug,
   children,
-}: PropsWithChildren<{ factor?: number; debug?: boolean }>) => (
+  key,
+}: PropsWithChildren<{
+  factor?: number;
+  debug?: boolean;
+  key?: keyof typeof scrollHeights;
+}>) => (
   <div
     className={clsx(threePage, xDebug && debug)}
     children={children}
@@ -42,38 +49,55 @@ const Page = ({
         {
           factor,
         },
-        { factor: `${xFactor}` }
+        { factor: `${xFactor || ""}` }
       ),
     }}
   />
 );
 
+function HeightReporter({
+  keyX: key,
+  children,
+}: PropsWithChildren<{ keyX: keyof typeof scrollHeights }>) {
+  const [_, set] = useObservable(scrollHeights[key]);
+  const [ref, bounds] = useMeasure();
+  useLayoutEffect(() => {
+    set(() => bounds.height);
+  }, [bounds.height]);
+  return <div ref={ref} children={children} />;
+}
+
 export const HtmlPages = () => {
-  const aboutFactor = useResponsiveValue({
-    base: 5,
-    tablet: 3,
-  });
   return (
     <>
       <Page>
-        <Landing />
+        <HeightReporter keyX="home">
+          <Landing />
+        </HeightReporter>
       </Page>
-      <Page factor={aboutFactor}>
-        <Spacing factor={1.2} />
-        <About />
+      <Page>
+        <Spacing factor={1} />
+        <HeightReporter keyX="about">
+          <About />
+          <Spacing factor={0.1} />
+        </HeightReporter>
+      </Page>
+      <Page>
+        <Spacing factor={0.35} />
+        <HeightReporter keyX="projects">
+          <Projects />
+        </HeightReporter>
+        <Spacing factor={2} />
       </Page>
       <Page factor={1}>
-        <Spacing factor={0.3} />
-        <Projects />
-      </Page>
-      <Spacing factor={1.5} />
-      <Page>
-        <Spacing factor={0.3} />
-        <Blog />
+        <HeightReporter keyX="blog">
+          <Blog />
+        </HeightReporter>
       </Page>
       <Page>
-        <Spacing factor={0.3} />
-        <Contact />
+        <HeightReporter keyX="contact">
+          <Contact />
+        </HeightReporter>
       </Page>
     </>
   );

@@ -6,21 +6,17 @@ import {
   GlitchPass,
   FilmPass,
   UnrealBloomPass,
-  FXAAShader,
-  ColorCorrectionShader,
   ShaderPass,
 } from "three-stdlib";
 import { useRef } from "react";
 import { EffectPass } from "./Helpers/EffectPass";
 import { WaterPass } from "./Helpers/WaterPass";
-import { scroll, useObservable } from "@stores";
 import {
   Effects as EffectsComposer,
   useDetectGPU,
   useScroll,
 } from "@react-three/drei";
 import * as THREE from "three";
-import { useResponsiveValue } from "@utils";
 
 extend({
   BloomPass,

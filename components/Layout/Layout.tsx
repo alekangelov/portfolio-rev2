@@ -1,5 +1,4 @@
 import { Navbar, Footer, Background } from "@components";
-
 export const Layout = () => {
   return (
     <>

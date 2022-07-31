@@ -1,28 +1,15 @@
-import { memo, PropsWithChildren, Suspense, useEffect, useState } from "react";
+import { memo, PropsWithChildren, Suspense, useState } from "react";
 import { Canvas } from "@react-three/fiber";
-import {
-  Cloud,
-  Environment,
-  Scroll,
-  ScrollControls,
-  Sparkles,
-  Stats,
-} from "@react-three/drei";
+import { Cloud, Environment, Scroll, ScrollControls } from "@react-three/drei";
 import { HomeScene } from "./Scenes/HomeScene";
 import Effects from "./Effects";
 import * as THREE from "three";
-import { Box, Flex, useReflow } from "@react-three/flex";
+import { Box, Flex } from "@react-three/flex";
 import { useContainer } from "./hooks/useContainer";
 import { AboutScene } from "./Scenes/AboutScene";
-import { BoxDebug } from "./Helpers/Debug";
 import Color from "color";
 import { ProjectsScene } from "./Scenes/ProjectsScene";
-import { useEventListener } from "usehooks-ts";
-import { useScrollPosition } from "./hooks/useScroll";
-import { Clump, Pointer } from "./Scenes/ClumpScene";
-import { Physics } from "@react-three/cannon";
 import { BlogScene } from "./Scenes/BlogScene";
-import { HeightReporter, useDomHeight } from "./Helpers/HeightReporter";
 import { ContactScene } from "./Scenes/ContactScene";
 import { LaptopScene } from "./Scenes/LaptopScene";
 import { FooterScene } from "./Scenes/FooterScene";

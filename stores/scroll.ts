@@ -71,3 +71,11 @@ export const useObservable = <T extends Observable<any>>(obs: T) => {
   }, [obs]);
   return [value, obs.set];
 };
+
+export const scrollHeights = {
+  home: createObservable(0),
+  about: createObservable(0),
+  projects: createObservable(0),
+  blog: createObservable(0),
+  contact: createObservable(0),
+};
