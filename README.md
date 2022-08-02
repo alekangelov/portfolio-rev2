@@ -16,5 +16,6 @@ A list of the tech I used
 - Vanilla Extract - Styling
 - Zustand
 - ThreeJS + React Three Fiber
+- React Spring (Web/Three)
 - Vercel
 - Vite
