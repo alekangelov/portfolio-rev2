@@ -152,7 +152,7 @@ export default function Phone({ ...props }) {
                 scale={0.243}
                 center
                 transform
-                zIndexRange={[0, 20]}
+                zIndexRange={[1, 20]}
               >
                 <div>
                   <Example />
