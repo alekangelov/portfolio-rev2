@@ -83,7 +83,6 @@ function TextBox() {
     </Box>
   );
 }
-const vx = new Vector3();
 
 function ImageBox() {
   const ref = useRef<Group>(null);

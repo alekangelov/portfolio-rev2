@@ -81,7 +81,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
           onReflow={handleReflow}
         >
           {/* <Stats showPanel={0} className="stats" /> */}
-          <Scroll html>
+          <Scroll ref={console.log} html>
             <HtmlPages />
           </Scroll>
           <Scroll>

@@ -39,3 +39,8 @@ export const generateClick = (url: string): X => {
   clickCache.set(url, click);
   return click;
 };
+
+export const clientHeight = {
+  set: "--client-height",
+  get: "var(--client-height)",
+};

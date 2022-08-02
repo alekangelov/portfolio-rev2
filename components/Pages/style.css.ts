@@ -9,6 +9,7 @@ import {
   transition,
   media,
 } from "@styles";
+import { clientHeight } from "@utils";
 
 export const landing = {
   container: style([
@@ -224,11 +225,11 @@ export const blogStyles = {
 export const factor = createVar("factor");
 
 export const threeSpacing = style({
-  height: `calc(100vh * ${factor})`,
+  height: `calc(${clientHeight.get} * ${factor})`,
 });
 
 export const threePage = style({
-  height: `calc(100vh * ${factor})`,
+  height: `calc(${clientHeight.get} * ${factor})`,
   width: "90vw",
   marginLeft: "5vw",
 });

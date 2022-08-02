@@ -70,7 +70,7 @@ function HeightReporter({
 export const HtmlPages = () => {
   return (
     <>
-      <Page>
+      <Page factor={1}>
         <HeightReporter keyX="home">
           <Landing />
         </HeightReporter>
@@ -82,19 +82,23 @@ export const HtmlPages = () => {
           <Spacing factor={0.1} />
         </HeightReporter>
       </Page>
-      <Page>
+      <Page debug>
         <Spacing factor={0.35} />
         <HeightReporter keyX="projects">
           <Projects />
         </HeightReporter>
-        <Spacing factor={2} />
+        <Spacing factor={1.5} />
       </Page>
-      <Page factor={1}>
+      <Page factor={1} debug>
+        <Spacing factor={0.35} />
         <HeightReporter keyX="blog">
           <Blog />
         </HeightReporter>
+        <Spacing factor={0.35} />
       </Page>
       <Page>
+        <Spacing factor={0.5} />
+
         <HeightReporter keyX="contact">
           <Contact />
         </HeightReporter>

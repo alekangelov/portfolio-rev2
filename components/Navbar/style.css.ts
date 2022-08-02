@@ -22,7 +22,7 @@ export const navbar = {
     left: "50%",
     transform: "translateX(-50%)",
     width: "100%",
-    zIndex: 10,
+    zIndex: 100,
     transition: transition("background", "backdrop-filter"),
   }),
   container: style({
@@ -104,6 +104,7 @@ export const navbar = {
       justifyContent: "center",
       cursor: "pointer",
       transition: transition("color", "background"),
+      backdropFilter: "blur(24px)",
       fontSize: vars.font.size.md,
       selectors: {
         "&:hover": {
