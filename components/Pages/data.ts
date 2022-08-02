@@ -33,7 +33,7 @@ export const skills: P[] = [
     amount: 1,
     years: 0.5,
     description:
-      "Insane UI library, will maybe overtake React if it continues to grow",
+      "Insane UI library, will maybe overtake React if it continues to grow.",
   },
   {
     name: "Styling",

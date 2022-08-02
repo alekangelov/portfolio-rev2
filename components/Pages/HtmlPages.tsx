@@ -82,14 +82,14 @@ export const HtmlPages = () => {
           <Spacing factor={0.1} />
         </HeightReporter>
       </Page>
-      <Page debug>
+      <Page>
         <Spacing factor={0.35} />
         <HeightReporter keyX="projects">
           <Projects />
         </HeightReporter>
         <Spacing factor={1.5} />
       </Page>
-      <Page factor={1} debug>
+      <Page factor={1}>
         <Spacing factor={0.35} />
         <HeightReporter keyX="blog">
           <Blog />
