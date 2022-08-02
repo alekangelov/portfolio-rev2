@@ -26,7 +26,7 @@ export const modal = {
     width: "100%",
     height: "100%",
     background: "rgba(0,0,0,0.5)",
-    zIndex: 55,
+    zIndex: 105,
     backdropFilter: "blur(10px)",
     overflowY: "scroll",
   }),
