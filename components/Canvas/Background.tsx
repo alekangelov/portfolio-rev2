@@ -81,7 +81,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
           onReflow={handleReflow}
         >
           {/* <Stats showPanel={0} className="stats" /> */}
-          <Scroll ref={console.log} html>
+          <Scroll html>
             <HtmlPages />
           </Scroll>
           <Scroll>
@@ -92,6 +92,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
                   <Scroll>
                     <Box centerAnchor width="100%" height={0}>
                       <Cloud
+                        texture="/cloud.png"
                         color="#0077ff"
                         speed={0.5}
                         opacity={0.1}

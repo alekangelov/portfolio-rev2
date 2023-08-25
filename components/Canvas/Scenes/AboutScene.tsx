@@ -139,7 +139,6 @@ export const AboutScene = ({}: SceneProps) => {
     viewport: { height },
   } = useContainer();
   const textSize = useDomNodeThreeHeight("about");
-  console.log(textSize);
   return (
     <Box width="100%" dir="column">
       <Box
