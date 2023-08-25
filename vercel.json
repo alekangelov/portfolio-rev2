@@ -1,12 +1,8 @@
 {
   "headers": [
     {
-      "headers": [
-        {
-          "key": "Cache-Control",
-          "value": "s-maxage=600, stale-while-revalidate=59"
-        }
-      ]
+      "key": "Cache-Control",
+      "value": "s-maxage=600, stale-while-revalidate=59"
     }
   ]
 }
