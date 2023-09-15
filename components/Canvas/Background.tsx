@@ -73,7 +73,7 @@ const Scenes = ({ children }: PropsWithChildren<unknown>) => {
   return (
     <Suspense>
       <Environment files="/studio.hdr" encoding={THREE.LinearEncoding} />
-      <ScrollControls damping={10} enabled pages={scrollPages}>
+      <ScrollControls enabled pages={scrollPages}>
         <Flex
           size={[width, 0, 0]}
           position={[-width / 2, height / 2, 0]}
