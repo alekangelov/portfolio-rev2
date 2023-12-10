@@ -14,7 +14,6 @@ import { Spacing } from "components/Spacing";
 import { Suspense } from "react";
 import { AiOutlineArrowLeft, AiOutlineArrowRight } from "react-icons/ai";
 import useMeasure from "react-use-measure";
-import { suspend } from "suspend-react";
 import {
   arrowButton,
   blogStyles,
@@ -24,14 +23,14 @@ import {
 
 const BlogPage = () => {
   const [ref, bounds] = useMeasure();
-  const data = suspend(getMediumPosts, []);
+  const data = getMediumPosts();
   const size = useResponsiveValue({
     base: "12",
     tablet: "6",
     desktop: "4",
   });
   const gapWidth = getCSSVarValue(vars.spacing.md);
-  const { page, onBack, onNext } = usePages(getPageSize(data.length, size));
+  const { page, onBack, onNext } = usePages(getPageSize(data?.length, size));
   const scroll = useSpring({
     to: {
       transform: `translate(-${page * bounds.width + gapWidth * page}px, 0px)`,
@@ -57,7 +56,7 @@ const BlogPage = () => {
       <animated.div style={{ ...scroll }} className={draggable}>
         <div className={draggableInner} ref={ref}>
           <Grid wrap={false} gap="md">
-            {data.map((element) => {
+            {data?.map((element) => {
               return (
                 <Grid.Item size={size as any} key={element.guid}>
                   {/* @ts-ignore */}

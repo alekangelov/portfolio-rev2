@@ -11,7 +11,6 @@ import {
   MdMenu,
 } from "react-icons/md";
 import { useBoolean } from "usehooks-ts";
-import { lerp } from "utils/lerp";
 import {
   navbar,
   notch,
